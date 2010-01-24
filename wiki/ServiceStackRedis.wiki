@@ -7,6 +7,10 @@ I've developed an API complete redis c# client based on [http://twitter.com/migu
 
 {{{
 
+var storeMembers = new List<string> { "one", "two", "three", "four" };
+
+const string ListId = "testlist";
+
 //Exposes Redis Lists as c# IList<string>, i.e. 
 using (var redis = new RedisClient())
 {
@@ -20,6 +24,8 @@ using (var redis = new RedisClient())
 
 	AssertListsAreEqual(members, storeMembers);
 }
+
+const string SetId = "testset";
 
 //Exposes Redis Lists as c# ICollection<string>, i.e. 
 using (var redis = new RedisClient())
