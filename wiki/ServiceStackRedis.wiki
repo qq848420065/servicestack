@@ -1,0 +1,203 @@
+#labels redis,c
+= C# Client for Redis =
+
+I've developed an API complete redis c# client based on [http://twitter.com/migueldeicaza miguel deicaza] previous efforts with [http://github.com/migueldeicaza/redis-sharp redis-sharp]. 
+
+= Examples =
+
+{{{
+
+//Exposes Redis Lists as c# IList<string>, i.e. 
+using (var redis = new RedisClient())
+{
+	var list = redis.Lists[ListId];
+	storeMembers.ForEach(list.Add);
+
+	storeMembers.Remove("two");
+	list.Remove("two");
+
+	var members = list.ToList<string>();
+
+	AssertListsAreEqual(members, storeMembers);
+}
+
+//Exposes Redis Lists as c# ICollection<string>, i.e. 
+using (var redis = new RedisClient())
+{
+	var list = redis.Sets[SetId];
+	storeMembers.ForEach(list.Add);
+
+	storeMembers.Remove("two");
+	list.Remove("two");
+
+	var members = list.ToList<string>();
+
+	Assert.That(members, Is.EquivalentTo(storeMembers));
+}
+
+//The client has ServiceStack.StringSerializer in-built which serializes POCO types into a compact JSON/CSV format. 
+//This lets you serialize the entire Northwind database with just a few lines of code:
+using (var client = new RedisPersistenceProvider())
+{
+	client.StoreAll(NorthwindData.Categories);
+	client.StoreAll(NorthwindData.Customers);
+	client.StoreAll(NorthwindData.Employees);
+	client.StoreAll(NorthwindData.Shippers);
+	client.StoreAll(NorthwindData.Orders);
+	client.StoreAll(NorthwindData.Products);
+	client.StoreAll(NorthwindData.OrderDetails);
+	client.StoreAll(NorthwindData.CustomerCustomerDemos);
+	client.StoreAll(NorthwindData.Regions);
+	client.StoreAll(NorthwindData.Territories);
+	client.StoreAll(NorthwindData.EmployeeTerritories);
+}
+
+}}}
+
+ServiceStack.StringSerializer serializes the entire Northwind Database 1.8x quicker and 2.6x smaller than MS's XML DataContractSerializer.
+
+More examples are available in the [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests Redis tests]
+
+
+= Download =
+
+The latest version is available as a single binary to download [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll here]
+
+The source is available [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis here]
+
+
+= Redis Client API =
+The Redis client exposes two API's, based on preference, A native Redis API for the redisly inclined
+{{{
+public interface IRedisNativeClient 
+	: IDisposable
+{
+	byte[][] SMembers(string setId);
+	void SAdd(string setId, byte[] value);
+	void SRem(string setId, byte[] value);
+	byte[] SPop(string setId);
+	void SMove(string fromSetId, string toSetId, byte[] value);
+	int SCard(string setId);
+	int SIsMember(string setId, byte[] value);
+	byte[][] SInter(params string[] setIds);
+	void SInterStore(string intoSetId, params string[] setIds);
+	byte[][] SUnion(params string[] setIds);
+	void SUnionStore(string intoSetId, params string[] setIds);
+	byte[][] SDiff(string fromSetId, params string[] withSetIds);
+	void SDiffStore(string intoSetId, string fromSetId, params string[] withSetIds);
+	byte[] SRandMember(string setId);
+	byte[][] LRange(string listId, int startingFrom, int endingAt);
+	byte[][] Sort(string listOrSetId, int startingFrom, int endingAt, bool sortAlpha, bool sortDesc);
+	void RPush(string listId, byte[] value);
+	void LPush(string listId, byte[] value);
+	void LTrim(string listId, int keepStartingFrom, int keepEndingAt);
+	int LRem(string listId, int removeNoOfMatches, byte[] value);
+	int LLen(string listId);
+	byte[] LIndex(string listId, int listIndex);
+	void LSet(string listId, int listIndex, byte[] value);
+	byte[] LPop(string listId);
+	byte[] RPop(string listId);
+	void RPopLPush(string fromListId, string toListId);
+	void Set(string key, byte[] value);
+	int SetNX(string key, byte[] value);
+	byte[] Get(string key);
+	byte[] GetSet(string key, byte[] value);
+	int Del(string key);
+	int Incr(string key);
+	int IncrBy(string key, int count);
+	int Decr(string key);
+	int DecrBy(string key, int count);
+	string RandomKey();
+	bool Rename(string oldKeyname, string newKeyname);
+	int Expire(string key, int seconds);
+	int ExpireAt(string key, long unixTime);
+	int Ttl(string key);
+	string Save();
+	void BgSave();
+	void Shutdown();
+	void Quit();
+	void FlushDb();
+	void FlushAll();
+	Dictionary<string, string> Info { get; }
+}
+}}}
+
+And a more friendlier and meaningful c# API:
+
+{{{
+public interface IRedisClient 
+	: IDisposable
+{
+	string Host { get; }
+	int Port { get; }
+	int RetryTimeout { get; set; }
+	int RetryCount { get; set; }
+	int SendTimeout { get; set; }
+	string Password { get; set; }
+
+	IHasNamedList<string> Lists { get; set; }
+	IHasNamedCollection<string> Sets { get; set; }
+
+	Dictionary<string, string> Info { get; }
+	int Db { get; set; }
+	int DbSize { get; }
+	DateTime LastSave { get; }
+	string[] AllKeys { get; }
+
+	string this[string key] { get; set; }
+	void SetString(string key, string value);
+	bool SetIfNotExists(string key, string value);
+	string GetString(string key);
+	string GetAndSetString(string key, string value);
+	bool ContainsKey(string key);
+	bool Remove(string key);
+	bool Remove(params string[] args);
+	int Increment(string key);
+	int IncrementBy(string key, int count);
+	int Decrement(string key);
+	int DecrementBy(string key, int count);
+	RedisKeyType GetKeyType(string key);
+	string NewRandomKey();
+	bool ExpireKeyIn(string key, TimeSpan expiresAt);
+	bool ExpireKeyAt(string key, DateTime dateTime);
+	TimeSpan GetTimeToLive(string key);
+	string Save();
+	void SaveAsync();
+	void Shutdown();
+	void FlushDb();
+	void FlushAll();
+	string[] GetKeys(string pattern);
+	List<T> GetKeyValues<T>(List<string> keys);
+	List<string> GetRangeFromSortedSet(string setId, int startingFrom, int endingAt);
+	HashSet<string> GetAllFromSet(string setId);
+	void AddToSet(string setId, string value);
+	void RemoveFromSet(string setId, string value);
+	string PopFromSet(string setId);
+	void MoveBetweenSets(string fromSetId, string toSetId, string value);
+	int GetSetCount(string setId);
+	bool SetContainsValue(string setId, string value);
+	HashSet<string> GetIntersectFromSets(params string[] setIds);
+	void StoreIntersectFromSets(string intoSetId, params string[] setIds);
+	HashSet<string> GetUnionFromSets(params string[] setIds);
+	void StoreUnionFromSets(string intoSetId, params string[] setIds);
+	HashSet<string> GetDifferencesFromSet(string fromSetId, params string[] withSetIds);
+	void StoreDifferencesFromSet(string intoSetId, string fromSetId, params string[] withSetIds);
+	string GetRandomEntryFromSet(string setId);
+	List<string> GetAllFromList(string listId);
+	List<string> GetRangeFromList(string listId, int startingFrom, int endingAt);
+	List<string> GetRangeFromSortedList(string listId, int startingFrom, int endingAt);
+	void AddToList(string listId, string value);
+	void PrependToList(string listId, string value);
+	void RemoveAllFromList(string listId);
+	void TrimList(string listId, int keepStartingFrom, int keepEndingAt);
+	int RemoveValueFromList(string listId, string value);
+	int RemoveValueFromList(string listId, string value, int noOfMatches);
+	int GetListCount(string setId);
+	string GetItemFromList(string listId, int listIndex);
+	void SetItemInList(string listId, int listIndex, string value);
+	string DequeueFromList(string listId);
+	string PopFromList(string listId);
+	void PopAndPushBetweenLists(string fromListId, string toListId);
+}
+
+}}}
