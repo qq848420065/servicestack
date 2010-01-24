@@ -1,7 +1,7 @@
 #labels redis,c
 = C# Client for Redis =
 
-An API complete redis c# client based on [http://twitter.com/migueldeicaza miguel deicaza] previous efforts with [http://github.com/migueldeicaza/redis-sharp redis-sharp]. 
+An API complete redis c# client based on [http://twitter.com/migueldeicaza miguel de Icaza] previous efforts with [http://github.com/migueldeicaza/redis-sharp redis-sharp]. 
 
 = Examples =
 
