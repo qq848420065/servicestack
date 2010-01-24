@@ -41,7 +41,7 @@ using (var redis = new RedisClient())
 	Assert.That(members, Is.EquivalentTo(storeMembers));
 }
 
-//The client has ServiceStack.StringSerializer in-built which serializes POCO types into a compact JSON/CSV format. 
+//The client has 'ServiceStack.StringSerializer' built-in which serializes POCO types into a compact JSON/CSV format. 
 //This lets you serialize the entire Northwind database with just a few lines of code:
 using (var client = new RedisPersistenceProvider())
 {
@@ -60,7 +60,7 @@ using (var client = new RedisPersistenceProvider())
 
 }}}
 
-ServiceStack.StringSerializer serializes the entire Northwind Database 1.8x quicker and 2.6x smaller than MS's XML DataContractSerializer.
+The *StringSerializer* serializes the entire Northwind Database 1.8x quicker and 2.6x smaller than MS's XML DataContractSerializer.
 
 More examples are available in the [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests Redis test suite]
 
