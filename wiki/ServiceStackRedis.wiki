@@ -56,7 +56,7 @@ using (var client = new RedisPersistenceProvider())
 
 ServiceStack.StringSerializer serializes the entire Northwind Database 1.8x quicker and 2.6x smaller than MS's XML DataContractSerializer.
 
-More examples are available in the [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests Redis tests]
+More examples are available in the [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests Redis test suite]
 
 
 = Download =
