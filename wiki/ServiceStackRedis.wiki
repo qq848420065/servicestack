@@ -43,7 +43,7 @@ using (var redis = new RedisClient())
 
 //The client has 'ServiceStack.StringSerializer' built-in which serializes POCO types into a compact JSON/CSV format. 
 //This lets you serialize the entire Northwind database with just a few lines of code:
-using (var client = new RedisPersistenceProvider())
+using (var client = new RedisClient())
 {
 	client.StoreAll(NorthwindData.Categories);
 	client.StoreAll(NorthwindData.Customers);
@@ -67,7 +67,7 @@ More examples are available in the [http://code.google.com/p/servicestack/source
 
 = Download =
 
-The latest version is available as a single binary to download [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll here]
+The latest version is available as a single dll to download [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll here]
 
 The source is available [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis here]
 
