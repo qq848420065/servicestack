@@ -208,7 +208,7 @@ public interface IRedisClient
 
 }}}
 
-And native support for any POCO types via:
+And native support for managing any POCO types via:
 {{{
 public interface IBasicPersistenceProvider 
   : IDisposable
