@@ -12,7 +12,7 @@ OrmLite was designed with a focus on these core objectives:
   * Cross platform - supports multiple dbs (currently: Sqlite and SqlServer) on both .NET and Mono platforms.
 
 = Download = 
-OrmLite is included with [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack] or available separately as a [http://servicestack.googlecode.com/files/ServiceStack.OrmLite.dll single dll].
+OrmLite is included with [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack] or available to download separately as a [http://servicestack.googlecode.com/files/ServiceStack.OrmLite.dll single dll].
 
 Source code is available [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.OrmLite here].
 
