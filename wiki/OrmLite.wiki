@@ -1,4 +1,4 @@
-A convention-based, configuration-free lightweight ORM that uses the standard POCO classes and Data Annotation attributes to infer its table schema.
+ServiceStack.OrmLite is a convention-based, configuration-free lightweight ORM that uses the standard POCO classes and Data Annotation attributes to infer its table schema.
 
 = Introduction =
 
@@ -14,7 +14,7 @@ OrmLite was designed with a focus on these core objectives:
 
 = Limitations =
 
-For simplicity and to be able to have the same POCO model persisted in RDBMS, db4o, memcached, redis, on the filesystem, etc (ServiceStack supports all of these options), each model must have a property named 'Id' which is its primary key.  
+For simplicity and to be able to have the same POCO model persisted in an RDBMS, db4o, memcached, redis or on the filesystem (all of which ServiceStack supports out of the box), each model must have a property named 'Id' which is its primary key.  
 
 
 = Examples =
