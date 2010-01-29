@@ -95,7 +95,7 @@ public class ShipperTypeCount
 }}}
 
 === Creating tables ===
-Creating tables becomes as easy as:
+Creating tables is a simple 1-liner:
 {{{
 using (var dbConn = ":memory:".OpenDbConnection())
 using (var dbCmd = dbConn.CreateCommand())
