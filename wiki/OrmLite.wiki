@@ -197,4 +197,3 @@ dbCmd.DeleteAll<ShipperType>();
 
 Assert.That(dbCmd.Select<Shipper>(), Has.Count(0));
 Assert.That(dbCmd.Select<ShipperType>(), Has.Count(0));
-}}}
