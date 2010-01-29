@@ -172,6 +172,7 @@ Assert.That(dbCmd.GetByIdOrDefault<Shipper>(trainsAreUs.Id), Is.Null);
 
 //And bring it back again
 dbCmd.Insert(trainsAreUs);
+}}}
 
 === Performing custom queries ===
 And with access to raw sql when you need it - the database is your oyster :)
