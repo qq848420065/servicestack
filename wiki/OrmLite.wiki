@@ -14,7 +14,7 @@ OrmLite was designed with a focus on these core objectives:
 = Download = 
 OrmLite is included with [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack] or available to download separately as a [http://servicestack.googlecode.com/files/ServiceStack.OrmLite.dll single dll].
 
-The full source code for OrmLite is [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.OrmLite available online].
+The full source code for OrmLite is also [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.OrmLite available online].
 
 = Limitations =
 
