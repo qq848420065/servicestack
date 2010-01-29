@@ -11,7 +11,31 @@ OrmLite was designed with a focus on these core objectives:
   * Expressive power and flexibility - with access to IDbCommand and raw SQL
   * Cross platform - supports multiple dbs (currently: Sqlite and SqlServer) on both .NET and Mono platforms.
 
+
 = Limitations =
+
 For simplicity and to be able to have the same POCO model persisted in RDBMS, db4o, memcached, redis, on the filesystem, etc (ServiceStack supports all of these options), each model must have a property named 'Id' which is its primary key.  
 
+
 = Examples =
+
+In its simplest, OrmLite can persist a class without any attributes required:
+{{{
+public class SimpleExample
+{
+	public int Id { get; set; }
+	public string Name { get; set; }
+}
+
+using (var db = "/path/to/db.sqlite".OpenDbConnection())
+using (var dbConn = db.CreateCommand())
+{
+	dbConn.CreateTable<SimpleExample>(true);
+	dbConn.Insert(new SimpleExample { Id=1, Name="Hello, World!"});
+	var rows = dbConn.Select<SimpleExample>();
+
+	Assert.That(rows, Has.Count(1));
+	Assert.That(rows[0].Id, Is.EqualTo());
+}
+}}}
+
