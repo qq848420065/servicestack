@@ -27,6 +27,9 @@ public class SimpleExample
 	public string Name { get; set; }
 }
 
+//Set once before use (i.e. in a static constructor).
+OrmLiteConfig.DialectProvider = new SqliteOrmLiteDialectProvider();
+
 using (var db = "/path/to/db.sqlite".OpenDbConnection())
 using (var dbConn = db.CreateCommand())
 {
@@ -35,7 +38,70 @@ using (var dbConn = db.CreateCommand())
 	var rows = dbConn.Select<SimpleExample>();
 
 	Assert.That(rows, Has.Count(1));
-	Assert.That(rows[0].Id, Is.EqualTo());
+	Assert.That(rows[0].Id, Is.EqualTo(1));
 }
 }}}
 
+A more complete example can be seen using a couple of tables from the Northwind database.
+{{{
+[Alias("Shippers")]
+public class Shipper
+	: IHasId<int>
+{
+	[AutoIncrement]
+	[Alias("ShipperID")]
+	public int Id { get; set; }
+
+	[Required]
+	[Index(Unique = true)]
+	[StringLength(40)]
+	public string CompanyName { get; set; }
+
+	[StringLength(24)]
+	public string Phone { get; set; }
+
+	[References(typeof(ShipperType))]
+	public int ShipperTypeId { get; set; }
+}
+
+[Alias("ShipperTypes")]
+public class ShipperType
+	: IHasId<int>
+{
+	[AutoIncrement]
+	[Alias("ShipperTypeID")]
+	public int Id { get; set; }
+
+	[Required]
+	[Index(Unique = true)]
+	[StringLength(40)]
+	public string Name { get; set; }
+}
+
+using (var dbConn = ":memory:".OpenDbConnection())
+using (var dbCmd = dbConn.CreateCommand())
+{
+	const bool overwrite = false;
+	dbCmd.CreateTables(overwrite, typeof(Shipper), typeof(ShipperType));
+
+/* In debug mode the line above prints:
+DEBUG: CREATE TABLE "Shippers" 
+(
+  "ShipperID" INTEGER PRIMARY KEY AUTOINCREMENT, 
+  "CompanyName" VARCHAR(40) NOT NULL, 
+  "Phone" VARCHAR(24) NULL, 
+  "ShipperTypeId" INTEGER NOT NULL, 
+
+  CONSTRAINT "FK_Shippers_ShipperTypes" FOREIGN KEY ("ShipperTypeId") REFERENCES "ShipperTypes" ("ShipperID") 
+);
+DEBUG: CREATE UNIQUE INDEX uidx_shippers_companyname ON "Shippers" ("CompanyName" ASC);
+DEBUG: CREATE TABLE "ShipperTypes" 
+(
+  "ShipperTypeID" INTEGER PRIMARY KEY AUTOINCREMENT, 
+  "Name" VARCHAR(40) NOT NULL 
+);
+DEBUG: CREATE UNIQUE INDEX uidx_shippertypes_name ON "ShipperTypes" ("Name" ASC);
+*/
+
+}
+}}}
