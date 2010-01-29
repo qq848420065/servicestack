@@ -1,4 +1,4 @@
-ServiceStack.OrmLite is a convention-based, configuration-free lightweight ORM that uses the standard POCO classes and Data Annotation attributes to infer its table schema.
+`ServiceStack.OrmLite` is a convention-based, configuration-free lightweight ORM that uses the standard POCO classes and Data Annotation attributes to infer its table schema.
 
 = Introduction =
 
@@ -42,7 +42,9 @@ using (var dbConn = db.CreateCommand())
 }
 }}}
 
-To get a better idea of the features of OrmLite lets walk through a complete example using sample tables from the Northwind database. With the classes below:
+To get a better idea of the features of OrmLite lets walk through a complete example using sample tables from the Northwind database. _The full source code for this example is available [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.OrmLite/ServiceStack.OrmLite.Tests/ShippersExample.cs here]._
+
+With the classes below:
 {{{
 [Alias("Shippers")]
 public class Shipper
