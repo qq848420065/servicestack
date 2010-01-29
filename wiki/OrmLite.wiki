@@ -19,7 +19,7 @@ For simplicity, and to be able to have the same POCO class persisted in an RDBMS
 
 = Examples =
 
-In its simplest, OrmLite can persist a class without any attributes required:
+In its simplest useage, OrmLite can persist a class without any attributes required:
 {{{
 public class SimpleExample
 {
