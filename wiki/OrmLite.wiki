@@ -50,7 +50,7 @@ To get a better idea of the features of OrmLite lets walk through a complete exa
 
 _Full source code for this example is available [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.OrmLite/ServiceStack.OrmLite.Tests/ShippersExample.cs here]._
 
-With only the classes below:
+So with no other configuration using only the classes below:
 {{{
 [Alias("Shippers")]
 public class Shipper
