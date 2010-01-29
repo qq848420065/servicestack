@@ -83,6 +83,7 @@ using (var dbCmd = dbConn.CreateCommand())
 {
 	const bool overwrite = false;
 	dbCmd.CreateTables(overwrite, typeof(Shipper), typeof(ShipperType));
+}
 
 /* In debug mode the line above prints:
 DEBUG: CREATE TABLE "Shippers" 
@@ -103,5 +104,4 @@ DEBUG: CREATE TABLE "ShipperTypes"
 DEBUG: CREATE UNIQUE INDEX uidx_shippertypes_name ON "ShipperTypes" ("Name" ASC);
 */
 
-}
 }}}
