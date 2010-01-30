@@ -1,4 +1,4 @@
-#labels C,OpenSource,Mono,Lightweight,Fast,ORM
+#labels CSharp,OpenSource,Mono,Lightweight,Fast,ORM
 ServiceStack.OrmLite is a convention-based, configuration-free lightweight ORM that uses standard POCO classes and Data Annotation attributes to infer its table schema.
 
 = Introduction =
@@ -183,8 +183,8 @@ dbCmd.Insert(trainsAreUs);
 And with access to raw sql when you need it - the database is your oyster :)
 {{{
 //Select only a subset from the table
-var partialRows = dbCmd.Select<SubsetOfShipper>(typeof (Shipper), "ShipperTypeId = {0}", planesTypeId);
-Assert.That(partialRows, Has.Count(2));
+var partialColumns = dbCmd.Select<SubsetOfShipper>(typeof (Shipper), "ShipperTypeId = {0}", planesTypeId);
+Assert.That(partialColumns, Has.Count(2));
 
 //Select into another POCO class that matches the sql results
 var rows = dbCmd.Select<ShipperTypeCount>(
