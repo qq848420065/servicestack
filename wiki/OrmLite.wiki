@@ -197,7 +197,7 @@ Assert.That(rows[1].ShipperTypeId, Is.EqualTo(planesTypeId));
 Assert.That(rows[1].Total, Is.EqualTo(2));
 
 
-//And finally no CRUD is complete without fast deletes:
+//And finally lets quickly clean up the mess we've made:
 dbCmd.DeleteAll<Shipper>();
 dbCmd.DeleteAll<ShipperType>();
 
