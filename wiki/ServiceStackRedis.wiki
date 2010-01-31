@@ -13,7 +13,7 @@ The client gives you a choice 3 different API's to use based on your preference:
 
 = Download =
 
-The latest version of `ServiceStack.Redis` is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip Service Stack].
+The latest version of `ServiceStack.Redis` is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip]
 
 Alternatively it is available as a separate standalone  [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll ServiceStack.Redis.dll]
 
