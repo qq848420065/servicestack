@@ -1,5 +1,5 @@
 #labels Redis,API
-A native client API for Redis
+A C# client that provides a raw byte API to Redis
 
 = Introduction =
 
