@@ -29,7 +29,7 @@ _Full source code of this example is [http://code.google.com/p/servicestack/sour
 
 using (var redisClient = new RedisClient())
 {
-	//Create a 'strongly-typed' API that allows all Redis Value operations to apply against Shippers
+	//Create a 'strongly-typed' API that makes all Redis Value operations to apply against Shippers
 	var redis = redisClient.CreateGenericClient<Shipper>();
 
 	var currentShippers = redis.Lists["urn:shippers:current"];
