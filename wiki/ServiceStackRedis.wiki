@@ -21,7 +21,7 @@ The full source code for the client and the examples is available to [http://cod
 
 
 = Examples =
-Below is a simple example to give you a flavour of what's possible with the client:
+Below is a simple example to give you a flavour of how to store rich data with the client:
 
 _Full source code of this example is [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/ShippersExample.cs viewable online]_
 
@@ -29,7 +29,9 @@ _Full source code of this example is [http://code.google.com/p/servicestack/sour
 
 using (var redisClient = new RedisClient())
 {
+	//Create a 'strongly-typed' API that allows all Redis Value operations to apply against Shippers
 	var redis = redisClient.CreateGenericClient<Shipper>();
+
 	var currentShippers = redis.Lists["urn:shippers:current"];
 	var prospectiveShippers = redis.Lists["urn:shippers:prospective"];
 
