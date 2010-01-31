@@ -129,3 +129,5 @@ public interface IBasicPersistenceProvider<T>
 	void DeleteAll();
 }
 }}}
+
+Generally, if you only have basic persistence needs I would recommend developing against the above common data access API as it is easier for other persistence providers to implement and increases the likely hood that your code can be reused to persist against other data stores i.e. against an RDBMS using OrmLite.
