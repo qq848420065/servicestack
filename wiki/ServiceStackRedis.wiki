@@ -130,7 +130,7 @@ DELETING CURRENT AND PROSPECTIVE SHIPPERS:
 */
 }}}
 
-More examples are available in the [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests Redis test suite]
+More examples are available in the [RedisExamples Redis examples page] and in the comprehensive  [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests test suite]
 
 
 == Speed ==
