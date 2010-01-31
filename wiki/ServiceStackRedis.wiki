@@ -21,7 +21,7 @@ The full source code for the client and the examples is available to [http://cod
 
 
 = Examples =
-Below is a simple example to give you a flavour of how to store rich data with the client:
+Below is a simple example to give you a flavour of how easy it is to store rich data in Redis:
 
 _Full source code of this example is [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/ShippersExample.cs viewable online]_
 
