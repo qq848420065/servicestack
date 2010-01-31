@@ -1,4 +1,4 @@
-#labels Redis,Csharp,OpenSource
+#labels Redis,CSharp,Csharp,OpenSource
 = Open Source .NET/C# Client for Redis =
 
 [http://code.google.com/p/redis/ Redis] is one of the fastest and feature-rich key-value stores to come from the [http://en.wikipedia.org/wiki/NoSQL NoSQL] movement. It is similar to memcached but the dataset is not volatile, and values can either be strings lists, sets, or ordered sets.
@@ -13,7 +13,7 @@ The client gives you a choice 3 different API's to use based on your preference:
 
 = Download =
 
-The latest version of `ServiceStack.Redis` is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip]
+The latest version of the Redis client is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip]
 
 Alternatively it is available as a separate standalone  [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll ServiceStack.Redis.dll]
 
