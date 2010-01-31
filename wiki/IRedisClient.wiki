@@ -1,11 +1,11 @@
 #labels CSharp,Redis,API
-Overview of the IRedisClient API for the [ServiceStackRedis ServiceStack.Redis client]
+Details of the IRedisClient API implemented by the [ServiceStackRedis ServiceStack.Redis client]
 
 = Introduction =
 
-This is a friendly, descriptive API implemented by the [ServiceStackRedis ServiceStack.Redis client] that provides access to key values as strings (or collection of strings for Redis lists and sets). 
+This is a friendly, more descriptive API implemented by the [ServiceStackRedis ServiceStack.Redis client] that provides access to key values as strings (or collection of strings for Redis lists and sets). 
 
-Use this API if you just need to access values as strings or you want to have control ov your own text serialization format.
+Use this API if you just need to access values as strings or you want to have control over your own text serialization format.
 
 = IRedisClient API =
 
