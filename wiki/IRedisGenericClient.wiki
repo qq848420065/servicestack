@@ -1,5 +1,5 @@
 #labels Redis,CSharp,OpenSource,Client
-#A 'strongly-typed' API to make all Redis Value operations to apply against any c# type
+A 'strongly-typed' API to make all Redis Value operations to apply against any c# type
 
 = Introduction =
 
