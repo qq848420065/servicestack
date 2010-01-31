@@ -3,7 +3,7 @@ Overview of the IRedisClient API for the [ServiceStackRedis ServiceStack.Redis c
 
 = Introduction =
 
-This is a friendly, descriptive API implemented by the [ServiceStackRedis ServiceStack.Redis client] that provides access to key values as strings (or collection of strings for Redis lists and sets) on a Redis server. 
+This is a friendly, descriptive API implemented by the [ServiceStackRedis ServiceStack.Redis client] that provides access to key values as strings (or collection of strings for Redis lists and sets). 
 
 Use this API if you just need to access values as strings or you want to have control ov your own text serialization format.
 
