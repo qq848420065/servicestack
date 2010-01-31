@@ -12,7 +12,8 @@ The client gives you a choice 3 different API's to use based on your preference:
 
 = Examples =
 Below is a simple example to give you a flavour of what's possible with the client:
-_Full source code of this example is [available here]_
+
+_Full source code of this example is [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/ShippersExample.cs viewable online]_
 
 {{{
 
@@ -84,6 +85,7 @@ using (var redisClient = new RedisClient())
 
 /*
 == EXAMPLE OUTPUT ==
+
 ADDED 3 SHIPPERS:
 Id:1,CompanyName:Trains R Us,ShipperType:Trains,DateCreated:2010-01-31T11:53:37.7169323Z,UniqueRef:d17c5db0415b44b2ac5da7b6ebd780f5
 Id:2,CompanyName:Planes R Us,ShipperType:Planes,DateCreated:2010-01-31T11:53:37.799937Z,UniqueRef:e02a73191f4b4e7a9c44eef5b5965d06
@@ -112,7 +114,6 @@ Id:1,CompanyName:Trains R Us,ShipperType:Trains,DateCreated:2010-01-31T11:53:37.
 
 DELETING CURRENT AND PROSPECTIVE SHIPPERS:
 
-== END EXAMPLE OUTPUT ==
 */
 }}}
 
@@ -123,7 +124,7 @@ More examples are available in the [http://code.google.com/p/servicestack/source
 = Download =
 
 The latest version of `ServiceStack.Redis` is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip Service Stack].
-Alternatively it is available as a separate [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll standalone dll]
 
-The source is [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis available here]
+Alternatively it is available separately as a [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll standalone dll]
 
+The full source code for the client and the examples is available to [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis view online]
