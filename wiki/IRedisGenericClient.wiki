@@ -107,7 +107,7 @@ Including the above methods, the Generic client also implements Redis non-specif
 *common data access* operations that can be easily implemented by other data persistence providers.
 
 {{{
-public interface IBasicPersistenceProvider<T> 
+public interface IBasicPersistenceProvider`<T>`
 	: IDisposable
 {
 	T GetById(string id);
