@@ -3,7 +3,7 @@ A native client API for Redis
 
 = Introduction =
 
-This is a low-level Redis API that provides raw byte access to a Redis server.
+This is a low-level API implemented by the [ServiceStackRedis ServiceStack.Redis] client that provides raw byte access to a Redis server.
 Each method maps to 1:1 to a [http://code.google.com/p/redis/wiki/CommandReference Redis operation] of the same name. 
 
 = Details =
