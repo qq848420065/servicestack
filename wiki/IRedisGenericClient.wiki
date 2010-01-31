@@ -101,13 +101,13 @@ public interface IRedisGenericClient<T>
 }}}
 
 
-= IBasicPersistenceProvider<T> interface =
+= IBasicPersistenceProvider interface =
 
 Including the above methods, the Generic client also implements Redis non-specific 
 *common data access* operations that can be easily implemented by other data persistence providers.
 
 {{{
-public interface IBasicPersistenceProvider`<T>`
+public interface IBasicPersistenceProvider<T>
 	: IDisposable
 {
 	T GetById(string id);
