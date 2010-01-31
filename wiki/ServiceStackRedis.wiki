@@ -8,7 +8,7 @@
 The client gives you a choice 3 different API's to use based on your preference:
   * [IRedisNativeClient] - Allows raw byte access to the Redis APIs
   * [IRedisClient] - Provides a friendlier, more descriptive API that lets you store values as strings (UTF8 encoding).
-  * [IRedisGenericClient] - Same as [IRedisClient] API except it lets you store values as any type (including C# POCO objects)
+  * [IRedisGenericClient] - Same as [IRedisClient] API except it lets you store values of any type (i.e. C# POCO objects)
 
 
 = Download =
