@@ -133,7 +133,7 @@ More examples are available in the [http://code.google.com/p/servicestack/source
 == Speed ==
 One of the best things about Redis is the performance. 
 
-This example below stores and deletes the entire [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] (3202 records) in less *1.2 secs*.
+This example below stores and gets the entire [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] (3202 records) in less *1.2 secs*.
 
 _(Running inside a VS.NET/R# unit test on a 3 year old iMac)_
 
@@ -180,4 +180,3 @@ Took 1020.0583ms to store the entire Northwind database (3202 records)
 Took 132.0076ms to get the entire Northwind database (3202 records)
 */
 }}}
-
