@@ -1,5 +1,5 @@
 #labels Redis,API
-A C# client that provides a raw byte API to Redis
+A C# client that provides a low-level raw bytes API access to Redis
 
 = Introduction =
 
