@@ -127,3 +127,5 @@ public interface IBasicPersistenceProvider : IDisposable
 }
 
 }}}
+
+Generally, if you only have basic persistence needs I would recommend developing against the above common data access API as it is easier for other persistence providers to implement and increases the likely hood that your library can be reused as-is to persist against other data stores i.e. against an RDBMS with OrmLite, etc.
