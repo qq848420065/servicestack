@@ -131,7 +131,7 @@ More examples are available in the [http://code.google.com/p/servicestack/source
 
 
 == Speed ==
-One of the best things about Redis is the performance. 
+One of the best things about Redis is the speed - it is quick. 
 
 [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Generic/RedisClientTests.cs This example] below stores and gets the entire [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] (3202 records) in less *1.2 secs*.
 
@@ -180,3 +180,5 @@ Took 1020.0583ms to store the entire Northwind database (3202 records)
 Took 132.0076ms to get the entire Northwind database (3202 records)
 */
 }}}
+
+Note: The total time taken includes an extra operation for each record to store the id of the type id in a Redis set for each set as well as serializing and de-serializing each record using Service Stack's TypeSerializer.
