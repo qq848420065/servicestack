@@ -1,14 +1,24 @@
 #labels Redis,Csharp,OpenSource
 = Open Source .NET/C# Client for Redis =
 
-[http://code.google.com/p/redis/ Redis] is one of the fastest and richest key-value stores to come out from the [http://en.wikipedia.org/wiki/NoSQL NoSQL] movement. It is similar to memcached but the dataset is not volatile, and values can either be strings lists, sets, or ordered sets.
+[http://code.google.com/p/redis/ Redis] is one of the fastest and feature-rich key-value stores to come from the [http://en.wikipedia.org/wiki/NoSQL NoSQL] movement. It is similar to memcached but the dataset is not volatile, and values can either be strings lists, sets, or ordered sets.
 
-`ServiceStack.Redis` is an Open Source C# Redis client based on [http://twitter.com/migueldeicaza Miguel de Icaza] previous efforts with [http://github.com/migueldeicaza/redis-sharp redis-sharp]. 
+[ServiceStack.Redis] is an Open Source C# Redis client based on [http://twitter.com/migueldeicaza Miguel de Icaza] previous efforts with [http://github.com/migueldeicaza/redis-sharp redis-sharp]. 
 
 The client gives you a choice 3 different API's to use based on your preference:
   * [IRedisNativeClient] - Allows raw byte access to the Redis APIs
   * [IRedisClient] - Provides a friendlier, more descriptive API that lets you store values as strings (UTF8 encoding).
   * [IRedisGenericClient] - Same as [IRedisClient] API except it lets you store values as any type (including C# POCO objects)
+
+
+= Download =
+
+The latest version of `ServiceStack.Redis` is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip Service Stack].
+
+Alternatively it is available as a separate standalone  [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll ServiceStack.Redis.dll]
+
+The full source code for the client and the examples is available to [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis view online]
+
 
 = Examples =
 Below is a simple example to give you a flavour of what's possible with the client:
@@ -117,14 +127,57 @@ DELETING CURRENT AND PROSPECTIVE SHIPPERS:
 */
 }}}
 
-
 More examples are available in the [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests Redis test suite]
 
 
-= Download =
+== Speed ==
+One of the best things about Redis is the performance. 
 
-The latest version of `ServiceStack.Redis` is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip Service Stack].
+This example below stores and deletes the entire [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] (3202 records) in less *1.2 secs*.
 
-Alternatively it is available separately as a [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll standalone dll]
+_(Running inside a VS.NET/R# unit test on a 3 year old iMac)_
 
-The full source code for the client and the examples is available to [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis view online]
+{{{
+using (var client = new RedisClient())
+{
+	var before = DateTime.Now;
+	client.StoreAll(NorthwindData.Categories);
+	client.StoreAll(NorthwindData.Customers);
+	client.StoreAll(NorthwindData.Employees);
+	client.StoreAll(NorthwindData.Shippers);
+	client.StoreAll(NorthwindData.Orders);
+	client.StoreAll(NorthwindData.Products);
+	client.StoreAll(NorthwindData.OrderDetails);
+	client.StoreAll(NorthwindData.CustomerCustomerDemos);
+	client.StoreAll(NorthwindData.Regions);
+	client.StoreAll(NorthwindData.Territories);
+	client.StoreAll(NorthwindData.EmployeeTerritories);
+
+	Console.WriteLine("Took {0}ms to store the entire Northwind database ({1} records)",
+		(DateTime.Now - before).TotalMilliseconds, totalRecords);
+
+
+	before = DateTime.Now;
+	var categories = client.GetAll<Category>();
+	var customers = client.GetAll<Customer>();
+	var employees = client.GetAll<Employee>();
+	var shippers = client.GetAll<Shipper>();
+	var orders = client.GetAll<Order>();
+	var products = client.GetAll<Product>();
+	var orderDetails = client.GetAll<OrderDetail>();
+	var customerCustomerDemos = client.GetAll<CustomerCustomerDemo>();
+	var regions = client.GetAll<Region>();
+	var territories = client.GetAll<Territory>();
+	var employeeTerritories = client.GetAll<EmployeeTerritory>();
+
+	Console.WriteLine("Took {0}ms to get the entire Northwind database ({1} records)",
+		(DateTime.Now - before).TotalMilliseconds, totalRecords);
+}
+/*
+== EXAMPLE OUTPUT ==
+
+Took 1020.0583ms to store the entire Northwind database (3202 records)
+Took 132.0076ms to get the entire Northwind database (3202 records)
+*/
+}}}
+
