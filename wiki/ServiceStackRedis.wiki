@@ -1,240 +1,129 @@
-#labels redis,c
-= .NET/C# Client for Redis =
+#labels Redis,Csharp,OpenSource
+= Open Source .NET/C# Client for Redis =
 
-An API complete redis c# client based on [http://twitter.com/migueldeicaza Miguel de Icaza] previous efforts with [http://github.com/migueldeicaza/redis-sharp redis-sharp]. 
+[http://code.google.com/p/redis/ Redis] is one of the fastest and richest key-value stores to come out from the [http://en.wikipedia.org/wiki/NoSQL NoSQL] movement. It is similar to memcached but the dataset is not volatile, and values can either be strings lists, sets, or ordered sets.
+
+`ServiceStack.Redis` is an Open Source C# Redis client based on [http://twitter.com/migueldeicaza Miguel de Icaza] previous efforts with [http://github.com/migueldeicaza/redis-sharp redis-sharp]. 
+
+The client gives you a choice 3 different API's to use based on your preference:
+  * [IRedisNativeClient] - Allows raw byte access to the Redis APIs
+  * [IRedisClient] - Provides a friendlier, more descriptive API that lets you store values as strings (UTF8 encoding).
+  * [IRedisGenericClient] - Same as [IRedisClient] API except it lets you store values as any type (including C# POCO objects)
 
 = Examples =
+Below is a simple example to give you a flavour of what's possible with the client:
+_Full source code of this example is [available here]_
 
 {{{
 
-var storeMembers = new List<string> { "one", "two", "three", "four" };
-
-const string ListId = "testlist";
-
-//Exposes Redis Lists as c# IList<string>, i.e. 
-using (var redis = new RedisClient())
+using (var redisClient = new RedisClient())
 {
-	var list = redis.Lists[ListId];
-	storeMembers.ForEach(list.Add);
+	var redis = redisClient.CreateGenericClient<Shipper>();
+	var currentShippers = redis.Lists["urn:shippers:current"];
+	var prospectiveShippers = redis.Lists["urn:shippers:prospective"];
 
-	storeMembers.Remove("two");
-	list.Remove("two");
+	currentShippers.Add(
+		new Shipper {
+			Id = redis.GetNextSequence(),
+			CompanyName = "Trains R Us",
+			DateCreated = DateTime.UtcNow,
+			ShipperType = ShipperType.Trains,
+			UniqueRef = Guid.NewGuid()
+		});
 
-	var members = list.ToList<string>();
+	currentShippers.Add(
+		new Shipper {
+			Id = redis.GetNextSequence(),
+			CompanyName = "Planes R Us",
+			DateCreated = DateTime.UtcNow,
+			ShipperType = ShipperType.Planes,
+			UniqueRef = Guid.NewGuid()
+		});
 
-	AssertListsAreEqual(members, storeMembers);
+	var lameShipper = new Shipper {
+		Id = redis.GetNextSequence(),
+		CompanyName = "We do everything!",
+		DateCreated = DateTime.UtcNow,
+		ShipperType = ShipperType.All,
+		UniqueRef = Guid.NewGuid()
+	};
+
+	currentShippers.Add(lameShipper);
+
+	Dump("ADDED 3 SHIPPERS:", currentShippers);
+
+	currentShippers.Remove(lameShipper);
+
+	Dump("REMOVED 1:", currentShippers);
+
+	prospectiveShippers.Add(
+		new Shipper {
+			Id = redis.GetNextSequence(),
+			CompanyName = "Trucks R Us",
+			DateCreated = DateTime.UtcNow,
+			ShipperType = ShipperType.Automobiles,
+			UniqueRef = Guid.NewGuid()
+		});
+
+	Dump("ADDED A PROSPECTIVE SHIPPER:", prospectiveShippers);
+
+	redis.PopAndPushBetweenLists(prospectiveShippers, currentShippers);
+
+	Dump("CURRENT SHIPPERS AFTER POP n' PUSH:", currentShippers);
+	Dump("PROSPECTIVE SHIPPERS AFTER POP n' PUSH:", prospectiveShippers);
+
+	var poppedShipper = redis.PopFromList(currentShippers);
+	Dump("POPPED a SHIPPER:", poppedShipper);
+	Dump("CURRENT SHIPPERS AFTER POP:", currentShippers);
+
+	//reset sequence and delete all lists
+	redis.SetSequence(0);
+	redis.Remove(currentShippers, prospectiveShippers);
+	Dump("DELETING CURRENT AND PROSPECTIVE SHIPPERS:", currentShippers);
 }
 
-const string SetId = "testset";
+/*
+== EXAMPLE OUTPUT ==
+ADDED 3 SHIPPERS:
+Id:1,CompanyName:Trains R Us,ShipperType:Trains,DateCreated:2010-01-31T11:53:37.7169323Z,UniqueRef:d17c5db0415b44b2ac5da7b6ebd780f5
+Id:2,CompanyName:Planes R Us,ShipperType:Planes,DateCreated:2010-01-31T11:53:37.799937Z,UniqueRef:e02a73191f4b4e7a9c44eef5b5965d06
+Id:3,CompanyName:We do everything!,ShipperType:All,DateCreated:2010-01-31T11:53:37.8009371Z,UniqueRef:d0c249bbbaf84da39fc4afde1b34e332
 
-//Exposes Redis Lists as c# ICollection<string>, i.e. 
-using (var redis = new RedisClient())
-{
-	var list = redis.Sets[SetId];
-	storeMembers.ForEach(list.Add);
+REMOVED 1:
+Id:1,CompanyName:Trains R Us,ShipperType:Trains,DateCreated:2010-01-31T11:53:37.7169323Z,UniqueRef:d17c5db0415b44b2ac5da7b6ebd780f5
+Id:2,CompanyName:Planes R Us,ShipperType:Planes,DateCreated:2010-01-31T11:53:37.799937Z,UniqueRef:e02a73191f4b4e7a9c44eef5b5965d06
 
-	storeMembers.Remove("two");
-	list.Remove("two");
+ADDED A PROSPECTIVE SHIPPER:
+Id:4,CompanyName:Trucks R Us,ShipperType:Automobiles,DateCreated:2010-01-31T11:53:37.8539401Z,UniqueRef:67d7d4947ebc4b0ba5c4d42f5d903bec
 
-	var members = list.ToList<string>();
+CURRENT SHIPPERS AFTER POP n' PUSH:
+Id:4,CompanyName:Trucks R Us,ShipperType:Automobiles,DateCreated:2010-01-31T11:53:37.8539401Z,UniqueRef:67d7d4947ebc4b0ba5c4d42f5d903bec
+Id:1,CompanyName:Trains R Us,ShipperType:Trains,DateCreated:2010-01-31T11:53:37.7169323Z,UniqueRef:d17c5db0415b44b2ac5da7b6ebd780f5
+Id:2,CompanyName:Planes R Us,ShipperType:Planes,DateCreated:2010-01-31T11:53:37.799937Z,UniqueRef:e02a73191f4b4e7a9c44eef5b5965d06
 
-	Assert.That(members, Is.EquivalentTo(storeMembers));
-}
+PROSPECTIVE SHIPPERS AFTER POP n' PUSH:
 
-//The client has 'ServiceStack.StringSerializer' built-in which serializes POCO types into a compact JSON/CSV format. 
-//This lets you serialize the entire Northwind database with just a few lines of code:
-using (var client = new RedisClient())
-{
-	client.StoreAll(NorthwindData.Categories);
-	client.StoreAll(NorthwindData.Customers);
-	client.StoreAll(NorthwindData.Employees);
-	client.StoreAll(NorthwindData.Shippers);
-	client.StoreAll(NorthwindData.Orders);
-	client.StoreAll(NorthwindData.Products);
-	client.StoreAll(NorthwindData.OrderDetails);
-	client.StoreAll(NorthwindData.CustomerCustomerDemos);
-	client.StoreAll(NorthwindData.Regions);
-	client.StoreAll(NorthwindData.Territories);
-	client.StoreAll(NorthwindData.EmployeeTerritories);
-}
+POPPED a SHIPPER:
+Id:2,CompanyName:Planes R Us,ShipperType:Planes,DateCreated:2010-01-31T11:53:37.799937Z,UniqueRef:e02a73191f4b4e7a9c44eef5b5965d06
 
+CURRENT SHIPPERS AFTER POP:
+Id:4,CompanyName:Trucks R Us,ShipperType:Automobiles,DateCreated:2010-01-31T11:53:37.8539401Z,UniqueRef:67d7d4947ebc4b0ba5c4d42f5d903bec
+Id:1,CompanyName:Trains R Us,ShipperType:Trains,DateCreated:2010-01-31T11:53:37.7169323Z,UniqueRef:d17c5db0415b44b2ac5da7b6ebd780f5
+
+DELETING CURRENT AND PROSPECTIVE SHIPPERS:
+
+== END EXAMPLE OUTPUT ==
+*/
 }}}
 
-The *StringSerializer* serializes the entire Northwind Database 1.8x quicker and 2.6x smaller than MS's XML DataContractSerializer.
 
 More examples are available in the [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests Redis test suite]
 
 
 = Download =
 
-The latest version is available as a single dll to download [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll here]
+The latest version of `ServiceStack.Redis` is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip Service Stack].
+Alternatively it is available as a separate [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll standalone dll]
 
-The source is available [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis here]
+The source is [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis available here]
 
-
-= Redis Client API =
-The Redis client exposes two API's, based on preference, A native Redis API for the redisly inclined
-{{{
-public interface IRedisNativeClient 
-	: IDisposable
-{
-	byte[][] SMembers(string setId);
-	void SAdd(string setId, byte[] value);
-	void SRem(string setId, byte[] value);
-	byte[] SPop(string setId);
-	void SMove(string fromSetId, string toSetId, byte[] value);
-	int SCard(string setId);
-	int SIsMember(string setId, byte[] value);
-	byte[][] SInter(params string[] setIds);
-	void SInterStore(string intoSetId, params string[] setIds);
-	byte[][] SUnion(params string[] setIds);
-	void SUnionStore(string intoSetId, params string[] setIds);
-	byte[][] SDiff(string fromSetId, params string[] withSetIds);
-	void SDiffStore(string intoSetId, string fromSetId, params string[] withSetIds);
-	byte[] SRandMember(string setId);
-	byte[][] LRange(string listId, int startingFrom, int endingAt);
-	byte[][] Sort(string listOrSetId, int startingFrom, int endingAt, bool sortAlpha, bool sortDesc);
-	void RPush(string listId, byte[] value);
-	void LPush(string listId, byte[] value);
-	void LTrim(string listId, int keepStartingFrom, int keepEndingAt);
-	int LRem(string listId, int removeNoOfMatches, byte[] value);
-	int LLen(string listId);
-	byte[] LIndex(string listId, int listIndex);
-	void LSet(string listId, int listIndex, byte[] value);
-	byte[] LPop(string listId);
-	byte[] RPop(string listId);
-	void RPopLPush(string fromListId, string toListId);
-	void Set(string key, byte[] value);
-	int SetNX(string key, byte[] value);
-	byte[] Get(string key);
-	byte[] GetSet(string key, byte[] value);
-	int Del(string key);
-	int Incr(string key);
-	int IncrBy(string key, int count);
-	int Decr(string key);
-	int DecrBy(string key, int count);
-	string RandomKey();
-	bool Rename(string oldKeyname, string newKeyname);
-	int Expire(string key, int seconds);
-	int ExpireAt(string key, long unixTime);
-	int Ttl(string key);
-	string Save();
-	void BgSave();
-	void Shutdown();
-	void Quit();
-	void FlushDb();
-	void FlushAll();
-	Dictionary<string, string> Info { get; }
-}
-}}}
-
-And a more friendlier and meaningful c# API:
-
-{{{
-public interface IRedisClient 
-	: IDisposable
-{
-	string Host { get; }
-	int Port { get; }
-	int RetryTimeout { get; set; }
-	int RetryCount { get; set; }
-	int SendTimeout { get; set; }
-	string Password { get; set; }
-
-	IHasNamedList<string> Lists { get; set; }
-	IHasNamedCollection<string> Sets { get; set; }
-
-	Dictionary<string, string> Info { get; }
-	int Db { get; set; }
-	int DbSize { get; }
-	DateTime LastSave { get; }
-	string[] AllKeys { get; }
-
-	string this[string key] { get; set; }
-	void SetString(string key, string value);
-	bool SetIfNotExists(string key, string value);
-	string GetString(string key);
-	string GetAndSetString(string key, string value);
-	bool ContainsKey(string key);
-	bool Remove(string key);
-	bool Remove(params string[] args);
-	int Increment(string key);
-	int IncrementBy(string key, int count);
-	int Decrement(string key);
-	int DecrementBy(string key, int count);
-	RedisKeyType GetKeyType(string key);
-	string NewRandomKey();
-	bool ExpireKeyIn(string key, TimeSpan expiresAt);
-	bool ExpireKeyAt(string key, DateTime dateTime);
-	TimeSpan GetTimeToLive(string key);
-	string Save();
-	void SaveAsync();
-	void Shutdown();
-	void FlushDb();
-	void FlushAll();
-	string[] GetKeys(string pattern);
-	List<T> GetKeyValues<T>(List<string> keys);
-	List<string> GetRangeFromSortedSet(string setId, int startingFrom, int endingAt);
-	HashSet<string> GetAllFromSet(string setId);
-	void AddToSet(string setId, string value);
-	void RemoveFromSet(string setId, string value);
-	string PopFromSet(string setId);
-	void MoveBetweenSets(string fromSetId, string toSetId, string value);
-	int GetSetCount(string setId);
-	bool SetContainsValue(string setId, string value);
-	HashSet<string> GetIntersectFromSets(params string[] setIds);
-	void StoreIntersectFromSets(string intoSetId, params string[] setIds);
-	HashSet<string> GetUnionFromSets(params string[] setIds);
-	void StoreUnionFromSets(string intoSetId, params string[] setIds);
-	HashSet<string> GetDifferencesFromSet(string fromSetId, params string[] withSetIds);
-	void StoreDifferencesFromSet(string intoSetId, string fromSetId, params string[] withSetIds);
-	string GetRandomEntryFromSet(string setId);
-	List<string> GetAllFromList(string listId);
-	List<string> GetRangeFromList(string listId, int startingFrom, int endingAt);
-	List<string> GetRangeFromSortedList(string listId, int startingFrom, int endingAt);
-	void AddToList(string listId, string value);
-	void PrependToList(string listId, string value);
-	void RemoveAllFromList(string listId);
-	void TrimList(string listId, int keepStartingFrom, int keepEndingAt);
-	int RemoveValueFromList(string listId, string value);
-	int RemoveValueFromList(string listId, string value, int noOfMatches);
-	int GetListCount(string setId);
-	string GetItemFromList(string listId, int listIndex);
-	void SetItemInList(string listId, int listIndex, string value);
-	string DequeueFromList(string listId);
-	string PopFromList(string listId);
-	void PopAndPushBetweenLists(string fromListId, string toListId);
-}
-
-}}}
-
-And native support for persisting any POCO types via:
-{{{
-public interface IBasicPersistenceProvider 
-  : IDisposable
-{
-	T GetById<T>(object id)
-		where T : class, new();
-
-	IList<T> GetByIds<T>(ICollection ids) 
-		where T : class, new();
-
-	T Store<T>(T entity)
-		where T : class, new();
-
-	void StoreAll<TEntity>(IEnumerable<TEntity> entities)
-		where TEntity : class, new();
-
-	void Delete<T>(T entity)
-		where T : class, new();
-
-	void DeleteById<T>(object id)
-		where T : class, new();
-
-	void DeleteByIds<T>(ICollection ids)
-		where T : class, new();
-
-	void DeleteAll<TEntity>()
-		where TEntity : class, new();
-}
-}}}
