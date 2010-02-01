@@ -1,5 +1,5 @@
-#labels Redis,CSharp,Csharp,OpenSource
-= Open Source .NET/C# Client for Redis =
+#labels Redis,CSharp,OpenSource
+= An Open Source C# Client for Redis =
 
 [http://code.google.com/p/redis/ Redis] is one of the fastest and feature-rich key-value stores to come from the [http://en.wikipedia.org/wiki/NoSQL NoSQL] movement. It is similar to memcached but the dataset is not volatile, and values can either be strings lists, sets, or ordered sets.
 
