@@ -35,8 +35,8 @@ public class SimpleExample
 //Set once before use (i.e. in a static constructor).
 OrmLiteConfig.DialectProvider = new SqliteOrmLiteDialectProvider();
 
-using (var db = "/path/to/db.sqlite".OpenDbConnection())
-using (var dbConn = db.CreateCommand())
+using (IDbConnection db = "/path/to/db.sqlite".OpenDbConnection())
+using (IDbCommand dbConn = db.CreateCommand())
 {
 	dbConn.CreateTable<SimpleExample>(true);
 	dbConn.Insert(new SimpleExample { Id=1, Name="Hello, World!"});
@@ -102,8 +102,8 @@ public class ShipperTypeCount
 === Creating tables ===
 Creating tables is a simple 1-liner:
 {{{
-using (var dbConn = ":memory:".OpenDbConnection())
-using (var dbCmd = dbConn.CreateCommand())
+using (IDbConnection dbConn = ":memory:".OpenDbConnection())
+using (IDbCommand dbCmd = dbConn.CreateCommand())
 {
 	const bool overwrite = false;
 	dbCmd.CreateTables(overwrite, typeof(Shipper), typeof(ShipperType));
@@ -133,7 +133,7 @@ DEBUG: CREATE UNIQUE INDEX uidx_shippertypes_name ON "ShipperTypes" ("Name" ASC)
 As we have direct access to IDbCommand and friends - playing with transactions is easy:
 {{{
 int trainsTypeId, planesTypeId;
-using (var dbTrans = dbCmd.BeginTransaction())
+using (IDbTransaction dbTrans = dbCmd.BeginTransaction())
 {
 	dbCmd.Insert(new ShipperType { Name = "Trains" });
 	trainsTypeId = (int) dbCmd.GetLastInsertId();
@@ -143,7 +143,7 @@ using (var dbTrans = dbCmd.BeginTransaction())
 
 	dbTrans.Commit();
 }
-using (var dbTrans = dbCmd.BeginTransaction(IsolationLevel.ReadCommitted))
+using (IDbTransaction dbTrans = dbCmd.BeginTransaction(IsolationLevel.ReadCommitted))
 {
 	dbCmd.Insert(new ShipperType { Name = "Automobiles" });
 	Assert.That(dbCmd.Select<ShipperType>(), Has.Count(3));
