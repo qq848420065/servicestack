@@ -19,7 +19,7 @@ The full source code for OrmLite is also [http://code.google.com/p/servicestack/
 
 = Limitations =
 
-For simplicity, and to be able to have the same POCO class persisted in an RDBMS, db4o, memcached, redis or on the filesystem (all which ServiceStack supports out of the box), *each model must have an 'Id' property which is its primary key*.  
+For simplicity, and to be able to have the same POCO class persisted in db4o, memcached, redis or on the filesystem (i.e. providers included in ServiceStack), each model must have an *Id* property which is its primary key.  
 
 
 = Examples =
