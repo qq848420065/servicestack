@@ -25,7 +25,7 @@ TypeSerializer is included with [http://servicestack.googlecode.com/files/Servic
 
 
 = Performance =
-TypeSerializer is quick!, it's actually the fastest and most compact text serializer available for .NET. It actually remains competitive with [http://code.google.com/p/protobuf-net/ protobuf-net]'s very fast implementation of [http://code.google.com/apis/protocolbuffers/ Protocol Buffers] - google's very fast binary protocol.
+TypeSerializer is quick!, it's actually the fastest and most compact text serializer available for .NET. It actually remains competitive with [http://code.google.com/p/protobuf-net/ protobuf-net]'s very fast implementation of [http://code.google.com/apis/protocolbuffers/ Protocol Buffers] - google's high-speed binary protocol.
 
 Below is a summary of [benchmarks] to serialize each table in the [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] (3202 records) in the most popular serializers available for .NET:
 
