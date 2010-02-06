@@ -78,7 +78,8 @@ Which also happens to be the same as C# POCO class with the values `new MyClass 
 {A:1,B:2,C:3,D:4}
 }}}
 
-JSV does not allow white-spaces, which means strings for the most part can be serialized without quotes, i.e. `new MyClass { Foo="Bar", Greet="Hello World!"}` is serialized as:
+JSV does not allow white-spaces, which means strings for the most part can be serialized without quotes, i.e. 
+`new MyClass { Foo="Bar", Greet="Hello World!"}` is serialized as:
 {{{
 {Foo:Bar,Greet:Hello World!}
 }}}
@@ -86,12 +87,14 @@ JSV does not allow white-spaces, which means strings for the most part can be se
 === CSV escaping ===
 
 Any string with any of the following characters: []{},"
-is escaped using CSV-style escaping where the value is wrapped in double quotes, i.e. the object `new MyClass { Name = "Me, Junior" }` is serialized as:
+is escaped using CSV-style escaping where the value is wrapped in double quotes, i.e. the object 
+`new MyClass { Name = "Me, Junior" }` is serialized as:
 {{{
 {Name:"Me, Junior"}
 }}}
 
-A value with a double-quote is escaped with another double quote so the object `new MyClass { Size = "2\" x 1\"" }` is serialized as:
+A value with a double-quote is escaped with another double quote so the object 
+`new MyClass { Size = "2\" x 1\"" }` is serialized as:
 {{{
 {Size:"2"" x 1"""}
 }}}
