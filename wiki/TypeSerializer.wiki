@@ -72,7 +72,7 @@ Which also happens to be the same as C# POCO class with the values `new MyClass 
 {A:1,B:2,C:3,D:4}
 }}}
 
-Since JSV does not allow white-spaces, strings for the most part are serialized without quotes, i.e. `new MyClass { Foo="Bar", Greet="Hello World!"} is serialized as:
+JSV does not allow white-spaces, which means strings for the most part can be serialized without quotes, i.e. `new MyClass { Foo="Bar", Greet="Hello World!"} is serialized as:
 {{{
 {Foo:Bar,Greet:Hello World!}
 }}}
