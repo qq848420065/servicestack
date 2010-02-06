@@ -38,7 +38,7 @@ Below is a summary of [benchmarks] to serialize each table in the [http://code.g
 || ProtoBuf.net || 1x || 1x ||
 || ServiceStack TypeSerializer || 1.67x || 1.92x ||
 
-_showing number of times larger in size and slower in performance than the best - lower is better_
+_number of times larger in size and slower in performance than the best - lower is better_
 
 === Summary results for serializing / deserialzing the first row of each table in the [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] 1,000,000 times ===
 || Serializer || Payload size || Serialize/Deserialize Peformance ||
@@ -49,8 +49,43 @@ _showing number of times larger in size and slower in performance than the best 
 || ProtoBuf.net || 1x || 1x ||
 || ServiceStack TypeSerializer || 1.67x || 1.92x ||
 
-_showing number of times larger in size and slower in performance than the best - lower is better_
+_number of times larger in size and slower in performance than the best - lower is better_
 
 
 
-= Text Format =
+= TypeSerializer Text Format (JSV) =
+
+TypeSerializer uses a hybrid CSV-style escaping + JavaScript-like text-based format that is optimized for both size and speed. I'm naming this format JSV-format (i.e. JavaScript + CSV) 
+
+In many ways it is similar to JavaScript, e.g. any List, Array, Collection of ints, longs, etc are stored in exactly the same way, i.e:
+{{{
+[1,2,3,4,5]
+}}}
+
+Any IDictionary is serialized like JavaScript, i.e:
+{{{
+{A:1,B:2,C:3,D:4}
+}}}
+
+Which also happens to be the same as C# POCO class with the values `new MyClass { A=1, B=2, C=3, D=4 }`
+{{{
+{A:1,B:2,C:3,D:4}
+}}}
+
+Since JSV does not allow white-spaces, strings for the most part are serialized without quotes, i.e. `new MyClass { Foo="Bar", Greet="Hello World!"} is serialized as:
+{{{
+{Foo:Bar,Greet:Hello World!}
+}}}
+
+=== CSV escaping ===
+
+Any string with any of the following characters: []{},"
+is escaped using CSV-style escaping where the value is wrapped in double quotes, i.e. the object `new MyClass { Name = "Me, Junior" }` is serialized as:
+{{{
+{Name:"Me, Junior"}
+}}}
+
+A value with a double-quote is escaped with another double quote so the object `new MyClass { Size = "2\" x 1\"" }` is serialized as:
+{{{
+{Size:"2"" x 1"""}
+}}}
