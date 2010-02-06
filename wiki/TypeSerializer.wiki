@@ -89,7 +89,7 @@ JSV does not allow white-spaces, which means strings for the most part can be se
 
 === CSV escaping ===
 
-Any string with any of the following characters: []{},"
+Any string with any of the following characters: `[]{},"`
 is escaped using CSV-style escaping where the value is wrapped in double quotes, e.g:
 
 `new MyClass { Name = "Me, Junior" }` is serialized as:
