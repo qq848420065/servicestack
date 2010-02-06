@@ -33,7 +33,7 @@ Below is a series of benchmarks serialize the different tables in the [http://co
 === Combined results for serializing / deserialzing the first row of each table in the Northwind database 1,000,000 times ===
 _[http://www.servicestack.net/benchmarks/NorthwindDatabaseRowsSerialization.1000000-times.2010-02-06.html view the detailed benchmarks]_
 
-|| Serializer || Payload size || Serialize/Deserialize Peformance ||
+|| Serializer || Payload size || Peformance ||
 || Microsoft DataContractSerializer || 4.68x || 6.72x ||
 || Microsoft JsonDataContractSerializer|| 2.24x || 10.18x ||
 || Microsoft BinaryFormatter || 5.62x || 9.06x ||
@@ -47,7 +47,7 @@ _number of times larger in size and slower in performance than the best - lower 
 === Combined results for serializing / deserialzing each table in the Northwind database 1,000 times ===
 _[http://www.servicestack.net/benchmarks/NorthwindDatabaseTablesSerialization.10000-times.2010-02-06.html view the detailed benchmarks]_
 
-|| Serializer || Payload size || Serialize/Deserialize Peformance ||
+|| Serializer || Payload size || Peformance ||
 || Microsoft DataContractSerializer || 4.36x || 6.72x ||
 || Microsoft JsonDataContractSerializer|| 2.24x || 11.55x ||
 || Microsoft BinaryFormatter || 5.29x || 8.97x ||
