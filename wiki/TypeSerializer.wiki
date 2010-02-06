@@ -29,27 +29,28 @@ TypeSerializer is quick!, it's actually the fastest and most compact text serial
 
 Below is a summary of [benchmarks] to serialize each table in the [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] (3202 records) in the most popular serializers available for .NET:
 
-=== Summary results for serializing / deserialzing each table in the [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] 1,000 times ===
-|| Serializer || Payload size || Serialize/Deserialize Peformance ||
-|| Microsoft DataContractSerializer || 4.36x || 6.92x ||
-|| Microsoft JsonDataContractSerializer|| 2.12x || 11.55x ||
-|| Microsoft BinaryFormatter || 5.29x || 8.97x ||
-|| NewtonSoft.Json || 2.18x || 7.60x ||
-|| ProtoBuf.net || 1x || 1x ||
-|| ServiceStack TypeSerializer || 1.67x || 1.92x ||
-
-_number of times larger in size and slower in performance than the best - lower is better_
-
 === Summary results for serializing / deserialzing the first row of each table in the [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] 1,000,000 times ===
 || Serializer || Payload size || Serialize/Deserialize Peformance ||
-|| Microsoft DataContractSerializer || 4.36x || 6.92x ||
-|| Microsoft JsonDataContractSerializer|| 2.12x || 11.55x ||
+|| Microsoft DataContractSerializer || 4.68x || 6.72x ||
+|| Microsoft JsonDataContractSerializer|| 2.24x || 10.18x ||
+|| Microsoft BinaryFormatter || 5.62x || 9.06x ||
+|| NewtonSoft.Json || 2.30x || 8.15x ||
+|| ProtoBuf.net || 1x || 1x ||
+|| ServiceStack TypeSerializer || 1.78x || 1.92x ||
+
+_number of times larger in size and slower in performance than the best - lower is better_
+
+=== Summary results for serializing / deserialzing each table in the [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] 1,000 times ===
+|| Serializer || Payload size || Serialize/Deserialize Peformance ||
+|| Microsoft DataContractSerializer || 4.36x || 6.72x ||
+|| Microsoft JsonDataContractSerializer|| 2.24x || 11.55x ||
 || Microsoft BinaryFormatter || 5.29x || 8.97x ||
 || NewtonSoft.Json || 2.18x || 7.60x ||
 || ProtoBuf.net || 1x || 1x ||
 || ServiceStack TypeSerializer || 1.67x || 1.92x ||
 
 _number of times larger in size and slower in performance than the best - lower is better_
+
 
 
 
