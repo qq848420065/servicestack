@@ -1,4 +1,5 @@
-#The fastest and most compact text-based serializer for .NET data-types.
+#labels CSharp,Fastest,TextSerializer,Compact,Resilient
+The fastest and most compact text-based serializer for .NET data-types.
 
 = Introduction =
 
@@ -36,6 +37,7 @@ Below is a summary of [benchmarks] to serialize each table in the [http://code.g
 || NewtonSoft.Json || 2.18x || 7.60x ||
 || ProtoBuf.net || 1x || 1x ||
 || ServiceStack TypeSerializer || 1.67x || 1.92x ||
+
 _showing number of times larger in size and slower in performance than the best - lower is better_
 
 === Summary results for serializing / deserialzing the first row of each table in the [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] 1,000,000 times ===
@@ -46,7 +48,9 @@ _showing number of times larger in size and slower in performance than the best 
 || NewtonSoft.Json || 2.18x || 7.60x ||
 || ProtoBuf.net || 1x || 1x ||
 || ServiceStack TypeSerializer || 1.67x || 1.92x ||
+
 _showing number of times larger in size and slower in performance than the best - lower is better_
+
 
 
 = Text Format =
