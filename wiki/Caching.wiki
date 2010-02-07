@@ -1,13 +1,60 @@
-Service Stack has a myraid of different, pluggable caching options for the most popular cache providers.
+#labels Cache,Performance,Scalability,CSharp
+Service Stack has a myraid of different, pluggable options for the most popular cache providers.
 
 = Introduction =
 
-Add your content here.
+As caching is an essential technology in the development of high-performance web services, Service Stack has a number of different caching options available that each share the same
+[http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Interfaces/ServiceStack.CacheAccess/ICacheClient.cs common client interface]
+for the following cache providers:
 
+= Cache Providers =
 
-= Details =
+  * [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Common/ServiceStack.CacheAccess.Memcached Memcached] - The tried and tested most widely used cache provider.
+  * [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Common/ServiceStack.CacheAccess.Providers/MemoryCacheClient.cs In Memory Cache] - Useful for single host web services and enabling unit tests to run without needing access to a cache server.
+  * [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis/RedisCacheClient.cs Redis] - A very fast key-value store that has  non-volatile persistent storage and support for rich data structures such as lists and sets.
+  * [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Common/ServiceStack.CacheAccess.Providers/FileAndCacheTextManager.cs FileAndCacheTextManager] - A two-tiered cache provider that caches using one of the above cache clients as well as a compressed XML or JSON blob on the file system.
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+== ICacheClient the Common Interface ==
+
+{{{
+public interface ICacheClient
+ : IDisposable
+{
+	// Removes the specified item from the cache.
+	bool Remove(string key);
+
+	// Removes the cache for all the keys provided.
+	void RemoveAll(IEnumerable<string> keys);
+
+	// Retrieves the specified item from the cache.
+	object Get(string key);
+
+	// Retrieves the specified item from the cache.
+	T Get<T>(string key);
+
+	// Increments the value of the specified key by the given amount. The operation is atomic and happens on the server.
+	long Increment(string key, uint amount);
+
+	// Increments the value of the specified key by the given amount. The operation is atomic and happens on the server.
+	long Decrement(string key, uint amount);
+
+	// Inserts an item into the cache with a cache key to reference its location.
+	bool Add(string key, object value);
+	bool Set(string key, object value);
+	bool Replace(string key, object value);
+
+	// Inserts an item into the cache with a cache key to reference its location.
+	bool Add(string key, object value, DateTime expiresAt);
+	bool Set(string key, object value, DateTime expiresAt);
+	bool Replace(string key, object value, DateTime expiresAt);
+
+	// Removes all data from the cache.
+	void FlushAll();
+
+	// Retrieves multiple items from the cache.
+	IDictionary<string, object> GetAll(IEnumerable<string> keys);
+
+	// Retrieves multiple items from the cache.
+	IDictionary<string, T> GetAll<T>(IEnumerable<string> keys);
+}
+}}}
