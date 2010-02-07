@@ -1,5 +1,5 @@
 #labels Cache,Performance,Scalability,CSharp
-Service Stack has a myraid of different, pluggable options for the most popular cache providers.
+A myraid of different, pluggable options are included in Service Stack for the most popular cache providers.
 
 = Introduction =
 
