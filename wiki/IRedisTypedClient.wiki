@@ -8,7 +8,7 @@ Below is the strongly-typed API that you have access to after you call `IRedisCl
 {{{
 using (var redisClient = new RedisClient())
 {
-	var redis = redisClient.CreateGenericClient<MyPocoType>();
+	var redis = redisClient.GetTypedClient<MyPocoType>();
 }
 }}}
 
