@@ -44,7 +44,7 @@ _[http://www.servicestack.net/benchmarks/NorthwindDatabaseRowsSerialization.1000
 _number of times larger in size and slower in performance than the best - lower is better_
 
 
-=== Combined results for serializing / deserialzing each entire table in the Northwind database 1,000 times ===
+=== Combined results for serializing / deserialzing each entire table in the Northwind database 10,000 times ===
 _[http://www.servicestack.net/benchmarks/NorthwindDatabaseTablesSerialization.10000-times.2010-02-06.html view the detailed benchmarks]_
 
 || Serializer || Size || Peformance ||
