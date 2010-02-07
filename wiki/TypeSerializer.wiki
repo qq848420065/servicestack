@@ -30,7 +30,7 @@ It is also the only text serializer to remain competitive with [http://code.goog
 
 Below is a series of benchmarks serialize the different tables in the [http://code.google.com/p/servicestack/source/browse/trunk/Common/Northwind.Benchmarks/Northwind.Common/DataModel/NorthwindData.cs Northwind database] (3202 records) with the most popular serializers available for .NET:
 
-=== Combined results for serializing / deserialzing a row of each table in the Northwind database 1,000,000 times ===
+=== Combined results for serializing / deserialzing a single row of each table in the Northwind database 1,000,000 times ===
 _[http://www.servicestack.net/benchmarks/NorthwindDatabaseRowsSerialization.1000000-times.2010-02-06.html view the detailed benchmarks]_
 
 || Serializer || Size || Peformance ||
