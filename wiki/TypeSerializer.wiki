@@ -44,16 +44,16 @@ _[http://www.servicestack.net/benchmarks/NorthwindDatabaseRowsSerialization.1000
 _number of times larger in size and slower in performance than the best - lower is better_
 
 
-=== Combined results for serializing / deserialzing each table in the Northwind database 1,000 times ===
+=== Combined results for serializing / deserialzing each entire table in the Northwind database 1,000 times ===
 _[http://www.servicestack.net/benchmarks/NorthwindDatabaseTablesSerialization.10000-times.2010-02-06.html view the detailed benchmarks]_
 
 || Serializer || Size || Peformance ||
-|| Microsoft DataContractSerializer || 4.36x || 6.72x ||
-|| Microsoft JsonDataContractSerializer|| 2.24x || 11.55x ||
-|| Microsoft BinaryFormatter || 5.29x || 8.97x ||
-|| NewtonSoft.Json || 2.18x || 7.60x ||
+|| Microsoft DataContractSerializer || 4.08x || 5.36x ||
+|| Microsoft JsonDataContractSerializer|| 3.06x || 11.74x ||
+|| Microsoft BinaryFormatter || 1.05x || 5.01x ||
+|| NewtonSoft.Json || 3.07x || 10.75x ||
 || ProtoBuf.net || 1x || 1x ||
-|| ServiceStack TypeSerializer || 1.67x || 1.92x ||
+|| ServiceStack TypeSerializer || 2.19x || 2.91x ||
 
 _number of times larger in size and slower in performance than the best - lower is better_
 
