@@ -17,8 +17,8 @@ With that in mind, TypeSerializer's main goals are:
 These characteristics make it ideal for use anywhere you need to store or transport .NET data-types, e.g. for text blobs in a ORM, data in and out of a key-value store or as the text-protocol in .NET to .NET web services.  
 
 As such, it's utilized within ServiceStack's other components:
-  * OrmLite uses it to store complex types on table models as text blobs in a database field and 
-  * [ServiceStackRedis ServiceStack.Redis] uses it to store rich POCO data types into the very fast [http://code.google.com/p/redis redis] instances.
+  * OrmLite - to store complex types on table models as text blobs in a database field and 
+  * [ServiceStackRedis ServiceStack.Redis] - to store rich POCO data types into the very fast [http://code.google.com/p/redis redis] instances.
 
 = Download =
 TypeSerializer is included with [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip] or available to download separately in a standalone  [http://servicestack.googlecode.com/files/ServiceStack.Text.dll ServiceStack.Text.dll].
