@@ -23,6 +23,7 @@ As such, it's utilized within ServiceStack's other components:
 = Download =
 TypeSerializer is included with [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip] or available to download separately in a standalone  [http://servicestack.googlecode.com/files/ServiceStack.Text.dll ServiceStack.Text.dll].
 
+----
 
 = Performance =
 Type Serializer is actually the fastest and most compact text serializer available for .NET. 
