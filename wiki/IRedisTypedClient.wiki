@@ -3,7 +3,7 @@ A 'strongly-typed' API to make all Redis Value operations to apply against any c
 
 = Introduction =
 
-Below is the strongly-typed API that you have access to after you call `IRedisClient.CreateGenericClient<T>()` e.g.:
+Below is the strongly-typed API that you have access to after you call `IRedisClient.GetTypedClient<T>()` e.g.:
 
 {{{
 using (var redisClient = new RedisClient())
