@@ -10,7 +10,7 @@ There are a number of different APIs available optimized on your use-case:
 The [ServiceStack.Redis.RedisClient] class below implements the following interfaces:
   * [IRedisNativeClient] - Allows raw byte access to the Redis APIs
   * [IRedisClient] - Provides a friendlier, more descriptive API that lets you store values as strings (UTF8 encoding).
-  * `RedisClient.GetTypedClient<T>()` - returns a 'strongly-typed client' `IRedisTypedClient<T>` that provides a strongly-typed interface for all redis value operations which works against any type (e.g. C# POCO objects)
+  * [IRedisTypedClient] - available by `RedisClient.GetTypedClient<T>()`, returns a 'strongly-typed client' that provides a strongly-typed interface for all redis value operations which works against any type (e.g. C# POCO objects)
 
 Also included is [RedisClientCache] which implements the ServiceStacks common [ICacheClient] interface (for which there are other InMemory, Memcached and FileSystem implementations available in ServiceStack). 
 
