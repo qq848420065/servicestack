@@ -8,8 +8,7 @@
 There are a number of different APIs available optimized on your use-case:
 
 The [ServiceStack.Redis.RedisClient] class below implements the following interfaces:
- * [ICacheClient] - implements the ServiceStacks common [ICacheClient] interface (for which there are 
-other InMemory, Memcached and FileSystem implementations available in ServiceStack). 
+ * [ICacheClient] - implements the ServiceStacks common [ICacheClient] interface (for which there are other InMemory, Memcached and FileSystem implementations available in ServiceStack). 
 
   * [IRedisNativeClient] - Allows raw byte access to the Redis APIs
 
