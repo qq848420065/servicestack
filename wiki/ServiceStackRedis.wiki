@@ -10,12 +10,12 @@ There are a number of different APIs available optimized on your use-case:
 The [ServiceStack.Redis.RedisClient] class below implements the following interfaces:
   * [IRedisNativeClient] - Allows raw byte access to the Redis APIs
   * [IRedisClient] - Provides a friendlier, more descriptive API that lets you store values as strings (UTF8 encoding).
-  * [RedisClient.GetTypedClient<T>()] - returns a 'strongly-typed client' IRedisTypedClient<T> that makes all redis value operations work against any type (e.g. C# POCO objects)
+  * `RedisClient.GetTypedClient<T>()` - returns a 'strongly-typed client' `IRedisTypedClient<T>` that provides a strongly-typed interface for all redis value operations which works against any type (e.g. C# POCO objects)
 
-Also included is [RedisClientCache] which implements the ServiceStacks common [ICacheClient] interface (for which there are other InMemory, Memcached and FileSystem implementations which you can switch to use). 
+Also included is [RedisClientCache] which implements the ServiceStacks common [ICacheClient] interface (for which there are other InMemory, Memcached and FileSystem implementations available in ServiceStack). 
 
 = Multi-threaded client managers =
-The above clients are ideal for use in single-threaded applications, for use in multi-threaded applications you can choose from our different client managers:
+The above clients are ideal for use in single-threaded applications, for multi-threaded applications you can choose from our different client managers:
  * [BasicRedisClientCacheManager] - a load-balance (master/slave) client manager that returns a new IRedisClient instance with the configured defaults (faster when accessing a redis-server instance on localhost).
  * [PooledRedisClientManager] - a load-balanced (master/slave) client manager that uses a pool of redis clients.
 
