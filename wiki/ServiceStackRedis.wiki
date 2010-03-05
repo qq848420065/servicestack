@@ -16,7 +16,7 @@ Also included is [RedisClientCache] which implements the ServiceStacks common [I
 
 = Multi-threaded client managers =
 The above clients are ideal for use in single-threaded applications, for multi-threaded applications you can choose from our different client managers:
- * [BasicRedisClientCacheManager] - a load-balance (master/slave) client manager that returns a new IRedisClient instance with the configured defaults (faster when accessing a redis-server instance on localhost).
+ * [BasicRedisClientManager] - a load-balance (master/slave) client manager that returns a new IRedisClient instance with the configured defaults (faster when accessing a redis-server instance on localhost).
  * [PooledRedisClientManager] - a load-balanced (master/slave) client manager that uses a pool of redis clients.
 
 = Download =
