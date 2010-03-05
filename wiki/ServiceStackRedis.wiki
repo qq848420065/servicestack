@@ -16,9 +16,9 @@ For most cases if you require access to Redis-specific functionality you would w
 
 = Multi-threaded client managers =
 For multi-threaded applications you can choose from our different client managers:
- * [BasicRedisClientManager] - a load-balance (master-write and read-slaves) client manager that returns a new IRedisClient instance with the configured defaults (faster when accessing a redis-server instance on the same host).
+ * [BasicRedisClientManager] - a load-balance (master-write and read-slaves) client manager that returns a new IRedisClient connection with the configured defaults (faster when accessing a redis-server instance on the same host).
 
- * [PooledRedisClientManager] - a load-balanced (master-write and read-slaves) client manager that uses a pool of redis clients (faster when accessing a redis-server instance over the network).
+ * [PooledRedisClientManager] - a load-balanced (master-write and read-slaves) client manager that utilizes a pool of redis client connections (faster when accessing a redis-server instance over the network).
 
 = Download =
 
