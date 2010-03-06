@@ -17,44 +17,57 @@ for the following cache providers:
 == ICacheClient the Common Interface ==
 
 {{{
-public interface ICacheClient
- : IDisposable
+//A common interface implementation that is implemeneted by most cache providers
+public interface ICacheClient 
+	: IDisposable
 {
-	// Removes the specified item from the cache.
+	//Removes the specified item from the cache.
 	bool Remove(string key);
 
-	// Removes the cache for all the keys provided.
+	
+	//Removes the cache for all the keys provided.
 	void RemoveAll(IEnumerable<string> keys);
 
-	// Retrieves the specified item from the cache.
-	object Get(string key);
-
-	// Retrieves the specified item from the cache.
+	
+	//Retrieves the specified item from the cache.
 	T Get<T>(string key);
 
-	// Increments the value of the specified key by the given amount. The operation is atomic and happens on the server.
+	
+	//Increments the value of the specified key by the given amount. The operation is atomic and happens on the server.
+	//A non existent value at key starts at 0
 	long Increment(string key, uint amount);
 
-	// Increments the value of the specified key by the given amount. The operation is atomic and happens on the server.
+	
+	//Increments the value of the specified key by the given amount. The operation is atomic and happens on the server.
+	//A non existent value at key starts at 0
 	long Decrement(string key, uint amount);
 
-	// Inserts an item into the cache with a cache key to reference its location.
-	bool Add(string key, object value);
-	bool Set(string key, object value);
-	bool Replace(string key, object value);
+	
+	//Adds a new item into the cache at the specified cache key only if the cache is empty.
+	bool Add<T>(string key, T value);
 
-	// Inserts an item into the cache with a cache key to reference its location.
-	bool Add(string key, object value, DateTime expiresAt);
-	bool Set(string key, object value, DateTime expiresAt);
-	bool Replace(string key, object value, DateTime expiresAt);
+	
+	//Sets an item into the cache at the cache key specified regardless if it already exists or not.
+	bool Set<T>(string key, T value);
 
-	// Removes all data from the cache.
+	
+	//Replaces the item at the cachekey specified only if an items exists at the location already. 
+	bool Replace<T>(string key, T value);
+
+	bool Add<T>(string key, T value, DateTime expiresAt);
+	bool Set<T>(string key, T value, DateTime expiresAt);
+	bool Replace<T>(string key, T value, DateTime expiresAt);
+
+	bool Add<T>(string key, T value, TimeSpan expiresIn);
+	bool Set<T>(string key, T value, TimeSpan expiresIn);
+	bool Replace<T>(string key, T value, TimeSpan expiresIn);
+
+	
+	//Removes all data from the cache.
 	void FlushAll();
 
-	// Retrieves multiple items from the cache.
-	IDictionary<string, object> GetAll(IEnumerable<string> keys);
-
-	// Retrieves multiple items from the cache.
+	//Retrieves multiple items from the cache.
+	//The default value of T is set for all keys that do not exist.
 	IDictionary<string, T> GetAll<T>(IEnumerable<string> keys);
 }
 }}}
