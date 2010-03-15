@@ -11,8 +11,12 @@ With that in mind, TypeSerializer's main goals are:
   * Fast
   * Compact
   * Human readable and writeable, self-describing text format
-  * Resilient to schema changes
   * Non-invasive and configuration-free
+  * Resilient to schema changes
+  * Serializes / De-serializes any .NET data type (by convention)
+    * Supports custom, compact serialization of structs by overriding ToString()/static Parse() methods
+    * Can also serialize inherited, interface or 'late-bound objects' data types
+    * Respects opt-in DataMember custom serialization for DataContract dto types.
 
 These characteristics make it ideal for use anywhere you need to store or transport .NET data-types, e.g. for text blobs in a ORM, data in and out of a key-value store or as the text-protocol in .NET to .NET web services.  
 
