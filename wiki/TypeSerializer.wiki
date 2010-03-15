@@ -9,7 +9,7 @@ Out of the box .NET provides a fairly quick but verbose Xml DataContractSerializ
 
 With that in mind, TypeSerializer's main goals are:
   * Very Fast (Quickest known text-serializer for .NET)
-  * Compact
+  * Compact (Most compact, lossless known text-serializer for .NET)
   * Human readable and writeable, self-describing text format
   * Non-invasive and configuration-free
   * Resilient to schema changes
