@@ -14,7 +14,7 @@ With that in mind, TypeSerializer's main goals are:
   * Non-invasive and configuration-free
   * Resilient to schema changes
   * Serializes / De-serializes any .NET data type (by convention)
-    * Supports custom, compact serialization of structs by overriding ToString()/static Parse(string) methods
+    * Supports custom, compact serialization of structs by overriding 'ToString()' / 'static Parse(string)' methods
     * Can also serialize inherited, interface or 'late-bound objects' data types
     * Respects opt-in DataMember custom serialization for DataContract dto types.
 
