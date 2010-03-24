@@ -1,4 +1,3 @@
-#labels Featured
 Latest release notes for the latest version of the c# [ServiceStackRedis ServiceStack.Redis client].
 
 = Redis Client v1.08 Release Notes =
