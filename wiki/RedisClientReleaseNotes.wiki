@@ -4,7 +4,7 @@ Latest release notes for the latest version of the c# [ServiceStackRedis Service
 = Redis Client v1.08 Release Notes =
 
 === API compatibility ===
-This version of the client includes support for the Redis 1.3.7 API. This includes support for Redis Sorted Set and Hash operations.
+This version of the client includes support for the *Redis 1.3.7 API*. This includes support for Redis Sorted Set and Hash operations.
 
 === Features ===
   * Included in the release is preliminary support for Transient Redis Message Queues.
