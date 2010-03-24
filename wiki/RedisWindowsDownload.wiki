@@ -25,4 +25,4 @@ Due to the popularity and simplicity of the Redis protocol there is a plethora o
 
 For .NET applications you can download and get started with [ServiceStackRedis ServiceStack's open source c# Redis client library].
 
-For Java applications the most active library at the moment is [http://code.google.com/p/jredis/ jredis]. For all other language bindings visit the [http://code.google.com/p/redis/wiki/SupportedLanguages redis supported languages page].
+For Java applications the most active library at the moment is [http://code.google.com/p/jredis/ JRedis]. For all other language bindings visit the [http://code.google.com/p/redis/wiki/SupportedLanguages redis supported languages page].
