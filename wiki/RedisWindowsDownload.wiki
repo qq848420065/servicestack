@@ -1,0 +1,28 @@
+#labels Redis,Windows,Server,Download
+#Download the latest version of Redis for Windows.
+
+= Introduction =
+
+Redis is one of the fastest and most feature-rich in-memory key value data stores to come from the NoSQL movement.
+
+The description of Redis from the [http://code.google.com/p/redis/ Redis project's website] states:
+  Redis is an advanced key-value store. It is similar to memcached but the dataset is not volatile, and values can be strings, exactly like in memcached, but also lists, sets, and ordered sets. All this data types can be manipulated with atomic operations to push/pop elements, add/remove elements, perform server side union, intersection, difference between sets, and so forth. Redis supports different kind of sorting abilities.
+
+Like most open-source technology Redis was born and is primarily developed on *NIX operating systems. If you're looking to install on a *NIX platform then the best place to download Redis is from the [http://code.google.com/p/redis/ redis project website].
+
+Having the latest version of Redis running on windows is important for the development of ServiceStack's open source C# Redis client to keep up-to-date with the latest Redis features. As there has historically have been no reliable source for the latest Windows Redis Server builds, ServiceStack will be hosting current and future builds for Windows.
+
+= Download for Windows =
+
+Download latest development release of Redis 1.3.7:
+  * [http://servicestack.googlecode.com/files/redis-1.3.7-windows.zip redis-1.3.7-windows.zip]
+
+Download latest stable release of Redis 1.2.5:
+  * [http://servicestack.googlecode.com/files/redis-1.2.5-windows.zip redis-1.2.5-windows.zip]
+
+= Getting Started =
+Due to the popularity and simplicity of the Redis protocol there is a plethora of [http://code.google.com/p/redis/wiki/SupportedLanguages different Redis clients bindings] for almost every popular language in use today. 
+
+For .NET applications you can download and use the [http://code.google.com/p/servicestack/wiki/ServiceStackRedis ServiceStack's open source c# Redis client library].
+
+For Java applications the most active library at the moment is [http://code.google.com/p/jredis/ jredis]. For all other language bindings visit the [http://code.google.com/p/redis/wiki/SupportedLanguages redis supported languages page].
