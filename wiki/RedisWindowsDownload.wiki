@@ -12,12 +12,12 @@ Like most open-source technology Redis was born and is primarily developed on `*
 
 Having the latest version of Redis running on windows is important for the development of [ServiceStackRedis ServiceStack's open source C# Redis client] to keep up-to-date with the latest Redis features. As there has historically have been no reliable source for the latest builds for Windows, ServiceStack will be hosting current and future builds of the Redis server for Windows on this page.
 
-= Download for Windows (includes Cygwin) =
+= Download for Windows =
 
-Download latest development release of Redis 1.3.7:
+Download latest development release of Redis 1.3.7 (includes Cygwin):
   * [http://servicestack.googlecode.com/files/redis-1.3.7-windows.zip redis-1.3.7-windows.zip]
 
-Download latest stable release of Redis 1.2.5:
+Download latest stable release of Redis 1.2.5 (includes Cygwin):
   * [http://servicestack.googlecode.com/files/redis-1.2.5-windows.zip redis-1.2.5-windows.zip]
 
 = Getting Started =
