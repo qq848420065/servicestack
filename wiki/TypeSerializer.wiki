@@ -1,4 +1,4 @@
-#labels CSharp,Fast,Compact,TextSerializer,Resilient
+#labels Featured,CSharp,Compact,TextSerializer,Resilient,Fast
 The fastest and most compact text-based serializer for .NET.
 
 = Introduction =
