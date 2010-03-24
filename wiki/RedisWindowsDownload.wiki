@@ -1,5 +1,5 @@
 #labels Redis,Windows,Server,Download
-#Download the latest version of Redis for Windows.
+Download the latest version of the Redis Server for Windows.
 
 = Introduction =
 
