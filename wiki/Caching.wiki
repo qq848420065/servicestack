@@ -17,32 +17,37 @@ for the following cache providers:
 == ICacheClient the Common Interface ==
 
 {{{
+
 //A common interface implementation that is implemeneted by most cache providers
+
 public interface ICacheClient 
 	: IDisposable
 {
 	//Removes the specified item from the cache.
 	bool Remove(string key);
-
+	
 	//Removes the cache for all the keys provided.
 	void RemoveAll(IEnumerable<string> keys);
-	
+
 	//Retrieves the specified item from the cache.
 	T Get<T>(string key);
-	
-	//Increments the value of the specified key by the given amount. The operation is atomic and happens on the server.
+
+	//Increments the value of the specified key by the given amount. 
+	//The operation is atomic and happens on the server.
 	//A non existent value at key starts at 0
 	long Increment(string key, uint amount);
 
-	//Increments the value of the specified key by the given amount. The operation is atomic and happens on the server.
+	//Increments the value of the specified key by the given amount. 
+	//The operation is atomic and happens on the server.
 	//A non existent value at key starts at 0
 	long Decrement(string key, uint amount);
 	
 	//Adds a new item into the cache at the specified cache key only if the cache is empty.
 	bool Add<T>(string key, T value);
-	
+
 	//Sets an item into the cache at the cache key specified regardless if it already exists or not.
 	bool Set<T>(string key, T value);
+
 	
 	//Replaces the item at the cachekey specified only if an items exists at the location already. 
 	bool Replace<T>(string key, T value);
@@ -54,12 +59,17 @@ public interface ICacheClient
 	bool Add<T>(string key, T value, TimeSpan expiresIn);
 	bool Set<T>(string key, T value, TimeSpan expiresIn);
 	bool Replace<T>(string key, T value, TimeSpan expiresIn);
+
 	
-	//Removes all data from the cache.
+	//Invalidates all data on the cache.
 	void FlushAll();
 
-	//Retrieves multiple items from the cache.
+	//Retrieves multiple items from the cache. 
 	//The default value of T is set for all keys that do not exist.
 	IDictionary<string, T> GetAll<T>(IEnumerable<string> keys);
+
+	
+	//Sets multiple items to the cache. 
+	void SetAll<T>(IDictionary<string, T> values);
 }
 }}}
