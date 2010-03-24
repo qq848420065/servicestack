@@ -8,8 +8,8 @@ This version of the client includes support for the Redis 1.3.7 API. This includ
 
 === Features ===
   * Included in the release is preliminary support for Transient Redis Message Queues.
-  * Thread-safe load balanced `PooledRedisClientManager` and `BasicRedisClientManager` client managers suitable to drop in any IOC.
-      * Support configuration of multiple read-write masters and read-only slave Redis instances.
+  * Thread-safe load balanced `PooledRedisClientManager` and `BasicRedisClientManager` client managers, suitable to drop in any IOC.
+      * Supports configuration of multiple read-write masters and read-only slave Redis server instances.
 
 === Breaking API changes: ===
   * Due to a change in the Redis 1.3.7 KEYS operation, `IRedisClient.AllKeys` and `IRedisClient.GetKeys()` now return a `List<string>`.
