@@ -10,7 +10,7 @@ From the description of Redis from the [http://code.google.com/p/redis/ Redis pr
 
 Like most open-source technology Redis was born and is primarily developed on `*`NIX operating systems. If you're looking to install on a `*`NIX platform the best place to download Redis is still from the [http://code.google.com/p/redis/ redis project website].
 
-Having the latest version of Redis running on windows is important for the development of [ServiceStackRedis ServiceStack's open source C# Redis client] to keep up-to-date with the latest Redis features. As there has historically have been no reliable source for the latest builds for Windows, ServiceStack will be hosting current and future builds of the Redis server for Windows on this page.
+Having the latest version of Redis running on windows is important for the development of [ServiceStackRedis ServiceStack's open source C# Redis client] to keep up-to-date with the latest Redis features. As there has historically have been no reliable source for the latest builds for Windows, So ServiceStack will now be hosting current and future builds of the Redis server for Windows on this page.
 
 = Download for Windows =
 
