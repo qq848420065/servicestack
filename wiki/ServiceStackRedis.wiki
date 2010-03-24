@@ -22,9 +22,15 @@ For multi-threaded applications you can choose from our different client manager
 
 = Download =
 
-The latest version of the Redis client is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip]
+=== Redis Client releases ===
+  * The latest version of the Redis client is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip]
+  * Alternatively it is available as a separate standalone  [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll ServiceStack.Redis.dll]
 
-Alternatively it is available as a separate standalone  [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll ServiceStack.Redis.dll]
+[RedisClientReleaseNotes View the release notes].
+
+=== Redis Server builds for Windows ===
+Downloads for Redis Server Windows builds [RedisWindowsDownload can be found here].
+
 
 The full source code for the client and the examples is available to [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis view online]
 
