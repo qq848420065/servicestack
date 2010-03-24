@@ -1,4 +1,4 @@
-#labels CSharp,OpenSource,Mono,Lightweight,Fast,ORM
+#labels Featured,OpenSource,Mono,Lightweight,Fast,ORM
 ServiceStack.OrmLite is a convention-based, configuration-free lightweight ORM that uses standard POCO classes and Data Annotation attributes to infer its table schema.
 
 = Introduction =
