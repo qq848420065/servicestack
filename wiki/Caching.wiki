@@ -10,7 +10,7 @@ for the following cache providers:
 = Cache Providers =
 
   * [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Common/ServiceStack.CacheAccess.Memcached Memcached] - The tried and tested most widely used cache provider.
-  * [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis/RedisCacheClient.cs Redis] - A very fast key-value store that has  non-volatile persistent storage and support for rich data structures such as lists and sets.
+  * [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis/RedisClient.ICacheClient.cs Redis] - A very fast key-value store that has  non-volatile persistent storage and support for rich data structures such as lists and sets.
   * [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Common/ServiceStack.CacheAccess.Providers/MemoryCacheClient.cs In Memory Cache] - Useful for single host web services and enabling unit tests to run without needing access to a cache server.
   * [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Common/ServiceStack.CacheAccess.Providers/FileAndCacheTextManager.cs FileAndCacheTextManager] - A two-tiered cache provider that caches using one of the above cache clients as well as a compressed XML or JSON serialized backup cache on the file system.
 
