@@ -34,7 +34,7 @@ public interface IRedisClient
 
 	//Basic Redis Connection Info
 	string this[string key] { get; set; }
-	string[] AllKeys { get; }
+	List<string> AllKeys { get; }
 	void SetString(string key, string value);
 	bool SetIfNotExists(string key, string value);
 	string GetString(string key);
@@ -55,13 +55,15 @@ public interface IRedisClient
 	IRedisTypedClient<T> GetTypedClient<T>();
 
 	IHasNamed<IRedisList> Lists { get; set; }
-	IHasNamed<IRedisClientSet> Sets { get; set; }
+	IHasNamed<IRedisSet> Sets { get; set; }
+	IHasNamed<IRedisSortedSet> SortedSets { get; set; }
+	IHasNamed<IRedisHash> Hashes { get; set; }
 
-	IRedisAtomicCommand CreateAtomicCommand();
+	IRedisTransaction CreateTransaction();
 
 	#region List operations
 
-	string[] GetKeys(string pattern);
+	List<string> GetKeys(string pattern);
 	List<string> GetKeyValues(List<string> keys);
 	List<T> GetKeyValues<T>(List<string> keys);
 	List<string> GetSortedRange(string setId, int startingFrom, int endingAt);
@@ -109,24 +111,36 @@ public interface IRedisClient
 	bool AddToSortedSet(string setId, string value);
 	bool AddToSortedSet(string setId, string value, double score);
 	double RemoveFromSortedSet(string setId, string value);
-	string PopFromSortedSet(string setId);
+	string PopFromSortedSetItemWithLowestScore(string setId);
+	string PopFromSortedSetItemWithHighestScore(string setId);
 	bool SortedSetContainsValue(string setId, string value);
 	double IncrementItemInSortedSet(string setId, double incrementBy, string value);
-	int GetItemRankInSortedSet(string setId, string value);
-	int GetItemRankInSortedSetDesc(string setId, string value);
+	int GetItemIndexInSortedSet(string setId, string value);
+	int GetItemIndexInSortedSetDesc(string setId, string value);
 	List<string> GetAllFromSortedSet(string setId);
 	List<string> GetAllFromSortedSetDesc(string setId);
-	List<string> GetRangeFromSortedSet(string setId, int startingFrom, int endingAt);
-	IDictionary<string, double> GetRangeFromSortedSetWithScores(string setId, int startingFrom, int endingAt);
-	List<string> GetRangeFromSortedSetDesc(string setId, int startingFrom, int endingAt);
-	IDictionary<string, double> GetRangeFromSortedSetWithScoresDesc(string setId, int startingFrom, int endingAt);
-	List<string> GetRangeFromSortedSetByScore(string setId, double fromScore, double toScore, int? skip, int? take);
-	IDictionary<string, double> GetRangeFromSortedSetByScoreWithScores(string setId, double fromScoreScore, double toScore, int? skip, int? take);
-	List<string> GetRangeFromSortedSetByScore(string setId, string fromStringScore, string toStringScore, int? skip, int? take);
-	IDictionary<string, double> GetRangeFromSortedSetByScoreWithScores(string setId, string fromStringScore, string toStringScore, int? skip, int? take);
-	List<string> GetRangeFromSortedSetByScoreDesc(string setId, double fromScoreScore, double toScore, int? skip, int? take);
-	IDictionary<string, double> GetRangeFromSortedSetByScoreWithScoresDesc(string setId, double fromScoreScore, double toScore, int? skip, int? take);
-	int RemoveRangeFromSortedSetByRank(string setId, int minRank, int maxRank);
+	List<string> GetRangeFromSortedSet(string setId, int fromRank, int toRank);
+	List<string> GetRangeFromSortedSetDesc(string setId, int fromRank, int toRank);
+	IDictionary<string, double> GetRangeWithScoresFromSortedSet(string setId, int fromRank, int toRank);
+	IDictionary<string, double> GetRangeWithScoresFromSortedSetDesc(string setId, int fromRank, int toRank);
+	List<string> GetRangeFromSortedSetByLowestScore(string setId, string fromStringScore, string toStringScore);
+	List<string> GetRangeFromSortedSetByLowestScore(string setId, string fromStringScore, string toStringScore, int? skip, int? take);
+	List<string> GetRangeFromSortedSetByLowestScore(string setId, double fromScore, double toScore);
+	List<string> GetRangeFromSortedSetByLowestScore(string setId, double fromScore, double toScore, int? skip, int? take);
+	IDictionary<string, double> GetRangeWithScoresFromSortedSetByLowestScore(string setId, string fromStringScore, string toStringScore);
+	IDictionary<string, double> GetRangeWithScoresFromSortedSetByLowestScore(string setId, string fromStringScore, string toStringScore, int? skip, int? take);
+	IDictionary<string, double> GetRangeWithScoresFromSortedSetByLowestScore(string setId, double fromScore, double toScore);
+	IDictionary<string, double> GetRangeWithScoresFromSortedSetByLowestScore(string setId, double fromScore, double toScore, int? skip, int? take);
+	List<string> GetRangeFromSortedSetByHighestScore(string setId, string fromStringScore, string toStringScore);
+	List<string> GetRangeFromSortedSetByHighestScore(string setId, string fromStringScore, string toStringScore, int? skip, int? take);
+	List<string> GetRangeFromSortedSetByHighestScore(string setId, double fromScore, double toScore);
+	List<string> GetRangeFromSortedSetByHighestScore(string setId, double fromScore, double toScore, int? skip, int? take);
+	IDictionary<string, double> GetRangeWithScoresFromSortedSetByHighestScore(string setId, string fromStringScore, string toStringScore);
+	IDictionary<string, double> GetRangeWithScoresFromSortedSetByHighestScore(string setId, string fromStringScore, string toStringScore, int? skip, int? take);
+	IDictionary<string, double> GetRangeWithScoresFromSortedSetByHighestScore(string setId, double fromScore, double toScore);
+	IDictionary<string, double> GetRangeWithScoresFromSortedSetByHighestScore(string setId, double fromScore, double toScore, int? skip, int? take);
+	int RemoveRangeFromSortedSet(string setId, int minRank, int maxRank);
+	int RemoveRangeFromSortedSetByScore(string setId, double fromScore, double toScore);
 	int GetSortedSetCount(string setId);
 	double GetItemScoreInSortedSet(string setId, string value);
 	int StoreIntersectFromSortedSets(string intoSetId, params string[] setIds);
@@ -139,7 +153,7 @@ public interface IRedisClient
 
 	bool SetItemInHash(string hashId, string key, string value);
 	string GetItemFromHash(string hashId, string key);
-	bool DeleteItemInHash(string hashId, string key);
+	bool RemoveFromHash(string hashId, string key);
 	int GetHashCount(string hashId);
 	List<string> GetHashKeys(string hashId);
 	List<string> GetHashValues(string hashId);
