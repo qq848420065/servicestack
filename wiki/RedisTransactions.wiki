@@ -30,7 +30,7 @@ using (var trans = redis.CreateTransaction())
 }}}
 
 === Other common examples ===
-The full-source code and other common examples can be found on the common transaction tests page.
+The full-source code and other common examples can be found on the [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/RedisTransactionCommonTests.cs common transaction tests page].
 
 {{{
 private const string Key = "multitest";
