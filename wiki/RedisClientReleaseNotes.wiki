@@ -1,9 +1,10 @@
+#labels Phase-QA
 Latest release notes for the latest version of the c# [ServiceStackRedis ServiceStack.Redis client].
 
 = Redis Client v1.09 Release Notes =
 
 == Features ==
-The biggest feature in this release is by far the addition of Redis Transactions. Almost every command in [IRedisClient] can now be queued and executed as part of an atomic Redis operation. For more info on how to use transactions visit RedisTransactions.
+The biggest feature in this release is the addition of Redis Transactions. Almost every command in [IRedisClient] can now be queued and executed as part of an atomic Redis operation. For more info on how to use transactions visit [RedisTransactions].
 
 == Other noteworthy features ==
  * Fixed some bugs and provided richer support for Redis Hashes including implementing a the .NET native generic `IDictionary<string,string>` interface.
