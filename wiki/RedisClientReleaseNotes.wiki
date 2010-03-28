@@ -1,6 +1,26 @@
 Latest release notes for the latest version of the c# [ServiceStackRedis ServiceStack.Redis client].
 
-= Redis Client v1.08 Release Notes =
+= Redis Client v1.09 Release Notes =
+
+== Features ==
+The biggest feature in this release is by far the addition of Redis Transactions. Almost every command in IRedisClient can now be queued and executed as part of an atomic Redis operation. For more info on how to use transactions visit RedisTransactions.
+
+== Other noteworthy features ==
+ * Fixed some bugs and provided richer support for Redis Hashes including implementing a the .NET native generic `IDictionary<string,string>` interface.
+ * Name changes for a couple SortedSet and Hash operations for better consistency and readability.
+
+= Download =
+The latest version of the open source c# redis client is available:
+  * As a stand-alone dll - http://servicestack.googlecode.com/files/ServiceStack.Redis.dll
+  * Or bundled inside the core Service Stack binaries - http://servicestack.googlecode.com/files/ServiceStack.zip
+
+Download the stable and development release of the Redis Server Windows builds here:
+http://code.google.com/p/servicestack/wiki/RedisWindowsDownload
+
+
+= Older Release Notes =
+
+== Redis Client v1.08 Release Notes ==
 
 === API compatibility ===
 This version of the client includes support for the *Redis 1.3.7 API*. This includes support for all Sorted Sets and Hash operations.
@@ -12,11 +32,3 @@ This version of the client includes support for the *Redis 1.3.7 API*. This incl
 
 === Breaking API changes: ===
   * Due to a change in the Redis 1.3.7 KEYS operation, `IRedisClient.AllKeys` and `IRedisClient.GetKeys()` now return a `List<string>`.
-
-= Download =
-The latest version of the open source c# redis client is available:
-  * As a stand-alone dll - http://servicestack.googlecode.com/files/ServiceStack.Redis.dll
-  * Or bundled inside the core Service Stack binaries - http://servicestack.googlecode.com/files/ServiceStack.zip
-
-Download the stable and development release of the Redis Server Windows builds here:
-http://code.google.com/p/servicestack/wiki/RedisWindowsDownload
