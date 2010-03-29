@@ -1,7 +1,7 @@
 #labels Featured,Redis,OpenSource
 = An Open Source C# Client for Redis =
 
-[http://code.google.com/p/redis/ Redis] is one of the fastest and feature-rich key-value stores to come from the [http://en.wikipedia.org/wiki/NoSQL NoSQL] movement. It is similar to memcached but the dataset is not volatile, and values can either be strings lists, sets, or ordered sets.
+[http://code.google.com/p/redis/ Redis] is one of the fastest and feature-rich key-value stores to come from the [http://en.wikipedia.org/wiki/NoSQL NoSQL] movement. It is similar to memcached but the dataset is not volatile, and values can either be strings lists, sets, sorted sets or hashes.
 
 [ServiceStackRedis ServiceStack.Redis] is an Open Source C# Redis client based on [http://twitter.com/migueldeicaza Miguel de Icaza] previous efforts with [http://github.com/migueldeicaza/redis-sharp redis-sharp]. 
 
@@ -16,7 +16,7 @@ For most cases if you require access to Redis-specific functionality you would w
 
 = Thread-safe client managers =
 For multi-threaded applications you can choose from our different client managers:
- * [BasicRedisClientManager] - a load-balance (master-write and read-slaves) client manager that returns a new IRedisClient connection with the defaults specified (faster when accessing a redis-server instance on the same host).
+ * [BasicRedisClientManager] - a load-balance (master-write and read-slaves) client manager that returns a new [IRedisClient] connection with the defaults specified (faster when accessing a redis-server instance on the same host).
 
  * [PooledRedisClientManager] - a load-balanced (master-write and read-slaves) client manager that utilizes a pool of redis client connections (faster when accessing a redis-server instance over the network).
 
