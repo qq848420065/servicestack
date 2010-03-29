@@ -25,7 +25,7 @@ using (var trans = redis.CreateTransaction())
 
   trans.Commit();
 }
-//The value of "key" is incremented twice
+//The value of "key" is incremented twice. The latest value is in 'callbackResult'.
 
 }}}
 
