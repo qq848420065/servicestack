@@ -1,8 +1,8 @@
-Public interface for IRedisTransaction
+The IRedisTransaction interface as used by [ServiceStackRedis ServiceStack's C# Redis Client].
 
 = Introduction =
 
-Redis transaction interface provides useful overloads that let you Queue-up any [IRedisClient] operation within a single transaction. The API provides support for a callback so you also have access to any return values that were returned as part of the transaction as well.
+Redis transaction interface provides useful overloads that let you Queue-up any [IRedisClient] operation within a single transaction. The API provides support for a callback so you also have access to any return values returned as part of the transaction as well.
 
 
 = Details =
