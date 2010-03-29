@@ -1,4 +1,4 @@
-The [RedisTransaction] interface as used by [ServiceStackRedis ServiceStack's C# Redis Client].
+The [RedisTransactions] interface implemented by [ServiceStackRedis ServiceStack's C# Redis Client].
 
 = Introduction =
 
