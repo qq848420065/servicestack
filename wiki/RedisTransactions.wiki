@@ -7,7 +7,7 @@ One of the main features of Redis is the ability to construct custom atomic oper
 [ServiceStackRedis Service Stack's C# Redis Client] makes it easy to utilize Redis transactions by providing a [IRedisTransaction strongly-typed IRedisTransaction API] with convenience methods to allow you to combine any [IRedisClient] operation within a single transaction.
 
 Creating a transaction is done by calling `IRedisClient.CreateTransaction()`. 
-From there you 'Queue' up all operations you want to be apart of the transaction by using one of the convenient `IRedisTransaction.QueueCommand()` overloads. After that you can choose to execute all the operations by issuing the `IRedisTransaction.Commit()` method which will send the 'EXEC' command to execute all the Queued commands and process their callbacks.
+From there you 'Queue' up all operations you want to be apart of the transaction by using one of the `IRedisTransaction.QueueCommand()` method overloads. After that you can choose to execute all the operations by issuing the `IRedisTransaction.Commit()` method which will send the 'EXEC' command to execute all the Queued commands and process their callbacks.
 
 If you don't call the `Commit()` method before the end of the using block, the `Dispose()` method will automatically invoke the `Rollback()` method which will send the 'DISCARD' command disposing of the current transaction and resetting the Redis client connection back to its normal state.
 
