@@ -26,6 +26,6 @@ Download latest stable release of Redis 1.2.6 (includes Cygwin):
 = Getting Started =
 Due to the popularity and simplicity of the Redis protocol there is a plethora of different Redis clients bindings for almost every popular language in use today. 
 
-For .NET applications you can download and get started with [ServiceStackRedis ServiceStack's open source c# Redis client library].
+For .NET applications you can download and get started with [ServiceStackRedis ServiceStack's open source c# Redis client library]. This will work on both .NET and Linux platforms (using [http://www.mono-project.com/Main_Page Mono]).
 
 For Java applications the most active library at the moment is [http://code.google.com/p/jredis/ JRedis]. For all other language bindings visit the [http://code.google.com/p/redis/wiki/SupportedLanguages redis supported languages page].
