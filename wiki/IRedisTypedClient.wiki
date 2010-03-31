@@ -1,5 +1,5 @@
 #labels CSharp,Redis,TypeSerializer,POCO
-A 'strongly-typed' API to make all Redis Value operations to apply against any c# type
+A 'strongly-typed' API available on [ServiceStackRedis Service Stack's C# Redis Client] to make all Redis Value operations to apply against any c# type
 
 = Introduction =
 
