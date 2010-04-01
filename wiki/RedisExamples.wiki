@@ -81,50 +81,46 @@ using (var redisClient = new RedisClient())
 {{{
 public class IntAndString
 {
-	public int Id { get; set; }
-	public string Letter { get; set; }
+        public int Id { get; set; }
+        public string Letter { get; set; }
 }
 
-const string pocoKey = "pocoKey";
-var pocoValue = new IntAndString { Id = 1, Letter = "A" };
 
-//STORING A POCO TYPE USING THE GENERIC CLIENT
 using (var redisClient = new RedisClient())
 {
-	//Create a generic client that treats all values as IntAndString:
-	IRedisGenericClient<IntAndString> genericRedis = redisClient.CreateGenericClient<IntAndString>();
+        //Create a typed Redis client that treats all values as IntAndString:
+        var typedRedis = redisClient.GetTypedClient&lt;IntAndString>();
 
-	genericRedis.Set(pocoKey, pocoValue);
-	IntAndString toPocoValue = genericRedis.Get(pocoKey);
+	var pocoValue = new IntAndString { Id = 1, Letter = "A" };
+        typedRedis.Set("pocoKey", pocoValue);
+        IntAndString toPocoValue = typedRedis.Get("pocoKey");
 
-	Assert.That(toPocoValue.Id, Is.EqualTo(pocoValue.Id));
-	Assert.That(toPocoValue.Letter, Is.EqualTo(pocoValue.Letter));
-
-
-	//STORING IntAndString's INTO A LIST USING THE GENERIC CLIENT
-	const string pocoListKey = "pocoListKey";
-	var pocoListValues = new List<IntAndString> { 
-		new IntAndString {Id = 2, Letter = "B"},
-		new IntAndString {Id = 3, Letter = "C"},
-		new IntAndString {Id = 4, Letter = "D"},
-		new IntAndString {Id = 5, Letter = "E"},
-	};
+        Assert.That(toPocoValue.Id, Is.EqualTo(pocoValue.Id));
+        Assert.That(toPocoValue.Letter, Is.EqualTo(pocoValue.Letter));
 
 
-	IRedisList<IntAndString> pocoList = genericRedis.Lists[pocoListKey];
+        var pocoListValues = new List&lt;IntAndString> { 
+                new IntAndString {Id = 2, Letter = "B"},
+                new IntAndString {Id = 3, Letter = "C"},
+                new IntAndString {Id = 4, Letter = "D"},
+                new IntAndString {Id = 5, Letter = "E"},
+        };
 
-	//storing all int values in the redis list 'intListKey' as ints
-	pocoListValues.ForEach(x => pocoList.Add(x));
 
-	List<IntAndString> toPocoListValues = pocoList.ToList();
+        IRedisList&lt;IntAndString> pocoList = typedRedis.Lists["pocoListKey"];
 
-	for (var i=0; i < pocoListValues.Count; i++)
-	{
-		pocoValue = pocoListValues[i];
-		toPocoValue = toPocoListValues[i];
-		Assert.That(toPocoValue.Id, Is.EqualTo(pocoValue.Id));
-		Assert.That(toPocoValue.Letter, Is.EqualTo(pocoValue.Letter));
-	}
+        //Adding all IntAndString objects into the redis list 'pocoListKey'
+        pocoListValues.ForEach(x => pocoList.Add(x));
+
+        List&lt;IntAndString> toPocoListValues = pocoList.ToList();
+
+        for (var i=0; i &lt; pocoListValues.Count; i++)
+        {
+                pocoValue = pocoListValues[i];
+                toPocoValue = toPocoListValues[i];
+                Assert.That(toPocoValue.Id, Is.EqualTo(pocoValue.Id));
+                Assert.That(toPocoValue.Letter, Is.EqualTo(pocoValue.Letter));
+        }
 }
 
 }}}
