@@ -6,11 +6,11 @@ The W3C defines a "web service" as "a software system designed to support *inter
 
 The key parts of this definition are that it should be *interoperable* and that it facilitates communication over a *network*. Unfortunately over the years different companies have had different ideas on what the most ideal *interoperable protocol* should be, leaving a debt-load of legacy binary and proprietary protocols in its wake.
 
-=== HTTP the web services transport protocol ===
+== HTTP the web services transport protocol ==
 HTTP the Internet's protocol is the undisputed champ and will be for the foreseeable future. It's universally accepted, can be proxied and is pretty much the only protocol allowed through most firewalls which is the reason why Service Stack (and most other Web Service frameworks) support it. 
-_Note: the future roadmap of Service Stack will also support the more optimized HTTP-extended 'Web Sockets' standard._
+_Note: the future roadmap we will look to support the more optimized 'Web Sockets' standard._
 
-=== XML the winning serialization format? ===
+== XML the winning serialization format? ==
 Although out of the ashes has risen a clear winning combination of using XML text serialization over the Internet's HTTP protocol. Amongst the many reasons why it has reigned supreme include XML being:
   * Simple, Open, self-describing text-based format
   * Human and Computer readable and writeable
@@ -18,3 +18,30 @@ Although out of the ashes has risen a clear winning combination of using XML tex
   * Provides a rich set of common data types
   * Can define higher-level custom types
 XML doesn't come without its disadvantages which currently are centred around it being verbose and being slow to parse resulting wasted CPU cycles.
+
+=== REST vs SOAP ===
+Despite the win, all is not well in XML camp. It seems that two teams are at odds looking to branch the way XML is used in web services. On one side, I'll label the REST camps (despite knowing REST is more than XML) approach to developing web services is centred around resources and prefers to err on simplicity and convention choosing to re-use the other existing HTTP metaphors where its semantically correct. E.g. calling GET on the url 'http://host/customers' will most likely return a list of customers, whilst PUT'ing a 'Customer' against the same url will, if supported append the 'Customer' to the list. 
+The URL's also forms a core part of the API, it is normally logically formed and clearly describes the type of data that is expected, e.g. viewing a particular customers order would look something like:
+  * GET http://location/customers/mythz/orders/1001 - would return details about order '1001' which was placed by the customer 'mythz'.
+
+The benefit of using a logical URL scheme is that other parts of your web services API can be inferred, e.g.
+  * GET http://location/customers/mythz/orders - would return all of 'mythz' orders
+  * GET http://location/customers/mythz  - would return details about the customer 'mythz'
+  * GET http://location/customers - would return a list of all customers
+
+If supported, you may have access to different operations on the same resources via the other HTTP methods: POST, PUT and DELETE.
+One of the limitations of having a REST-ful web services API is that although the API may be conventional and inferable by humans, it isn't friendly to computers and likely requires another unstructured document accompanying the web services API identifying the list, schema and capabilities of each service. This makes it a hard API to provide rich tooling support for or to be able to generate a programmatic API against.
+
+=== Enter SOAP ==
+SOAP school discards this HTTP/URL nonsense and teaches that there is only one true METHOD - the HTTP 'POST' and there is only one url / end point you need to worry about - which depending on the technology chosen would look something like 'http://location/CustomerService.svc'. Importantly nothing is left to the human reader, everything is structured and explicitly defined by the web services [http://en.wikipedia.org/wiki/WSDL WSDL] which could be also obtained via a url e.g. 'http://location/CustomerService.svc?wsdl'. Now the WSDL is a detailed beast listing everything you want to know about the definition of your web services. Unfortunately it's too detailed to the point of being unnecessarily complex where you have layers of artificial constructs like messages, bindings, ports, parts, input and output operations, etc. most of which remains un-utilized which a lot of REST folk would say is too much info for a simple GET request :) 
+
+What it does give you, is a structured list of all the operations available. Including the schema of all the custom types each operation accepts. From this document tools can generate a client proxy into your preferred programming language providing a nice strongly-typed API to code against. SOAP is generally favoured by a lot of enterprises for internal web services as in a lot of cases if the code compiles then there's a good chance it will *just work*.
+
+In the end SOAP services are just a HTTP 'POST' to the same endpoint where each payload (usually of the same as the SOAP-Action) is wrapped inside the body of a 'SOAP' envelope. This layer stops a lot of people from accessing the XML payload directly and have to resort to using a SOAP client library just to access the core data.
+
+This complexity is not stopping the Microsoft's and IBM's behind the SOAP specification any-time soon. Nope they're hard at work finishing their latest creations that are adding additional layers on top of SOAP (i.e. WS-Security, WS-Reliability, WS-Transaction, WS-Addressing) which is commonly referred to as the WS-* standards. Interestingly the WS-* stack happens to be complex enough that they are also the only companies that can supply the complying software and tooling to support it, which funnily enough works seamlessly with their expensive servers.
+
+It does look as though Microsoft, being the fashionable technology company they are don't have all their eggs in the WS-* bucket. Realizing the current criticisms on their current technology stack, they have explored a range of other web service technologies namely WCF Data Services, WCF RIA Services and now their current favourite OData. The last of which I expect to see all their previous resource efforts in WS-* to be transferred from to promote this new Moniker. OData it seems is a very good 'enabling technology' that is being promoted as 'clickbox driven development' capable (which I'm eagerly awaiting the bumper sticker for :).
+
+=== POX to the rescue? ===
+For the pragmatic programmer it's becoming a hard task to follow the published standards and be able to get any work done. For what seems to be a growing trend a lot of developers are 
