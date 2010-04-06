@@ -1,0 +1,20 @@
+A summary of Service Stack's ethos and general approach on Web Services.
+
+= Service Stack's view on Web Services =
+
+The W3C defines a "web service" as "a software system designed to support *interoperable* machine-to-machine interaction over a *network*. 
+
+The key parts of this definition are that it should be *interoperable* and that it facilitates communication over a *network*. Unfortunately over the years different companies have had different ideas on what the most ideal *interoperable protocol* should be, leaving a debt-load of legacy binary and proprietary protocols in its wake.
+
+=== HTTP the web services transport protocol ===
+HTTP the Internet's protocol is the undisputed champ and will be for the foreseeable future. It's universally accepted, can be proxied and is pretty much the only protocol allowed through most firewalls which is the reason why Service Stack (and most other Web Service frameworks) support it. 
+_Note: the future roadmap of Service Stack will also support the more optimized HTTP-extended 'Web Sockets' standard._
+
+=== XML the winning serialization format? ===
+Although out of the ashes has risen a clear winning combination of using XML text serialization over the Internet's HTTP protocol. Amongst the many reasons why it has reigned supreme include XML being:
+  * Simple, Open, self-describing text-based format
+  * Human and Computer readable and writeable
+  * Verifiable
+  * Provides a rich set of common data types
+  * Can define higher-level custom types
+XML doesn't come without its disadvantages which currently are centred around it being verbose and being slow to parse resulting wasted CPU cycles.
