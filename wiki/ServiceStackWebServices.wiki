@@ -1,5 +1,5 @@
 #labels WebServices,REST,SOAP,POX,JSON,WCF
-A summary of Service Stack's ethos and general approach on Web Services.
+A summary of Service Stack's available and recommended Web Service end points.
 
 = Available web service endpoints =
 As different endpoints have advantages and disadvantages for different scenarios, Service Stack supports the following endpoints out of the box:
