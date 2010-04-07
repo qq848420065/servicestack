@@ -8,7 +8,7 @@ As different endpoints have advantages and disadvantages for different scenarios
   * JSV  (+ REST GET urls) - Fast, compact serialization format for .NET to .NET web services.
   * SOAP 1.1/1.2 - WCF SOAP services underneath, useful for corporate Intranet environments that prefer auto-generated client proxies and other tooling support relying on WSDLs.
 
-Read on below for more background information on the history of the available formats and the advantages and disadvantages of each.
+Read on below for more background information on the history of the available formats and the advantages and disadvantages of each...
 
 = Service Stack's view on Web Services =
 
