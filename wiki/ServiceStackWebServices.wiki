@@ -3,8 +3,8 @@ A summary of Service Stack's ethos and general approach on Web Services.
 
 = Available web service endpoints =
 As different endpoints have advantages and disadvantages for different scenarios, Service Stack supports the following endpoints out of the box:
-  * JSON (+ REST GET urls) - More compact than XML and ideal for use in Ajax applications.
   * XML  (+ REST GET urls) - Faster than JSON. Most standards compliant and interoperable format (Recommended).
+  * JSON (+ REST GET urls) - More compact than XML and ideal for use in Ajax applications.
   * JSV  (+ REST GET urls) - Fast, compact serialization format for .NET to .NET web services.
   * SOAP 1.1/1.2 - WCF SOAP services underneath, useful for corporate Intranet environments that prefer auto-generated client proxies and other tooling support relying on WSDLs.
 
