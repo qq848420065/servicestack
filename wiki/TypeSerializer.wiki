@@ -7,7 +7,7 @@ Included in the Service Stack libraries is *Type Serializer*, a fast, light-weig
 
 Out of the box .NET provides a fairly quick but verbose Xml DataContractSerializer or a slightly more compact but slower JsonDataContractSerializer. Both of these options are fragile and likely to break with any significant schema changes. TypeSerializer addresses these shortcomings by being both smaller and significantly faster than the most popular options. It's also more resilient, e.g. a strongly-typed POCO object can be deserialized back into a loosely-typed string Dictionary and vice-versa.
 
-With that in mind, TypeSerializer's main goals are:
+With that in mind, TypeSerializer's main features are:
   * Fastest and most compact text-serializer for .NET
   * Human readable and writeable, self-describing text format
   * Non-invasive and configuration-free
