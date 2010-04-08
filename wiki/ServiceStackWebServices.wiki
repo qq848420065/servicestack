@@ -79,4 +79,4 @@ TypeSerializer was developed from experience taking the best features of seriali
     * Supports custom, compact serialization of structs by overriding ToString() and static T Parse(string) methods 
     * Can serialize inherited, interface or 'late-bound objects' data types 
     * Respects opt-in DataMember custom serialization for DataContract DTO types.
-For these reasons it is the preferred choice to store complex POCO types in OrmLite (as text blobs) and POCO objects with ServiceStacks’ C# Redis Client or as the serialization format in .NET to .NET web services.
+For these reasons it is the preferred choice to store complex POCO types in OrmLite (as text blobs) and POCO objects with [http://code.google.com/p/servicestack/wiki/ServiceStackRedis ServiceStacks’ C# Redis Client] or as the serialization format in .NET to .NET web services.
