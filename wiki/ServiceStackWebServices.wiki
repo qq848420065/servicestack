@@ -6,7 +6,7 @@ As different endpoints have advantages in different scenarios, Service Stack sup
   * XML  (+ REST GET urls) - Faster than JSON. Most standards compliant and interoperable format (Most Recommended).
   * JSON (+ REST GET urls) - More compact but slower than XML (Recommended for use in Ajax applications).
   * JSV  (+ REST GET urls) - Fast, compact, resilient serialization format (Recommended for .NET to .NET web services).
-  * SOAP 1.1/1.2 - Utilizes WCF SOAP web services under the covers. (Recommended for corporate Intranet environments or part if you have a preference WSDL tooling support e.g. auto-generated client proxies, etc).
+  * SOAP 1.1/1.2 - Utilizes WCF SOAP web services under the covers. (Recommended for corporate Intranet environments where maximum performance is not a priority or if you have a preference WSDL tooling support e.g. IDE integration and auto-generated client proxies, etc).
 
 If you're interested for a more background information on the history of the different formats and the advantages and disadvantages of each read on below...
 
