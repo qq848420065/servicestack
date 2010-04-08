@@ -10,7 +10,7 @@ As different endpoints have advantages in different scenarios, Service Stack sup
 
 If you're interested for a more background information on the history of the different formats and the advantages and disadvantages of each read on below...
 
-= Service Stack's view on Web Services =
+= Service Stack's view on the history on Web Services =
 
 The W3C defines a "web service" as "a software system designed to support interoperable machine-to-machine interaction over a network.
 
