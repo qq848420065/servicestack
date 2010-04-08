@@ -70,8 +70,7 @@ With the interest of creating high-performance web services and not satisfied wi
 
 TypeSerializer was developed from experience taking the best features of serialization formats it looks to replace.  It has many other features that sets it apart from existing formats which makes it the best choice for serializing any .NET POCO object. 
 
-  * Fastest text-serializer for .NET
-  * Most compact, lossless known text-serializer for .NET
+  * Fastest and most compact text-serializer for .NET
   * Human readable and writeable, self-describing text format 
   * Non-invasive and configuration-free 
   * Resilient to schema changes (focused on deserializing as much as possible without error)
