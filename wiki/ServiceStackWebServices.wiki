@@ -66,7 +66,7 @@ One of the major complaints of XML is that it's too verbose, which given a large
 ==Service Stack’s new JSV Format==
 The latest endpoint to be added to Service Stack, is JSV the serialization format of Service Stack's POCO TypeSerializer. It’s a JSON inspired format that uses CSV-style escaping for optimal performance. 
 
-In the interest of creating high-performance web services and not being happy with the verbosity or performance of current XML and JSON serialization formats, TypeSerializer was created with a core goal to create the most compact and fastest text-serializer for .NET. In this mission, it has succeeded as it is now both 5.3x quicker than the leading .NET JSON serializer whilst being 2.6x smaller than the equivalent XML format. 
+With the interest of creating high-performance web services and not satisfied with the performance or size of existing XML and JSON serialization formats, TypeSerializer was created with a core goal to create the most compact and fastest text-serializer for .NET. In this mission, it has succeeded as it is now both 5.3x quicker than the leading .NET JSON serializer whilst being 2.6x smaller than the equivalent XML format. 
 
 TypeSerializer was developed from experience taking the best features of serialization formats it looks to replace.  It has many other features that sets it apart from existing formats which makes it the best choice for serializing any .NET POCO object. 
 
