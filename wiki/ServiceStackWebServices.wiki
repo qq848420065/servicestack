@@ -20,7 +20,7 @@ The key parts of this definition are that it should be interoperable and that it
 HTTP the Internet's protocol is the undisputed champ and will be for the foreseeable future. It's universally accepted, can be proxied and is pretty much the only protocol allowed through most firewalls which is the reason why Service Stack (and most other Web Service frameworks) support it. Note: the future roadmap will also support the more optimized HTML5 'Web Sockets' standard.
 
 ==XML the winning serialization format?==
-Out of the ashes another winning format looked to follow in HTTP’s success is the XML text serialization format. Some of the many reasons why it has reigned supreme include:
+Out of the ashes another winning format looking to follow in HTTP’s success, is the XML text serialization format. Some of the many reasons why it has reigned supreme include:
 
   * Simple, Open, self-describing text-based format
   * Human and Computer readable and writeable
