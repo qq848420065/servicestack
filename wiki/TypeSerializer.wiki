@@ -23,6 +23,8 @@ As such, it's utilized within ServiceStack's other components:
   * OrmLite - to store complex types on table models as text blobs in a database field and 
   * [ServiceStackRedis ServiceStack.Redis] - to store rich POCO data types into the very fast [http://code.google.com/p/redis redis] instances.
 
+More information on TypeSerializer and its JSV Format can be found at the [http://www.servicestack.net/mythz_blog/?p=176 introductory blog post].
+
 = Download =
 TypeSerializer is included with [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip] or available to download separately in a standalone  [http://servicestack.googlecode.com/files/ServiceStack.Text.dll ServiceStack.Text.dll].
 
