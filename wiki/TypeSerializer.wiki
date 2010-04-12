@@ -74,7 +74,7 @@ Which also happens to be the same as C# POCO class with the values
 {A:1,B:2,C:3,D:4}
 }}}
 
-JSV does not allow white-spaces, which means strings for the most part can be serialized without quotes, e.g: 
+JSV is white-space significant, which means normal string values can be serialized without quotes, e.g: 
 
 `new MyClass { Foo="Bar", Greet="Hello World!"}` is serialized as:
 {{{
