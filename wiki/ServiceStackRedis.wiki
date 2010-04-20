@@ -31,8 +31,8 @@ For multi-threaded applications you can choose from our different client connect
 === Redis Server builds for Windows ===
 Downloads for Redis Server Windows builds [RedisWindowsDownload can be found here].
 
-
-
+= How to design a NoSQL database =
+Oren from the popular .NET blog [http://ayende.com/Blog/ ayende.com/Blog/], is putting together a series of blogs explaining how to go about designing a NoSQL database. In order to better illustrate how to utilize the more advanced features of the Redis client, I will also maintain an equivalent [DesigningNoSqlDatabase Redis solution here].
 
 = Examples =
 
