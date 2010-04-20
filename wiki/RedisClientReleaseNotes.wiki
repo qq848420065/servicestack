@@ -5,8 +5,8 @@ Latest release notes for the latest version of the c# [ServiceStackRedis Service
 This release brings the client up to date with v1.3.9 of the redis-server with the following new operations included:
   * [http://code.google.com/p/redis/wiki/HincrbyCommand HINCRBY]
   * [http://code.google.com/p/redis/wiki/HmsetCommand HMSET]
-  * [http://code.google.com/p/redis/wiki/HsetnxCommand HSETNX] (only available in redis svn trunk)
-You can access these new operations with the latest [http://code.google.com/p/servicestack/wiki/RedisWindowsDownload Windows build of redis] (currently v1.3.9).
+  * [http://code.google.com/p/redis/wiki/HsetnxCommand HSETNX] (only available in redis trunk)
+You can access these new operations with the IRedisClient using the latest [http://code.google.com/p/servicestack/wiki/RedisWindowsDownload Windows build of redis-server] (currently v1.3.9).
 
 Richer Transaction support has been improved with the addition of the [IRedisTypedTransaction IRedisTypedTransaction<T>] which utilizes the [IRedisTypedClient] to provide transactions against strongly-typed POCO types. Examples can be found on the test page [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Generic/RedisTypedTransactionTests.cs RedisTypedTransactionTests.cs]
 
