@@ -10,6 +10,14 @@ You can access these new operations with the IRedisClient using the [http://code
 
 Richer Transaction support has been improved with the addition of the [IRedisTypedTransaction IRedisTypedTransaction<T>] which utilizes the [IRedisTypedClient] to provide transactions against strongly-typed POCO types. Examples can be found on the test page [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Generic/RedisTypedTransactionTests.cs RedisTypedTransactionTests.cs]
 
+= Download =
+The latest version of the open source c# redis client is available:
+  * As a stand-alone dll - http://servicestack.googlecode.com/files/ServiceStack.Redis.dll
+  * Or bundled inside the core Service Stack binaries - http://servicestack.googlecode.com/files/ServiceStack.zip
+
+Download the stable and development release of the Redis Server Windows builds here:
+http://code.google.com/p/servicestack/wiki/RedisWindowsDownload
+
 
 = Redis Client v1.09 Release Notes =
 
@@ -19,15 +27,6 @@ The biggest feature in this release is the addition of Redis Transactions. Almos
 == Other noteworthy features ==
  * Fixed some bugs and provided richer support for Redis Hashes including implementing a the .NET native generic `IDictionary<string,string>` interface.
  * Name changes for a couple SortedSet and Hash operations for better consistency and readability.
-
-= Download =
-The latest version of the open source c# redis client is available:
-  * As a stand-alone dll - http://servicestack.googlecode.com/files/ServiceStack.Redis.dll
-  * Or bundled inside the core Service Stack binaries - http://servicestack.googlecode.com/files/ServiceStack.zip
-
-Download the stable and development release of the Redis Server Windows builds here:
-http://code.google.com/p/servicestack/wiki/RedisWindowsDownload
-
 
 = Older Release Notes =
 
