@@ -4,6 +4,21 @@ The [RedisTransactions] interface implemented by [ServiceStackRedis ServiceStack
 
 Redis transaction interface provides useful overloads that let you Queue-up any [IRedisClient] operation within a single transaction. The API provides support for a callback so you also have access to any return values returned as part of the transaction as well.
 
+= Usage = 
+
+Below is a simple example showing how to access, use and commit the transaction.
+{{{
+int callbackResult;
+using (var trans = redis.CreateTransaction())
+{
+  trans.QueueCommand(r => r.Increment("key"));  
+  trans.QueueCommand(r => r.Increment("key"), i => callbackResult = i);  
+
+  trans.Commit();
+}
+}}}
+
+For a strongly-typed transaction that operates on complex POCO types see [IRedisTypedTransaction IRedisTypedTransaction<T>].
 
 = Details =
 
