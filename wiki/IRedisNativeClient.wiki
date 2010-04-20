@@ -9,6 +9,7 @@ Each method maps to 1:1 to a [http://code.google.com/p/redis/wiki/CommandReferen
 = Details =
 
 {{{
+
 public interface IRedisNativeClient 
 	: IDisposable
 {
@@ -33,7 +34,7 @@ public interface IRedisNativeClient
 	int Decr(string key);
 	int DecrBy(string key, int count);
 	string RandomKey();
-	bool Rename(string oldKeyname, string newKeyname);
+	int Rename(string oldKeyname, string newKeyname);
 	int Expire(string key, int seconds);
 	int ExpireAt(string key, long unixTime);
 	int Ttl(string key);
@@ -88,19 +89,24 @@ public interface IRedisNativeClient
 	byte[][] ZRevRangeByScore(string setId, double min, double max, int? skip, int? take);
 	byte[][] ZRevRangeByScoreWithScores(string setId, double min, double max, int? skip, int? take);
 	int ZRemRangeByRank(string setId, int min, int max);
+	int ZRemRangeByScore(string setId, double fromScore, double toScore);
 	int ZCard(string setId);
 	double ZScore(string setId, byte[] value);
 	int ZUnion(string intoSetId, params string[] setIds);
 	int ZInter(string intoSetId, params string[] setIds);
 
 	//Redis Hash operations
-	int HSet(string hashId, string key, byte[] value);
-	byte[] HGet(string hashId, string key);
-	int HDel(string hashId, string key);
-	bool HExists(string hashId, string key);
+	int HSet(string hashId, byte[] key, byte[] value);
+	int HSetNX(string hashId, byte[] key, byte[] value);
+	void HMSet(string hashId, byte[][] keys, byte[][] values);
+	int HIncrby(string hashId, byte[] key, int incrementBy);
+	byte[] HGet(string hashId, byte[] key);
+	int HDel(string hashId, byte[] key);
+	int HExists(string hashId, byte[] key);
 	int HLen(string hashId);
 	byte[][] HKeys(string hashId);
 	byte[][] HValues(string hashId);
 	byte[][] HGetAll(string hashId);
 }
+
 }}}
