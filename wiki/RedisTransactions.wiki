@@ -4,7 +4,7 @@ This page provides examples on how to create atomic Redis transactions with [Ser
 
 One of the main features of Redis is the ability to construct custom atomic operations. This is achieved by utilizing Redis's [http://code.google.com/p/redis/wiki/MultiExecCommand MULTI/EXEC/DISCARD] operations.
 
-[ServiceStackRedis Service Stack's C# Redis Client] makes it easy to utilize Redis transactions by providing a strongly-typed [IRedisTransaction] API with convenience methods to allow you to combine any [IRedisClient] operation within a single transaction.
+[ServiceStackRedis Service Stack's C# Redis Client] makes it easy to utilize Redis transactions by providing a strongly-typed [IRedisTransaction] (for strings) and [IRedisTypedTransaction IRedisTypedTransaction<T>] (for POCO types) APIs with convenience methods to allow you to combine any [IRedisClient] operation within a single transaction.
 
 Creating a transaction is done by calling `IRedisClient.CreateTransaction()`. 
 From there you 'Queue' up all operations you want to be apart of the transaction by using one of the `IRedisTransaction.QueueCommand()` overloads. After that you can execute all the operations by calling `IRedisTransaction.Commit()` which will send the 'EXEC' command to the Redis server executing all the Queued commands and processing their callbacks.
