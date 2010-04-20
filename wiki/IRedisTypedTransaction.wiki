@@ -8,7 +8,7 @@ Redis transaction interface provides useful overloads that let you Queue-up any 
 
 Below is a simple example showing how to access, use and commit the transaction.
 {{{
-var typedClient = Redis.GetTypedClient<Shipper>();			
+var typedClient = Redis.GetTypedClient<MyPocoType>();			
 using (var trans = typedClient.CreateTransaction())
 {
 	trans.QueueCommand(r => r.Set("nosqldbs", new MyPocoType {Id = 1, Name = "Redis"));
