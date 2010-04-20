@@ -18,7 +18,6 @@ The interface below lists all available operations:
 = Strongly typed Generic Client API =
 
 {{{
-
 public interface IRedisTypedClient<T>
 	: IBasicPersistenceProvider<T>
 {
@@ -26,6 +25,8 @@ public interface IRedisTypedClient<T>
 	IHasNamed<IRedisSet<T>> Sets { get; set; }
 	IHasNamed<IRedisSortedSet<T>> SortedSets { get; set; }
 	IRedisHash<TKey, T> GetHash<TKey>(string hashId);
+
+	IRedisTypedTransaction<T> CreateTransaction();
 
 	int Db { get; set; }
 	List<string> AllKeys { get; }
@@ -139,7 +140,6 @@ public interface IRedisTypedClient<T>
 	List<T> GetHashValues<TKey>(IRedisHash<TKey, T> hash);
 	Dictionary<TKey, T> GetAllFromHash<TKey>(IRedisHash<TKey, T> hash);
 }
-
 
 }}}
 
