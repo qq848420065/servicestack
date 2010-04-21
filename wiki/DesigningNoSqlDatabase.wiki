@@ -4,6 +4,6 @@ This page illustrates a good solution on how to design a simple Blog application
 
 Oren from the popular .NET blog http://ayende.com/Blog/, is putting together a [http://ayende.com/Blog/archive/2010/04/20/that-no-sql-thing-the-relational-modeling-anti-pattern-in.aspx series of blogs] explaining how to approach designing a simple blog application using a NoSQL database. Although he's using his RavenDB as a reference implementation, this example applies equally well to Redis and other NoSQL variants.
 
-Where possible I will show how you can use the advanced features in Redis and the [ServiceStackRedis C# Redis Client] to provide simple, fast and effective solutions. The entire source code for this example is available at [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BlogPostExample.cs BlogPostExample.cs] 
+Where possible I will show how you can use the advanced features in Redis and [ServiceStackRedis Service Stack's C# Redis Client] to provide simple, fast and effective solutions. The entire source code for this example is available at [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BlogPostExample.cs BlogPostExample.cs] 
 
 = Problem Domain =
