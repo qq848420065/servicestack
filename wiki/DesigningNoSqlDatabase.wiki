@@ -2,8 +2,17 @@ This page illustrates a good solution on how to design a simple Blog application
 
 = Introduction =
 
-Oren from the popular .NET blog http://ayende.com/Blog/, is putting together a [http://ayende.com/Blog/archive/2010/04/20/that-no-sql-thing-the-relational-modeling-anti-pattern-in.aspx series of blogs] explaining how to approach designing a simple blog application using a NoSQL database. Although he's using his RavenDB as a reference implementation, this example applies equally well to Redis and other NoSQL variants.
+Oren Eini from the popular .NET blog http://ayende.com/Blog/, is putting together a [http://ayende.com/Blog/archive/2010/04/20/that-no-sql-thing-the-relational-modeling-anti-pattern-in.aspx series of blog posts] explaining how to go about designing a simple blog application using a NoSQL database. Although he's using his RavenDB as a reference implementation, this example applies equally well to Redis and other NoSQL variants. Some solutions will vary based on the advanced features of each NoSQL solution but the 'core data models' should remain the same.
+
+A list of he's blog posts on the subject are below:
+* [http://ayende.com/Blog/archive/2010/04/20/that-no-sql-thing-the-relational-modeling-anti-pattern-in.aspx That No SQL Thing: The relational modeling anti pattern in document databases]
 
 Where possible I will show how you can use the advanced features in Redis and [ServiceStackRedis Service Stack's C# Redis Client] to provide simple, fast and effective solutions. The entire source code for this example is available at [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BlogPostExample.cs BlogPostExample.cs] 
 
-= Problem Domain =
+== The relational modeling anti pattern in document databases ==
+
+If you've spent a lot of time building solutions with an RDBMS back-end it can be hard to know which part of your schema is due to the problem domain and which part is the result of an implementation constraint trying to map your ideal domain model onto a relational model. 
+
+My approach before designing any system is to map out the ideal domain model we need to build in order before I reach for an IDE or a db gui schema creator. Unfortunately creating POCO types is just so damn quick in VS.NET/C#/R# that I've ditched the pencil and paper a long time ago and jump right into using C# automatic properties like a light-weight DSL ripping out entities quicker than I can draw crows feet.
+
+If you are like me and prefer to design your domain models from POCO types rather than creating RDBMS tables that you're in good shape in implementing a NoSQL solution as the time when you usually morph your pristine domain models into a tabular structure peppering it with Primary and Foreign keys can now saved and put towards a longer lunch break as most of the times you can skip this step entirely.
