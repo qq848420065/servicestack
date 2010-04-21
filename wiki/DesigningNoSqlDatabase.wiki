@@ -44,11 +44,8 @@ With only a running redis-server instance running and the C# client, the full so
 var redis = new RedisClient();
 using (var redisUsers = redisClient.GetTypedClient<User>())
 {
-	var ayende = new User { Id = redisUsers.GetNextSequence(), Name = "ayende" };
-	var mythz = new User { Id = redisUsers.GetNextSequence(), Name = "mythz" };
-
-	redisUsers.Store(ayende);
-	redisUsers.Store(mythz);
+	redisUsers.Store(new User { Id = redisUsers.GetNextSequence(), Name = "ayende" });
+	redisUsers.Store(new User { Id = redisUsers.GetNextSequence(), Name = "mythz" });
 
 	var allUsers = redisUsers.GetAll();
 	Console.WriteLine(allUsers.Dump());
