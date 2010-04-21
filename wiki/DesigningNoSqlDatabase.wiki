@@ -1,4 +1,4 @@
-#This page illustrates a good solution on how to design a simple Blog application the 'NoSQL' way. Some of the techniques listed on this page can be applied in other NoSQL variants.
+This page illustrates a good solution on how to design a simple Blog application the 'NoSQL' way. Some of the techniques listed on this page can be applied in other NoSQL variants.
 
 = Introduction =
 
