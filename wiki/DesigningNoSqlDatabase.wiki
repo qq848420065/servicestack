@@ -7,14 +7,34 @@ Oren Eini from the popular .NET blog http://ayende.com/Blog/, is putting togethe
 A list of he's blog posts on the subject are below:
   * [http://ayende.com/Blog/archive/2010/04/20/that-no-sql-thing-the-relational-modeling-anti-pattern-in.aspx That No SQL Thing: The relational modeling anti pattern in document databases]
 
-Where possible I will show how you can use the advanced features in Redis and [ServiceStackRedis Service Stack's C# Redis Client] to provide simple, fast and effective solutions. The entire source code for this example is available at [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BlogPostExample.cs BlogPostExample.cs] 
+Where possible I will show how you can use the advanced features in Redis and [ServiceStackRedis Service Stack's C# Redis Client] to provide simple, fast and effective solutions. The entire source code for this example is available in its most simple form at: [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BlogPostExample.cs BlogPostExample.cs] or in its final best practices solution at []
 
 == The relational modeling anti pattern in document databases ==
 
-If you've spent a lot of time building solutions with an RDBMS back-end it can be hard to know which part of your schema is due to the problem domain and which part is the result of an implementation constraint trying to map your ideal domain model onto a relational model. 
+If you've spent a lot of time building solutions with an RDBMS back-end it can be hard to know which part of your schema is due to the problem domain and which part is the result of an implementation constraint trying to map your ideal domain model onto a relational tabular model. 
 
 My approach before designing any system is to map out the ideal domain model we need to build in order before I reach for an IDE or a db gui schema creator. Unfortunately creating POCO types is just so damn quick in VS.NET/C#/R# that I've ditched the pencil and paper a long time ago and jump right into using C# automatic properties like a light-weight DSL ripping out entities quicker than I can draw crows feet.
 
 If you are like me and prefer to design your domain models from POCO types rather than creating RDBMS tables than you're in good shape in implementing a NoSQL solution as the time when you usually morph your pristine domain models into a tabular structure peppering it with Primary and Foreign keys can now saved and put towards a longer lunch break as most of the times you can skip this step entirely.
 
-The schema-less nature of NoSQL databases means you can pretty much store the domain models as-is. What you still need to do is to identify your distinct entities from your Key Value Objects. A good guide I use to help with this is whether the Model only makes sense in the context its parent and whether it is 'co-owned' or referenced by another entity.
+The schema-less nature of NoSQL databases means you can pretty much store the domain models as-is. What you still need to do is to identify your distinct entities from your Key Value Objects. A good guide I use to help with this is whether the Model only makes sense in the context its parent and whether it is 'co-owned' or referenced by another entity. This is where we start pulling the domain model apart ever so slightly, basically you just replace the collection of strongly-typed entities to a collection of entity ids.
+
+{{{
+
+//Before
+public User
+{
+  public int Id { get; set; }
+  public string Name { get; set; }
+  public List<Blog> Blogs { get; set; }
+}
+
+//After
+public User
+{
+  public int Id { get; set; }
+  public string Name { get; set; }
+  public List<int> BlogIds { get; set; }
+}
+
+}}}
