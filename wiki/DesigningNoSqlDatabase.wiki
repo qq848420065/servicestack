@@ -8,7 +8,7 @@ Here is a list of ayende's series of blog posts on the subject:
   * [http://ayende.com/Blog/archive/2010/04/20/that-no-sql-thing-the-relational-modeling-anti-pattern-in.aspx That No SQL Thing: The relational modeling anti pattern in document databases]
   * [http://ayende.com/Blog/archive/2010/04/21/that-no-sql-thing-modeling-documents-in-a-document-database.aspx That No SQL Thing: Modeling Documents in a Document Database]
 
-I will try to add my own thoughts on the subject. Where possible I will show how you can use the advanced features in Redis and [ServiceStackRedis Service Stack's C# Redis Client] to provide simple, fast and effective solutions. The entire source code for this example is available in its simplest form at: [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BlogPostExample.cs BlogPostExample.cs]. I will be re-factoring this solution in what I consider a 'best practices approach' where I will shove all this Redis access behind a repository that I will be maintaining at: [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BestPractice/BlogPostBestPractice.cs BlogPostBestPractice.cs]
+I will try to add my own thoughts on the subject. Where possible I will show how you can use the advanced features in Redis and [ServiceStackRedis Service Stack's C# Redis Client] to provide simple, fast and effective solutions. The entire source code for this example is available in its simplest form at: [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BlogPostExample.cs BlogPostExample.cs]. I will be re-factoring this solution in what I consider a 'best practices approach' where I will shove all Redis access behind a repository that I will be maintaining at: [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BestPractice/BlogPostBestPractice.cs BlogPostBestPractice.cs]
 
 == The relational modeling anti pattern in document databases ==
 
@@ -18,12 +18,12 @@ My approach before designing any system is to map out the ideal domain model we 
 
 If you are like me and prefer to design your domain models from POCO types rather than creating RDBMS tables than you're in good shape in implementing a NoSQL solution as the time when you usually morph your pristine domain models into a tabular structure peppering it with Primary and Foreign keys can now saved and put towards a longer lunch break as most of the times you can skip this step entirely.
 
-The schema-less nature of NoSQL databases means you can pretty much store the domain models as-is. What you still need to do is to identify your distinct entities from your Key Value Objects. A good guide I use to help with this is whether the Model only makes sense in the context its parent and whether it is 'co-owned' or referenced by another entity. This is where we start pulling the domain model apart ever so slightly, basically you just replace the collection of strongly-typed entities to a collection of entity ids.
+The schema-less nature of NoSQL databases means you can pretty much store your domain models as-is. You will still need to identify your distinct entities from your Key Value Objects. A good guide I use to help with this is whether the Model only makes sense in the context its parent and whether it is 'co-owned' or referenced by another entity. This is where we start pulling the domain model apart, basically you just replace the collection of strongly-typed entities to a collection of entity ids. Effectively you can think of this like foreign-keys but at a much higher level as you only pull it apart of the domain model when you want to manage the entities independently of each other, not as dictated by your schema.
 
+Taking the User model in it's most simplest form. A User has many blogs, now as you may want to view a list of blogs outside the context of a User (e.g. view a list of newly created blogs, most popular blogs for a category, etc). It becomes a good candidate to being promoted a first class entity.
 {{{
-
 //Before
-public User
+public class User
 {
   public int Id { get; set; }
   public string Name { get; set; }
@@ -31,13 +31,42 @@ public User
 }
 
 //After
-public User
+public class User
 {
   public int Id { get; set; }
   public string Name { get; set; }
   public List<int> BlogIds { get; set; }
 }
+}}}
 
+With only a running redis-server instance running and the C# client, the full source to persist and retrieve a list of users is:
+{{{
+var redis = new RedisClient();
+using (var redisUsers = redisClient.GetTypedClient<User>())
+{
+	var ayende = new User { Id = redisUsers.GetNextSequence(), Name = "ayende" };
+	var mythz = new User { Id = redisUsers.GetNextSequence(), Name = "mythz" };
+
+	redisUsers.Store(ayende);
+	redisUsers.Store(mythz);
+
+	var allUsers = redisUsers.GetAll();
+	Console.WriteLine(allUsers.Dump());
+}
+/*Output
+[
+	{
+		Id: 1,
+		Name: ayende,
+		BlogIds: []
+	},
+	{
+		Id: 2,
+		Name: mythz,
+		BlogIds: []
+	}
+]
+ */
 }}}
 
 _This document is a work in progres..._
