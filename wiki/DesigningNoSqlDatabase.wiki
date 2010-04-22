@@ -166,7 +166,7 @@ using (var redisBlogs = redisClient.GetTypedClient<Blog>())
 ===Main page: show list of recent comments===
 
 For this scenario we can take advantage of Redis's LTRIM'ing operation to maintain custom rolling lists.
-The versatility of [http://code.google.com/p/redis/wiki/RpushCommand Redis list operations] mean we can prepend or append at either end of the list.
+The richness of [http://code.google.com/p/redis/wiki/RpushCommand Redis list operations] also allow us to prepend or append at either end of the list which we take advantage of in this example.
 
 {{{
 //Get strongly-typed clients
