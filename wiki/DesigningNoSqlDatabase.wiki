@@ -155,6 +155,138 @@ using (var redisBlogs = redisClient.GetTypedClient<Blog>())
 
 }}}
 
+===Main page: show list of recent posts===
+===Main page: show list of recent comments===
+
+For this scenario we can take advantage of Redis's LTRIM'ing operation to maintain custom rolling lists.
+
+{{{
+//Get strongly-typed clients
+using (var redisBlogPosts = redisClient.GetTypedClient<BlogPost>())
+using (var redisComments = redisClient.GetTypedClient<BlogPostComment>())
+{
+	//To keep this example let's pretend this is a new list of blog posts
+	var newIncomingBlogPosts = redisBlogPosts.GetAll();
+
+	//Let's get back an IList<BlogPost> wrapper around a Redis server-side List.
+	var recentPosts = redisBlogPosts.Lists["urn:BlogPost:RecentPosts"];
+	var recentComments = redisComments.Lists["urn:BlogPostComment:RecentComments"];
+
+	foreach (var newBlogPost in newIncomingBlogPosts)
+	{
+		//Prepend the new blog posts to the start of the 'RecentPosts' list
+		recentPosts.Prepend(newBlogPost);
+
+		//Prepend all the new blog post comments to the start of the 'RecentComments' list
+		newBlogPost.Comments.ForEach(recentComments.Prepend);
+	}
+
+	//Make this a Rolling list by only keep the latest 3 posts and comments
+	recentPosts.Trim(0, 2);
+	recentComments.Trim(0, 2);
+
+	//Print out the last 3 posts:
+	Console.WriteLine(recentPosts.GetAll().Dump());
+	/* Output: 
+	[
+		{
+			Id: 2,
+			BlogId: 2,
+			Title: Redis,
+			Categories: 
+			[
+				NoSQL,
+				Cache
+			],
+			Tags: 
+			[
+				Redis,
+				NoSQL,
+				Scalability,
+				Performance
+			],
+			Comments: 
+			[
+				{
+					Content: First Comment!,
+					CreatedDate: 2010-04-20T22:14:02.755878Z
+				}
+			]
+		},
+		{
+			Id: 1,
+			BlogId: 1,
+			Title: RavenDB,
+			Categories: 
+			[
+				NoSQL,
+				DocumentDB
+			],
+			Tags: 
+			[
+				Raven,
+				NoSQL,
+				JSON,
+				.NET
+			],
+			Comments: 
+			[
+				{
+					Content: First Comment!,
+					CreatedDate: 2010-04-20T22:14:02.755878Z
+				},
+				{
+					Content: Second Comment!,
+					CreatedDate: 2010-04-20T22:14:02.755878Z
+				}
+			]
+		},
+		{
+			Id: 4,
+			BlogId: 2,
+			Title: Couch Db,
+			Categories: 
+			[
+				NoSQL,
+				DocumentDB
+			],
+			Tags: 
+			[
+				CouchDb,
+				NoSQL,
+				JSON
+			],
+			Comments: 
+			[
+				{
+					Content: First Comment!,
+					CreatedDate: 2010-04-20T22:14:02.755878Z
+				}
+			]
+		}
+	]
+	*/
+
+	Console.WriteLine(recentComments.GetAll().Dump());
+	/* Output:
+	[
+		{
+			Content: First Comment!,
+			CreatedDate: 2010-04-20T20:32:42.2970956Z
+		},
+		{
+			Content: First Comment!,
+			CreatedDate: 2010-04-20T20:32:42.2970956Z
+		},
+		{
+			Content: First Comment!,
+			CreatedDate: 2010-04-20T20:32:42.2970956Z
+		}
+	]
+	 */
+}
+}}}
+
 
 
 _This document is a work in progres..._
