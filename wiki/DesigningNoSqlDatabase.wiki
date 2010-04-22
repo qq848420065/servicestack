@@ -1,7 +1,7 @@
 #labels Redis,NoSql
 This page illustrates a good solution on how to design a simple Blog application the 'NoSQL' way. Some of the techniques listed on this page can be applied in other NoSQL variants.
 
-= Introduction =
+= Designing a NoSQL Database using Redis =
 
 Oren Eini from the popular .NET blog http://ayende.com/Blog/, is putting together a [http://ayende.com/Blog/archive/2010/04/20/that-no-sql-thing-the-relational-modeling-anti-pattern-in.aspx series of blog posts] explaining how to go about designing a simple blog application using a NoSQL database. Although he's using his RavenDB as a reference implementation, this example applies equally well to Redis and other NoSQL variants. Some solutions will vary based on the advanced features of each NoSQL solution but the 'core data models' should remain the same.
 
