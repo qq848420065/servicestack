@@ -34,7 +34,7 @@ Downloads for Redis Server Windows builds [RedisWindowsDownload can be found her
 = How to design a NoSQL database =
 
 Developers who would like to know how to approach building a sample Blog application using Redis should check out:
-*[DesigningNoSqlDatabase Designing a NoSql Database]*
+  * *[DesigningNoSqlDatabase Designing a NoSql Database]*
 
 It follows Oren's (from the popular .NET blog [http://ayende.com/Blog/ ayende.com/Blog/]) series of blog posts illustrating how to go about designing a NoSQL database. 
 It provides a good example to illustrate how to make effective use of the more advanced features of the Redis client.
