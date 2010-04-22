@@ -11,7 +11,7 @@ Here is a list of ayende's series of blog posts on the subject:
 
 I will try to add my own thoughts on and where possible show how you can use the advanced features in Redis and [ServiceStackRedis Service Stack's C# Redis Client] to provide simple, fast and effective solutions. The entire source code for this example is available in its simplest form at: [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BlogPostExample.cs BlogPostExample.cs]. I will be re-factoring this solution in what I consider a 'best practices approach' where I will shove all Redis access behind a repository that I will be maintaining at: [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BestPractice/BlogPostBestPractice.cs BlogPostBestPractice.cs]
 
-== Modeling Documents in a NoSQL Database ==
+== Modeling Entities in a NoSQL Database ==
 
 If you've spent a lot of time building solutions with an RDBMS back-end it can be hard to know which part of your schema is due to the problem domain and which part is the result of an implementation constraint trying to map your ideal domain model onto a relational tabular structure. 
 
