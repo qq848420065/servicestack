@@ -287,6 +287,53 @@ using (var redisComments = redisClient.GetTypedClient<BlogPostComment>())
 }
 }}}
 
+===Main page: show tag cloud for posts===
+
+Redis Sorted Sets provide the perfect data structure to maintain a Tag cloud of all tags.
+It's very fast, elegant structure which provides custom-specific operations to maintain and sort the data.
+
+//Get strongly-typed clients
+using (var redisBlogPosts = redisClient.GetTypedClient<BlogPost>())
+{
+	var newIncomingBlogPosts = redisBlogPosts.GetAll();
+
+	foreach (var newBlogPost in newIncomingBlogPosts)
+	{
+		//For every tag in each new blog post, increment the number of times each Tag has occurred 
+		newBlogPost.Tags.ForEach(x =>
+			redisClient.IncrementItemInSortedSet("urn:TagCloud", x, 1));
+	}
+
+	//Show top 5 most popular tags with their scores
+	var tagCloud = redisClient.GetRangeWithScoresFromSortedSetDesc("urn:TagCloud", 0, 4);
+	Console.WriteLine(tagCloud.Dump());
+}
+/* Output:
+[
+	[
+		NoSQL,
+		 4
+	],
+	[
+		Scalability,
+		 2
+	],
+	[
+		JSON,
+		 2
+	],
+	[
+		Redis,
+		 1
+	],
+	[
+		Raven,
+		 1
+	],
+]
+*/
+
+
 
 
 _This document is a work in progres..._
