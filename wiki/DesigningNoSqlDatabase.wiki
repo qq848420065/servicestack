@@ -292,6 +292,7 @@ using (var redisComments = redisClient.GetTypedClient<BlogPostComment>())
 Redis Sorted Sets provide the perfect data structure to maintain a Tag cloud of all tags.
 It's very fast, elegant structure which provides custom-specific operations to maintain and sort the data.
 
+{{{
 //Get strongly-typed clients
 using (var redisBlogPosts = redisClient.GetTypedClient<BlogPost>())
 {
@@ -332,7 +333,7 @@ using (var redisBlogPosts = redisClient.GetTypedClient<BlogPost>())
 	],
 ]
 */
-
+}}}
 
 
 
