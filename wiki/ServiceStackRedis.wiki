@@ -35,7 +35,7 @@ Downloads for Redis Server Windows builds [RedisWindowsDownload can be found her
 
 Developers who would like to know how to approach building a sample Blog application using Redis should check out:
   * *[DesigningNoSqlDatabase How to design a NoSql Database]*
-It provides more good examples illustrating how to make effective use of the advanced features of the Redis client to solve real world scenarios.
+It provides good examples illustrating how to make effective use of the advanced features of the Redis client to solve real world scenarios.
 
 It follows in tandem with Oren Eini's (from the popular .NET blog [http://ayende.com/Blog/ ayende.com/Blog/]) series of blog posts illustrating his approach to designing a NoSQL database with a RavenDB back end. 
 
