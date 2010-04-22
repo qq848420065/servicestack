@@ -89,7 +89,7 @@ In identifying my entities I have a general preference for 'automated ids' which
 sequential integer ids or Guids - if the entities are going to be distributed across multiple data stores.
 
 Apart from that persisting an object is just a straight forward process of serializing the object graph into a text-serialization format.
-By default, the Redis Client uses TypeSerializer's [http://www.servicestack.net/mythz_blog/?p=176 JSV format] as it's the fastest and most compact text-format for .NET POCO types.
+By default, the Redis Client uses [http://www.servicestack.net/mythz_blog/?p=176 TypeSerializer's JSV format] as it's the fastest and most compact text-format for .NET POCO types.
 
 {{{
 
