@@ -1,5 +1,5 @@
 #labels Redis,NoSql
-This page illustrates a good solution on how to design a simple Blog application the 'NoSQL' way. Some of the techniques listed on this page can be applied in other NoSQL variants.
+This page illustrates a good solution on how to design a simple Blog application the Redis way, where we use some of its advanced features to provide fast, simple and elegant solutions to real world scenarios.
 
 = Designing a NoSQL Database using Redis =
 
