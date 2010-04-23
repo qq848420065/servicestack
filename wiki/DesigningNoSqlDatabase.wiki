@@ -50,6 +50,8 @@ using (var redisUsers = redisClient.GetTypedClient<User>())
 	redisUsers.Store(new User { Id = redisUsers.GetNextSequence(), Name = "mythz" });
 
 	var allUsers = redisUsers.GetAll();
+
+	//Recursively print the values of the POCO (To use T.Dump() Extension method yourself see: http://www.servicestack.net/mythz_blog/?p=202)
 	Console.WriteLine(allUsers.Dump());
 }
 /*Output
@@ -128,7 +130,6 @@ using (var redisBlogs = redisClient.GetTypedClient<Blog>())
 	//retrieve all blogs
 	var blogs = redisBlogs.GetAll();
 
-	//Recursively print the values of the POCO (For T.Dump() Extension method see: http://www.servicestack.net/mythz_blog/?p=202)
 	Console.WriteLine(blogs.Dump());
 }
 /*Output
