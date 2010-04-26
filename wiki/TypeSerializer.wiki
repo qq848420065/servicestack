@@ -28,7 +28,7 @@ As such, it's utilized within ServiceStack's other components:
 = Download =
 TypeSerializer is included with [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip] or available to download separately in a standalone  [http://servicestack.googlecode.com/files/ServiceStack.Text.zip ServiceStack.Text.zip].
 
-= Simple Usage =
+= Simple API =
 
 Like most of the interfaces in Service Stack, the API is simple and descriptive. In most cases these are the only methods that you would commonly use:
 
