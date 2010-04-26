@@ -42,7 +42,7 @@ T TypeSerializer.DeserializeFromReader<T>(TextReader reader);
 }}}
 
 Where *T* can be any .NET POCO type. That’s all there is - the API was intentionally left simple :)
-You may also want to check out the very useful [http://www.servicestack.net/mythz_blog/?p=202 `T.Dump()` extension method].
+You may also want to check out the very useful [http://www.servicestack.net/mythz_blog/?p=202 T.Dump() extension method].
 
 ----
 
