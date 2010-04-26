@@ -41,7 +41,7 @@ It follows in tandem with Oren Eini's (from the popular .NET blog [http://ayende
 
 = Examples =
 
-Examples of using [RedisTransactions Redis Transactions are here].
+For examples on using Transactions in Redis (i.e. MULTI/EXEC/DISCARD) [RedisTransactions view the Redis Transactions examples page].
 
 The full source code for the client and the examples is available to [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis view online]
 
