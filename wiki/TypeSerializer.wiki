@@ -26,7 +26,7 @@ As such, it's utilized within ServiceStack's other components:
   * [ServiceStackRedis ServiceStack.Redis] - to store rich POCO data types into the very fast [http://code.google.com/p/redis redis] instances.
 
 = Download =
-TypeSerializer is included with [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip] or available to download separately in a standalone  [http://servicestack.googlecode.com/files/ServiceStack.Text.dll ServiceStack.Text.dll].
+TypeSerializer is included with [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip] or available to download separately in a standalone  [http://servicestack.googlecode.com/files/ServiceStack.Text.zip ServiceStack.Text.zip].
 
 ----
 
