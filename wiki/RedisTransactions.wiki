@@ -1,6 +1,6 @@
 This page provides examples on how to create atomic Redis transactions with [ServiceStackRedis Service Stack's C# Redis Client]
 
-= Introduction =
+= How to create custom atomic operations in Redis =
 
 One of the main features of Redis is the ability to construct custom atomic operations. This is achieved by utilizing Redis's [http://code.google.com/p/redis/wiki/MultiExecCommand MULTI/EXEC/DISCARD] operations.
 
