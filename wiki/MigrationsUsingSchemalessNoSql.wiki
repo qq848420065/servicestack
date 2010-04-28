@@ -7,7 +7,7 @@ This page uses the `BlogPost` type defined in the [DesigningNoSqlDatabase previo
 
 = Painless data migrations with Redis and other schema-less NoSQL datastores =
 
-Developing new green field systems utilizing a RDBMS back-end is mostly a trouble-free experience. Before the system is live, you can easily modify a schema by nuking the entire applications database, and re-create it using some automated DDL scripts then populate it with test data that fit the new schema. 
+Developing *new* greenfield database systems utilizing a RDBMS back-end is mostly a trouble-free experience. Before the system is live, you can easily modify a schema by nuking the entire applications database, and re-create it using some automated DDL scripts then populate it with test data that fit the new schema. 
 
 The real troubles in your IT life happens after you deploy your first release and your system goes live. At that point you no longer have the option to nuke the database and re-create it from scratch. If you're lucky you have a script in place that can automatically infer the required DDL statements to migrate from your old schema to your new one. However any significant changes to your schema will involve downtime, late nights and a non-trivial amount of effort to ensure a successful migration to the new schema.
 
