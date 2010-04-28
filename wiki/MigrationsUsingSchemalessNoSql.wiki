@@ -84,6 +84,7 @@ public class BlogPost
 	//Changed from List of strongly-typed 'BlogPostComment' to loosely-typed string map
 	public List<Dictionary<string, string>> Comments { get; set; }
 
+        //Added pointless calculated field
 	public int? NoOfComments { get; set; }
 }
 
@@ -96,7 +97,7 @@ public enum BlogPostType
 }}}
 
 === 1. The do-nothing approach - using the old data with the new types ===
-Although hard to believe, with no extra effort you can just pretend no change was actually made and freely access new types looking at old data.
+Although hard to believe, with no extra effort you can just pretend *no change was actually done* and freely access new types looking at old data.
 This is possible when there is non-destructive changes (i.e. loss of information) with new field types. 
 The example below loads Redis with the repository from the previous example to populate it with test data from the old types. Just as if nothing happened you can read the old data using the new type:
 
