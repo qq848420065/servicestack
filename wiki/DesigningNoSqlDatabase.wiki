@@ -2,7 +2,7 @@
 This page illustrates a good solution on how to design a simple Blog application with [http://code.google.com/p/redis/ Redis] using advanced features of [ServiceStackRedis ServiceStack's C# Redis Client] to provide fast, simple and elegant solutions to real world scenarios.
 
 Index of pages in this series showing how to design and use a NoSQL datastore and how it differs with traditional RDBMS solutions:
-  * [DesigningNoSqlDatabase Designing a NoSQL Database using Redis]
+  * *[DesigningNoSqlDatabase Designing a NoSQL Database using Redis]*
   * [MigrationsUsingSchemalessNoSql Painless data migrations using schema-less NoSql data stores] 
 
 = Designing a NoSQL Database using Redis =
