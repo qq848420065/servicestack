@@ -1,0 +1,370 @@
+#labels Redis,Schemaless,NoSql,DataMigration
+This page uses the `BlogPost` type defined in the [DesigningNoSqlDatabase previous page] to show how painless typical data migrations can be when using Redis and other NoSQL schema-less data stores.
+
+Index of pages in this series showing how to design and use a NoSQL datastore and how it differs with traditional RDBMS solutions:
+  * [DesigningNoSqlDatabase Designing a NoSQL Database using Redis]
+  * *[MigrationsUsingSchemalessNoSql Painless data migrations using Redis and other schema-less NoSQL datastores]*
+
+= Painless data migrations with Redis and other schema-less NoSQL datastores =
+
+Developing new green field systems utilizing a RDBMS back-end is mostly a trouble-free experience. Before the system is live, you can easily modify a schema by nuking the entire applications database, and re-create it using some automated DDL scripts then populate it with test data that fit the new schema. 
+
+The real troubles in your IT life happens after you deploy your first release and your system goes live. At that point you no longer have the option to nuke the database and re-create it from scratch. If you're lucky you have a script in place that can automatically infer the required DDL statements to migrate from your old schema to your new one. However any significant changes to your schema will involve downtime, late nights and a non-trivial amount of effort to ensure a successful migration to the new schema.
+
+With schema-less data stores however this process is much less painful. In fact in most cases where you're just adding and removing fields it doesn't exist at all. By not having your datastore understand intrinsic details of your schema, it means it's no longer an infrastructure-level issue and can easily be handled by application logic if needed.
+
+To illustrate what can be achieved in practice, I will show two solutions.
+  * The do-nothing approach - where adding, removing fields and non-destructive change of field types are automatically handled.
+  * Using a custom translation - using application level logic to customize the translation between the old and new types.
+
+The full source code for this example is [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BestPractice/BlogPostMigrations.cs available here].
+
+== Example Code ==
+To demonstrate a typical migration using a practical example I'm using the `BlogPost` type on the previous page and projecting it into a `New.BlogPost` type that is fundamentally different. The definition of both types are below:
+
+=== The old schema ===
+{{{
+public class BlogPost
+{
+	public BlogPost()
+	{
+		this.Categories = new List<string>();
+		this.Tags = new List<string>();
+		this.Comments = new List<BlogPostComment>();
+	}
+
+	public int Id { get; set; }
+	public int BlogId { get; set; }
+	public string Title { get; set; }
+	public string Content { get; set; }
+	public List<string> Categories { get; set; }
+	public List<string> Tags { get; set; }
+	public List<BlogPostComment> Comments { get; set; }
+}
+
+public class BlogPostComment
+{
+	public string Content { get; set; }
+	public DateTime CreatedDate { get; set; }
+}
+}}}
+
+=== The new schema ===
+The 'new version' contains most changes you are likely to encounter in normal app development:
+  * Added, removed and renamed fields
+  * Non-destructive change of `int` fields into `long` and `double` fields
+  * Change of a strongly-typed `BlogPostComment` type into a loosely-typed string Dictionary
+  * Introduced a new enum type
+  * Added a new nullable calculated value
+{{{
+public class BlogPost
+{
+	public BlogPost()
+	{
+		this.Labels = new List<string>();
+		this.Tags = new List<string>();
+		this.Comments = new List<Dictionary<string, string>>();
+	}
+
+	//Changed int types to both a long and a double type
+	public long Id { get; set; }
+	public double BlogId { get; set; }
+
+	//Added new field
+	public BlogPostType PostType { get; set; }
+
+	public string Title { get; set; }
+	public string Content { get; set; }
+
+	//Renamed from 'Categories' to 'Labels'
+	public List<string> Labels { get; set; }
+
+	public List<string> Tags { get; set; }
+
+	//Changed from List of strongly-typed 'BlogPostComment' to loosely-typed string map
+	public List<Dictionary<string, string>> Comments { get; set; }
+
+	public int? NoOfComments { get; set; }
+}
+
+public enum BlogPostType
+{
+	None,
+	Article,
+	Summary,
+}
+}}}
+
+=== 1. The do-nothing approach - using the old data with the new types ===
+Although hard to believe, with no extra effort you can just pretend no change was actually made and freely access new types looking at old data.
+This is possible when there is non-destructive changes (i.e. loss of information) with new field types. 
+The example below loads Redis with the repository from the previous example to populate it with test data from the old types. Just as if nothing happened you can read the old data using the new type:
+
+{{{
+var repository = new BlogRepository(redisClient);
+
+//Populate the datastore with the old schema from the 'BlogPostBestPractice'
+BlogPostBestPractice.InsertTestData(repository);
+
+//Create a typed-client based on the new schema
+using (var redisBlogPosts = redisClient.GetTypedClient<New.BlogPost>())
+{
+	//Automatically retrieve blog posts
+	IList<New.BlogPost> allBlogPosts = redisBlogPosts.GetAll();
+
+	//Print out the data in the list of 'New.BlogPost' populated from old 'BlogPost' type
+	//Note: renamed fields are lost 
+	Console.WriteLine(allBlogPosts.Dump());
+	/*Output:
+	[
+		{
+			Id: 3,
+			BlogId: 2,
+			PostType: None,
+			Title: Redis,
+			Labels: [],
+			Tags: 
+			[
+				Redis,
+				NoSQL,
+				Scalability,
+				Performance
+			],
+			Comments: 
+			[
+				{
+					Content: First Comment!,
+					CreatedDate: 2010-04-28T21:42:03.9484725Z
+				}
+			]
+		},
+		{
+			Id: 4,
+			BlogId: 2,
+			PostType: None,
+			Title: Couch Db,
+			Labels: [],
+			Tags: 
+			[
+				CouchDb,
+				NoSQL,
+				JSON
+			],
+			Comments: 
+			[
+				{
+					Content: First Comment!,
+					CreatedDate: 2010-04-28T21:42:03.9484725Z
+				}
+			]
+		},
+		{
+			Id: 1,
+			BlogId: 1,
+			PostType: None,
+			Title: RavenDB,
+			Labels: [],
+			Tags: 
+			[
+				Raven,
+				NoSQL,
+				JSON,
+				.NET
+			],
+			Comments: 
+			[
+				{
+					Content: First Comment!,
+					CreatedDate: 2010-04-28T21:42:03.9004697Z
+				},
+				{
+					Content: Second Comment!,
+					CreatedDate: 2010-04-28T21:42:03.9004697Z
+				}
+			]
+		},
+		{
+			Id: 2,
+			BlogId: 1,
+			PostType: None,
+			Title: Cassandra,
+			Labels: [],
+			Tags: 
+			[
+				Cassandra,
+				NoSQL,
+				Scalability,
+				Hashing
+			],
+			Comments: 
+			[
+				{
+					Content: First Comment!,
+					CreatedDate: 2010-04-28T21:42:03.9004697Z
+				}
+			]
+		}
+	]
+
+	 */
+}
+}}}
+
+=== 2. Using a custom translation to migrate data using application logic ===
+
+Some drawbacks with the above 'do-nothing' approach is that you will lose data of 'renamed fields'. 
+There will also be times when you want the newly migrated data to have specific values that are different from the .NET built-in defaults.
+When you want more control over the migration of your old data, adding a custom translation is a trivial exercise when you can do it natively in code:
+
+{{{
+var repository = new BlogRepository(redisClient);
+
+//Populate the datastore with the old schema from the 'BlogPostBestPractice'
+BlogPostBestPractice.InsertTestData(repository);
+
+//Create a typed-client based on the new schema
+using (var redisBlogPosts = redisClient.GetTypedClient<BlogPost>())
+using (var redisNewBlogPosts = redisClient.GetTypedClient<New.BlogPost>())
+{
+	//Automatically retrieve blog posts
+	IList<BlogPost> oldBlogPosts = redisBlogPosts.GetAll();
+
+	//Write a custom translation layer to migrate to the new schema
+	var migratedBlogPosts = oldBlogPosts.ConvertAll(old => new New.BlogPost
+	{
+		Id = old.Id,
+		BlogId = old.BlogId,
+		Title = old.Title,
+		Content = old.Content,
+		Labels = old.Categories, //populate with data from renamed field
+		PostType = New.BlogPostType.Article, //select non-default enum value
+		Tags = old.Tags,
+		Comments = old.Comments.ConvertAll(x => new Dictionary<string, string> 
+			{ { "Content", x.Content }, { "CreatedDate", x.CreatedDate.ToString() }, }),
+		NoOfComments = old.Comments.Count, //populate using logic from old data
+	});
+
+	//Persist the new migrated blogposts 
+	redisNewBlogPosts.StoreAll(migratedBlogPosts);
+
+	//Read out the newly stored blogposts
+	var refreshedNewBlogPosts = redisNewBlogPosts.GetAll();
+	//Note: data renamed fields are successfully migrated to the new schema
+	Console.WriteLine(refreshedNewBlogPosts.Dump());
+	/*
+	[
+		{
+			Id: 3,
+			BlogId: 2,
+			PostType: Article,
+			Title: Redis,
+			Labels: 
+			[
+				NoSQL,
+				Cache
+			],
+			Tags: 
+			[
+				Redis,
+				NoSQL,
+				Scalability,
+				Performance
+			],
+			Comments: 
+			[
+				{
+					Content: First Comment!,
+					CreatedDate: 28/04/2010 22:58:35
+				}
+			],
+			NoOfComments: 1
+		},
+		{
+			Id: 4,
+			BlogId: 2,
+			PostType: Article,
+			Title: Couch Db,
+			Labels: 
+			[
+				NoSQL,
+				DocumentDB
+			],
+			Tags: 
+			[
+				CouchDb,
+				NoSQL,
+				JSON
+			],
+			Comments: 
+			[
+				{
+					Content: First Comment!,
+					CreatedDate: 28/04/2010 22:58:35
+				}
+			],
+			NoOfComments: 1
+		},
+		{
+			Id: 1,
+			BlogId: 1,
+			PostType: Article,
+			Title: RavenDB,
+			Labels: 
+			[
+				NoSQL,
+				DocumentDB
+			],
+			Tags: 
+			[
+				Raven,
+				NoSQL,
+				JSON,
+				.NET
+			],
+			Comments: 
+			[
+				{
+					Content: First Comment!,
+					CreatedDate: 28/04/2010 22:58:35
+				},
+				{
+					Content: Second Comment!,
+					CreatedDate: 28/04/2010 22:58:35
+				}
+			],
+			NoOfComments: 2
+		},
+		{
+			Id: 2,
+			BlogId: 1,
+			PostType: Article,
+			Title: Cassandra,
+			Labels: 
+			[
+				NoSQL,
+				Cluster
+			],
+			Tags: 
+			[
+				Cassandra,
+				NoSQL,
+				Scalability,
+				Hashing
+			],
+			Comments: 
+			[
+				{
+					Content: First Comment!,
+					CreatedDate: 28/04/2010 22:58:35
+				}
+			],
+			NoOfComments: 1
+		}
+	]
+
+	 */
+}
+}}}
+
+The end result is a datastore filled with new data that is populated in exactly the way you want it, ready to serve features of your new application.
+In contrast, attempting the above in a typical RDBMS solution without any downtime is effectively a feat of magic that is rewardable by 999 [stackoverflow.com StackO verflow] points and a personal condolence from [http://twitter.com/jonskeet @JonSkeet] :) 
