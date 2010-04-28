@@ -3,7 +3,7 @@ This page illustrates a good solution on how to design a simple Blog application
 
 Index of pages in this series showing how to design and use a NoSQL datastore and how it differs with traditional RDBMS solutions:
   * *[DesigningNoSqlDatabase Designing a NoSQL Database using Redis]*
-  * [MigrationsUsingSchemalessNoSql Painless data migrations using schema-less NoSql data stores] 
+  * [MigrationsUsingSchemalessNoSql Painless data migrations using Redis and other schema-less NoSQL datastores] 
 
 = Designing a NoSQL Database using Redis =
 
