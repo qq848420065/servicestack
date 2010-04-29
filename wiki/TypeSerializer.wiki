@@ -114,3 +114,6 @@ A value with a double-quote is escaped with another double quote e.g:
 {{{
 {Size:"2"" x 1"""}
 }}}
+
+== Rich support for resilience and schema versioning ==
+To better illustrate the resilience of `TypeSerializer` and the JSV Format check out a real world example of it when it's used to [MigrationsUsingSchemalessNoSql Painlessly migrate between old and new types in Redis].
