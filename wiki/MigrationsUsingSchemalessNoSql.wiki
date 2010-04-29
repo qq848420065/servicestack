@@ -116,7 +116,6 @@ using (var redisBlogPosts = redisClient.GetTypedClient<New.BlogPost>())
 	IList<New.BlogPost> allBlogPosts = redisBlogPosts.GetAll();
 
 	//Print out the data in the list of 'New.BlogPost' populated from old 'BlogPost' type
-	//Note: renamed fields are lost 
 	Console.WriteLine(allBlogPosts.Dump());
 	/*Output:
 	[
