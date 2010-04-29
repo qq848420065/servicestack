@@ -100,8 +100,8 @@ public enum BlogPostType
 
 === 1. The do-nothing approach - using the old data with the new types ===
 Although hard to believe, with no extra effort you can just pretend *no change was actually done* and freely access new types looking at old data.
-This is possible when there is non-destructive changes (i.e. loss of information) with new field types. 
-The example below loads Redis with the repository from the previous example to populate it with test data from the old types. Just as if nothing happened you can read the old data using the new type:
+This is possible when there is non-destructive changes (i.e. no loss of information) with new field types. 
+The example below uses the repository from the previous example to populate Redis with test data from the old types. Just as if nothing happened you can read the old data using the new type:
 
 {{{
 var repository = new BlogRepository(redisClient);
