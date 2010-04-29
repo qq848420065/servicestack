@@ -14,13 +14,14 @@ Having the latest version of Redis running on windows is important for the devel
 
 = Download for Windows =
 
-Download latest development release of Redis 1.3.9 (includes Cygwin):
-  * [http://servicestack.googlecode.com/files/redis-1.3.9-windows.zip redis-1.3.9-windows.zip]
+Download latest development release of Redis 1.3.10 (includes Cygwin):
+  * [http://servicestack.googlecode.com/files/redis-1.3.10-windows.zip redis-1.3.10-windows.zip]
 
 Download latest stable release of Redis 1.2.6 (includes Cygwin):
   * [http://servicestack.googlecode.com/files/redis-1.2.6-windows.zip redis-1.2.6-windows.zip]
 
 === Older Releases ===
+  * [http://servicestack.googlecode.com/files/redis-1.3.9-windows.zip redis-1.3.9-windows.zip]
   * [http://servicestack.googlecode.com/files/redis-1.3.7-windows.zip redis-1.3.7-windows.zip]
   * [http://servicestack.googlecode.com/files/redis-1.2.5-windows.zip redis-1.2.5-windows.zip]
 
