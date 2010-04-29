@@ -1,5 +1,5 @@
 #labels Redis,Schemaless,NoSql,DataMigration
-This page uses the `BlogPost` type defined in the [DesigningNoSqlDatabase previous page] to show how painless typical data migrations can be when using Redis and other NoSQL schema-less data stores.
+This page runs through a typical example to show how painless typical data migrations can be when using Redis and other NoSQL schema-less data stores.
 
 ==== Links to all Redis Blog application pages ====
   * [DesigningNoSqlDatabase Designing a NoSQL Database using Redis]
