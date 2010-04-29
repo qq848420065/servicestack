@@ -13,6 +13,8 @@ The real troubles in your IT life happens after your first deployment and your s
 
 This process is much less painful with schema-less data stores. In fact in most cases when you're just adding and removing fields it doesn't exist at all. By not having your datastore understand intrinsic details of your schema, it means it's no longer an infrastructure-level issue and can easily be handled by application logic if needed.
 
+Being schema-less and non-intrusive are fundamental qualities baked into in the design of Redis and its operations. For example querying a list of recent BlogPosts returns the same result for an *empty list* as it would in an *empty Redis database* - 0 results.
+
 To illustrate what can be achieved in practice, I will demonstate two solutions.
   * The do-nothing approach - where adding, removing fields and non-destructive change of field types are automatically handled.
   * Using a custom translation - using application level logic to customize the translation between the old and new types.
@@ -367,5 +369,10 @@ using (var redisNewBlogPosts = redisClient.GetTypedClient<New.BlogPost>())
 }
 }}}
 
-The end result is a datastore filled with new data that is populated in exactly the way you want it, ready to serve features of your new application.
-In contrast, attempting the above in a typical RDBMS solution without any downtime is effectively a feat of magic that is rewardable by 999 [stackoverflow.com StackO verflow] points and a personal condolence from [http://twitter.com/jonskeet @JonSkeet] :) 
+The end result is a datastore filled with new data populated in exactly the way you want it - ready to serve features of your new application.
+In contrast, attempting the above in a typical RDBMS solution without any downtime is effectively a feat of magic that is rewardable by 999 [stackoverflow.com Stack Overflow] points and a personal condolence from its leader [http://twitter.com/jonskeet @JonSkeet] :) 
+
+I hope this clearly illustrates the difference between the two technologies. In practice you will be amazed by the productivity gains made possible when you don't have to model your application to fit around an ORM and a RDBMS and can save objects like it was memory.
+
+It's always a good idea to expose yourself to new technologies so tf you haven't already done so, I invite you to get started developing with Redis today to see for yourself. To get started all you need is an instance [RedisWindowsDownload the redis-server] (no configuration required, just unzip and run) and the dependency-free [ServiceStackRedis C# Redis Client] and you're ready to go!
+
