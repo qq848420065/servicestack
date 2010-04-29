@@ -3,7 +3,7 @@ This page uses the `BlogPost` type defined in the [DesigningNoSqlDatabase previo
 
 ==== Page links to all NoSQL Blog examples ====
   * [DesigningNoSqlDatabase Designing a NoSQL Database using Redis]
-  * *[MigrationsUsingSchemalessNoSql Painless data migrations using Redis and other schema-less NoSQL datastores]*
+  * Painless data migrations using Redis and other schema-less NoSQL datastores
 
 = Painless data migrations with Redis and other schema-less NoSQL datastores =
 
