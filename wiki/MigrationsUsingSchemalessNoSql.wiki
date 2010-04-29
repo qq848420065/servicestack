@@ -15,7 +15,7 @@ This process is much less painful with schema-less data stores. In fact in most 
 
 Being maintenance-free, schema-less and non-intrusive are fundamental design qualities baked into Redis and its operations. For example querying a list of recent BlogPosts returns the same result for an *empty list* as it would in an *empty Redis database* - 0 results. As values in Redis are binary-safe strings you're able to store anything you want in them and most importantly by extension this means that all Redis operations can support all of your application types without needing an 'intermediate language' like DDL to provide a rigid schema of what to expect. Without any prior initialization your code can talk directly to a Redis datastore naturally as if it was an in-memory collection.
 
-To illustrate what can be achieved in practice, I will demonstate two solutions.
+To illustrate what can be achieved in practice, I will run through two different strategies of handling schema changes.
   * The do-nothing approach - where adding, removing fields and non-destructive change of field types are automatically handled.
   * Using a custom translation - using application level logic to customize the translation between the old and new types.
 
