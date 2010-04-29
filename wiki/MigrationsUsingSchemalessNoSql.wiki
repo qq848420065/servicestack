@@ -372,6 +372,6 @@ using (var redisNewBlogPosts = redisClient.GetTypedClient<New.BlogPost>())
 The end result is a datastore filled with new data populated in exactly the way you want it - ready to serve features of your new application.
 In contrast, attempting the above in a typical RDBMS solution without any downtime is effectively a feat of magic that is rewardable by 999 [http://stackoverflow.com Stack Overflow] points and a personal condolence from its grand chancellor [http://twitter.com/jonskeet @JonSkeet] :) 
 
-I hope this clearly illustrates the difference between the two technologies. In practice you'll be amazed by the productivity gains made possible when you don't have to model your application to fit around an ORM and an RDBMS and can save objects like it was memory.
+I hope this clearly illustrates differences between the two technologies. In practice you'll be amazed by the productivity gains made possible when you don't have to model your application to fit around an ORM and an RDBMS and can save objects like it was memory.
 
 It's always a good idea to expose yourself to new technologies so if you haven't already done so, I invite you to get started developing with Redis today to see the benefits for yourself. To get started all you need is an instance of [RedisWindowsDownload the redis-server] (no configuration required, just unzip and run) and the dependency-free [ServiceStackRedis C# Redis Client] and you're ready to go!
