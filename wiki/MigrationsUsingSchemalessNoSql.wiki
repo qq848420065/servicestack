@@ -22,7 +22,7 @@ To illustrate what can be achieved in practice, I will demonstate two solutions.
 The full runnable source code for these example are [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/BestPractice/BlogPostMigrations.cs available here].
 
 == Example Code ==
-To demonstrate a typical migration using a practical example I'm using the `BlogPost` type defined on the previous page and project it into a fundamentally different `New.BlogPost` type. The full definition of the old and new types are shown below:
+To demonstrate a typical migration scenario, I'm using the `BlogPost` type defined on the previous page to project it to a fundamentally different `New.BlogPost` type. The full definition of the old and new types are shown below:
 
 === The old schema ===
 {{{
