@@ -215,7 +215,7 @@ using (var redisBlogPosts = redisClient.GetTypedClient<New.BlogPost>())
 
 === 2. Using a custom translation to migrate data using application logic ===
 
-Some drawbacks with the above 'do-nothing' approach is that you will lose data of 'renamed fields'. 
+Some drawbacks with the above 'do-nothing' approach is that you will lose the data of 'renamed fields'. 
 There will also be times when you want the newly migrated data to have specific values that are different from the .NET built-in defaults.
 When you want more control over the migration of your old data, adding a custom translation is a trivial exercise when you can do it natively in code:
 
