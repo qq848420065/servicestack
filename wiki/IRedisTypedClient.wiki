@@ -28,6 +28,9 @@ public interface IRedisTypedClient<T>
 
 	IRedisTypedTransaction<T> CreateTransaction();
 
+	IDisposable AcquireLock();
+	IDisposable AcquireLock(TimeSpan timeOut);
+
 	int Db { get; set; }
 	List<string> AllKeys { get; }
 
@@ -54,7 +57,7 @@ public interface IRedisTypedClient<T>
 	bool ExpireKeyIn(string key, TimeSpan expiresAt);
 	bool ExpireKeyAt(string key, DateTime dateTime);
 	TimeSpan GetTimeToLive(string key);
-	string Save();
+	void Save();
 	void SaveAsync();
 	void FlushDb();
 	void FlushAll();
@@ -106,6 +109,7 @@ public interface IRedisTypedClient<T>
 	List<T> GetAllFromSortedSetDesc(IRedisSortedSet<T> set);
 	List<T> GetRangeFromSortedSet(IRedisSortedSet<T> set, int fromRank, int toRank);
 	List<T> GetRangeFromSortedSetDesc(IRedisSortedSet<T> set, int fromRank, int toRank);
+	IDictionary<T, double> GetAllWithScoresFromSortedSet(IRedisSortedSet<T> set);
 	IDictionary<T, double> GetRangeWithScoresFromSortedSet(IRedisSortedSet<T> set, int fromRank, int toRank);
 	IDictionary<T, double> GetRangeWithScoresFromSortedSetDesc(IRedisSortedSet<T> set, int fromRank, int toRank);
 	List<T> GetRangeFromSortedSetByLowestScore(IRedisSortedSet<T> set, string fromStringScore, string toStringScore);
@@ -133,6 +137,8 @@ public interface IRedisTypedClient<T>
 
 	bool HashContainsKey<TKey>(IRedisHash<TKey, T> hash, TKey key);
 	bool SetItemInHash<TKey>(IRedisHash<TKey, T> hash, TKey key, T value);
+	bool SetItemInHashIfNotExists<TKey>(IRedisHash<TKey, T> hash, TKey key, T value);
+	void SetRangeInHash<TKey>(IRedisHash<TKey, T> hash, IEnumerable<KeyValuePair<TKey, T>> keyValuePairs);
 	T GetItemFromHash<TKey>(IRedisHash<TKey, T> hash, TKey key);
 	bool RemoveFromHash<TKey>(IRedisHash<TKey, T> hash, TKey key);
 	int GetHashCount<TKey>(IRedisHash<TKey, T> hash);
