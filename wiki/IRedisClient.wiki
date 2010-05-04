@@ -36,6 +36,7 @@ public interface IRedisClient
 	string this[string key] { get; set; }
 	List<string> AllKeys { get; }
 	void SetString(string key, string value);
+	void SetString(string key, string value, TimeSpan expireIn);
 	bool SetIfNotExists(string key, string value);
 	string GetString(string key);
 	string GetAndSetString(string key, string value);
@@ -45,6 +46,9 @@ public interface IRedisClient
 	int IncrementBy(string key, int count);
 	int Decrement(string key);
 	int DecrementBy(string key, int count);
+	int Append(string key, string value);
+	string Substring(string key, int fromIndex, int toIndex);
+
 	RedisKeyType GetKeyType(string key);
 	string NewRandomKey();
 	bool ExpireKeyIn(string key, TimeSpan expiresAt);
