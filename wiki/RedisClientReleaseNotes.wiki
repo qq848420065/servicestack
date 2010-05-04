@@ -5,13 +5,15 @@ Latest release notes for the latest version of the c# [ServiceStackRedis Service
 This release moves the entire client over to use the new binary safe Redis wire protocol so now all arguments including keys are binary safe strings.
 
 Other noteworthy mentions:
-  * *AcquireLock* with built in backoff-sleep-multiplier was added on both [IRedisClient] and [IRedisTypedClient] to provide an elegant way to achieve application level locks.
+  * *AcquireLock* with built in backoff-sleep-multiplier was added on both [IRedisClient] and [IRedisTypedClient] to provide an elegant way to achieve application level locks.  
   * The Refactoring process to change all commands to use the new protocol added more tests which discovered and fixed more bugs.
   * Issues identified in some hash commands resulted in more tests and fixes. -- thanks for reporting 
 
-New API methods:
+New or changed API methods:
   * *GetAllWithScoresFromSortedSet* 
   * *Sort* has been overhauled to allow for simpler opt-in usage.
+  * *Append* / *Substring* string operations requiring v1.3.10 redis-server
+  * *SetString* with TimeOut now uses the more efficient *SetEx* operation
 
 = Redis Client v1.14 Release Notes =
 This release brings the client up to date with v1.3.9 of the redis-server with the following new operations included:
