@@ -16,7 +16,7 @@ public interface IRedisNativeClient
 	//Redis utility operations
 	Dictionary<string, string> Info { get; }
 	int Db { get; set; }
-	string Save();
+	void Save();
 	void BgSave();
 	void Shutdown();
 	void Quit();
@@ -25,6 +25,7 @@ public interface IRedisNativeClient
 
 	//Common key-value Redis operations
 	void Set(string key, byte[] value);
+	void SetEx(string key, int expireInSeconds, byte[] value);
 	int SetNX(string key, byte[] value);
 	byte[] Get(string key);
 	byte[] GetSet(string key, byte[] value);
@@ -33,15 +34,17 @@ public interface IRedisNativeClient
 	int IncrBy(string key, int count);
 	int Decr(string key);
 	int DecrBy(string key, int count);
+	int Append(string key, byte[] value);
+	byte[] Substr(string key, int fromIndex, int toIndex);
+
 	string RandomKey();
-	int Rename(string oldKeyname, string newKeyname);
+	void Rename(string oldKeyname, string newKeyname);
 	int Expire(string key, int seconds);
 	int ExpireAt(string key, long unixTime);
 	int Ttl(string key);
 
-	//Redis Sort operation (works on lists and sets)
-	byte[][] Sort(string listOrSetId, int startingFrom, int endingAt, bool sortAlpha, bool sortDesc);
-
+	//Redis Sort operation (works on lists, sets or hashes)
+	byte[][] Sort(string listOrSetId, SortOptions sortOptions);
 
 	//Redis List operations
 	byte[][] LRange(string listId, int startingFrom, int endingAt);
@@ -105,7 +108,7 @@ public interface IRedisNativeClient
 	int HExists(string hashId, byte[] key);
 	int HLen(string hashId);
 	byte[][] HKeys(string hashId);
-	byte[][] HValues(string hashId);
+	byte[][] HVals(string hashId);
 	byte[][] HGetAll(string hashId);
 }
 
