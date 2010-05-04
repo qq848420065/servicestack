@@ -9,6 +9,9 @@ Other noteworthy mentions:
   * The Refactoring process to change all commands to use the new protocol added more tests which discovered and fixed more bugs.
   * Issues identified in some hash commands resulted in more tests and fixes. -- thanks for reporting 
 
+New API methods:
+  * GetAllWithScoresFromSortedSet 
+  * Sort API has been overhauled to allow for simpler opt-in usage.
 
 = Redis Client v1.14 Release Notes =
 This release brings the client up to date with v1.3.9 of the redis-server with the following new operations included:
