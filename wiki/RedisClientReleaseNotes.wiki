@@ -1,6 +1,15 @@
 #labels Phase-QA
 Latest release notes for the latest version of the c# [ServiceStackRedis ServiceStack.Redis client].
 
+= Redis Client v1.18 Release Notes =
+This release moves the entire client over to use the new binary safe Redis wire protocol so now all arguments including keys are binary safe strings.
+
+Other noteworthy mentions:
+  * 'AcquireLock' with built in backoffSleep multiplier was added on both IRedisClient and IRedisTypedClient to provide an elegant way to achieve application level locks.
+  * The Refactoring process to change all commands to use the new protocol added more tests which discovered and fixed more bugs.
+  * Issues identified in some hash commands resulted in more tests and fixes. -- thanks for reporting 
+
+
 = Redis Client v1.14 Release Notes =
 This release brings the client up to date with v1.3.9 of the redis-server with the following new operations included:
   * [http://code.google.com/p/redis/wiki/HincrbyCommand HINCRBY]
@@ -16,7 +25,7 @@ The latest version of the open source c# redis client is available:
   * Or bundled inside the core Service Stack binaries - http://servicestack.googlecode.com/files/ServiceStack.zip
 
 Download the stable and development release of the Redis Server Windows builds here:
-http://code.google.com/p/servicestack/wiki/RedisWindowsDownload (currently v1.3.9)
+http://code.google.com/p/servicestack/wiki/RedisWindowsDownload (currently v1.3.10)
 
 
 = Redis Client v1.09 Release Notes =
