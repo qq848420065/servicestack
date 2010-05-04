@@ -15,15 +15,6 @@ New or changed API methods:
   * *GetAllWithScoresFromSortedSet* 
   * *Sort* has been overhauled to allow for simpler opt-in usage.
 
-= Redis Client v1.14 Release Notes =
-This release brings the client up to date with v1.3.9 of the redis-server with the following new operations included:
-  * [http://code.google.com/p/redis/wiki/HincrbyCommand HINCRBY]
-  * [http://code.google.com/p/redis/wiki/HmsetCommand HMSET]
-  * [http://code.google.com/p/redis/wiki/HsetnxCommand HSETNX] (only available in redis trunk)
-You can access these new operations with the IRedisClient using the v1.3.9 of the redis-server.
-
-Richer Transaction support has been improved with the addition of the [IRedisTypedTransaction IRedisTypedTransaction<T>] which utilizes the [IRedisTypedClient] to provide transactions against strongly-typed POCO types. Examples can be found on the test page [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Generic/RedisTypedTransactionTests.cs RedisTypedTransactionTests.cs]
-
 = Download =
 The latest version of the open source c# redis client is available:
   * As a stand-alone dll - http://servicestack.googlecode.com/files/ServiceStack.Redis.dll
@@ -32,6 +23,14 @@ The latest version of the open source c# redis client is available:
 Download the stable and development release of the Redis Server Windows builds here:
 http://code.google.com/p/servicestack/wiki/RedisWindowsDownload (currently v1.3.10)
 
+= Redis Client v1.14 Release Notes =
+This release brings the client up to date with v1.3.9 of the redis-server with the following new operations included:
+  * [http://code.google.com/p/redis/wiki/HincrbyCommand HINCRBY]
+  * [http://code.google.com/p/redis/wiki/HmsetCommand HMSET]
+  * [http://code.google.com/p/redis/wiki/HsetnxCommand HSETNX] (only available in redis trunk)
+You can access these new operations with the IRedisClient using the v1.3.9 of the redis-server.
+
+Richer Transaction support has been improved with the addition of the [IRedisTypedTransaction IRedisTypedTransaction<T>] which utilizes the [IRedisTypedClient] to provide transactions against strongly-typed POCO types. Examples can be found on the test page [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Generic/RedisTypedTransactionTests.cs RedisTypedTransactionTests.cs]
 
 = Redis Client v1.09 Release Notes =
 
