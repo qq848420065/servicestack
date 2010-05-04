@@ -27,7 +27,7 @@ public interface IRedisClient
 	string Password { get; set; }
 	bool HadExceptions { get; }
 
-	string Save();
+	void Save();
 	void SaveAsync();
 	void Shutdown();
 	void FlushDb();
@@ -60,6 +60,9 @@ public interface IRedisClient
 	IHasNamed<IRedisHash> Hashes { get; set; }
 
 	IRedisTransaction CreateTransaction();
+
+	IDisposable AcquireLock(string key);
+	IDisposable AcquireLock(string key, TimeSpan timeOut);
 
 	#region List operations
 
@@ -121,6 +124,7 @@ public interface IRedisClient
 	List<string> GetAllFromSortedSetDesc(string setId);
 	List<string> GetRangeFromSortedSet(string setId, int fromRank, int toRank);
 	List<string> GetRangeFromSortedSetDesc(string setId, int fromRank, int toRank);
+	IDictionary<string, double> GetAllWithScoresFromSortedSet(string setId);
 	IDictionary<string, double> GetRangeWithScoresFromSortedSet(string setId, int fromRank, int toRank);
 	IDictionary<string, double> GetRangeWithScoresFromSortedSetDesc(string setId, int fromRank, int toRank);
 	List<string> GetRangeFromSortedSetByLowestScore(string setId, string fromStringScore, string toStringScore);
