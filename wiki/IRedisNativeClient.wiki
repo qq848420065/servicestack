@@ -10,7 +10,7 @@ Each method maps to 1:1 to a [http://code.google.com/p/redis/wiki/CommandReferen
 
 {{{
 
-public interface IRedisNativeClient 
+public interface IRedisNativeClient
 	: IDisposable
 {
 	//Redis utility operations
@@ -110,6 +110,12 @@ public interface IRedisNativeClient
 	byte[][] HKeys(string hashId);
 	byte[][] HVals(string hashId);
 	byte[][] HGetAll(string hashId);
+
+	void Publish(string toChannel, byte[] message);
+	byte[][] Subscribe(params string[] toChannels);
+	byte[][] UnSubscribe(params string[] toChannels);
+	byte[][] PSubscribe(params string[] toChannelsMatchingPatterns);
+	byte[][] PUnSubscribe(params string[] toChannelsMatchingPatterns);
 }
 
 }}}
