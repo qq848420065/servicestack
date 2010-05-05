@@ -1,8 +1,9 @@
 #labels Phase-QA
 Latest release notes for the latest version of the c# [ServiceStackRedis ServiceStack.Redis client].
 
-= Redis Client v1.18 Release Notes =
-This release moves the entire client over to use the new binary safe Redis wire protocol so now all arguments including keys are binary safe strings. Most new Redis operations available in the latest version of redis-server v1.3.10 have been implemented.
+= Redis Client v1.19 Release Notes =
+The biggest feature of this release is support for Redis Publish/Subscribe operations.
+Other than that all client client API's now use the new binary safe Redis wire protocol so now all arguments including keys are binary safe strings. Most new Redis operations available in the latest version of redis-server v1.3.10 have been implemented.
 
 Other noteworthy mentions:
   * *AcquireLock* with built in backoff-sleep-multiplier was added on both [IRedisClient] and [IRedisTypedClient] to provide an elegant way to achieve application level locks.  
@@ -10,6 +11,7 @@ Other noteworthy mentions:
   * Issues identified in some hash commands resulted in more tests and fixes. -- thanks for reporting 
 
 New or changed API methods:
+  * *Publish/Subscribe/PSubscribe/UnSubscribe/PUnSubscribe* added to support Redis Pub/Sub
   * *Append* / *Substring* string operations requiring v1.3.10 redis-server
   * *SetString* with TimeOut now uses the more efficient *SetEx* operation
   * *GetAllWithScoresFromSortedSet* 
