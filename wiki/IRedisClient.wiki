@@ -172,6 +172,15 @@ public interface IRedisClient
 	Dictionary<string, string> GetAllFromHash(string hashId);
 
 	#endregion
+
+
+	#region Redis pubsub
+
+	IRedisSubscription CreateSubscription();
+	void PublishMessage(string toChannel, string message);
+
+	#endregion
+
 }
 
 }}}
