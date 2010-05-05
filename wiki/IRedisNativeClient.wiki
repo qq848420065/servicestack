@@ -111,6 +111,7 @@ public interface IRedisNativeClient
 	byte[][] HVals(string hashId);
 	byte[][] HGetAll(string hashId);
 
+	//Redis Pub/Sub operations
 	void Publish(string toChannel, byte[] message);
 	byte[][] Subscribe(params string[] toChannels);
 	byte[][] UnSubscribe(params string[] toChannels);
