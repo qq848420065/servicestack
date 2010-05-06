@@ -6,7 +6,7 @@ Redis is largely recognized as the most efficient NoSQL solution to manage rich 
 
 Under the covers this is achieved with the [http://code.google.com/p/redis/wiki/PublishSubscribe PUBLISH/SUBSCRIBE redis server operations]. Essentially these operations allows any number of clients to be able to *Listen* on any arbitrary named channel. As soon as an external client *Publishes* a message to that channel, each *listening* client is notified. The clients will continue to receive messages as long as they maintain at least one *active subscription*.
 
-Service Stack's C# Client exposes this functionality in a similar way as the [http://github.com/ezmobius/redis-rb/blob/master/examples/pubsub.rb redis-rb Ruby client]. Essentially you create a *Subscription*, Then *Register* your handlers on each of the events you're interested in, then it's just a matter of *Subscribing* to the channels you want. When you want your consumers to stop receiving messages you need to *unsubscribe* from all channels. 
+Service Stack's C# Client exposes this functionality in a similar way as the [http://github.com/ezmobius/redis-rb/blob/master/examples/pubsub.rb redis-rb Ruby client]. Essentially you create a *Subscription*, Then *Register* your handlers on each of the events you're interested in, then it's just a matter of *Subscribing* to the channels you're interested in. When you want your consumers to stop receiving messages you need to *unsubscribe* from all channels. 
 
 = Pub/Sub Examples =
 
