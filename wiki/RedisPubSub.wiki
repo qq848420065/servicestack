@@ -10,7 +10,7 @@ Service Stack's C# Client exposes this functionality in a similar way as the [ht
 
 = Pub/Sub Examples =
 
-Below are some examples showing how to use the API to accomplish some basic tasks. At the end of each example is the Console output showing the sequence of the code. The full runnable source code for these examples are [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/SimplePubSub.cs available here].
+Below are some examples showing how to use the API to accomplish some basic tasks. At the end of each example is the Console output showing the sequence of events helping you visualize the order of each operation. The full runnable source code for these examples are [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/SimplePubSub.cs available here].
 
 == Example 1 - Publish and receive 5 messages ==
 {{{
