@@ -175,6 +175,36 @@ Client #2 EOF
 
 }}}
 
+= Pub/Sub API =
+{{{
+
+public interface IRedisSubscription 
+	: IDisposable
+{
+	// The number of active subscriptions this client has
+	int SubscriptionCount { get; }
+
+	// Registered handler called after client *Subscribes* to each new channel
+	Action<string> OnSubscribe { get; set; }
+
+	// Registered handler called when each message is received
+	Action<string, string> OnMessage { get; set; }
+
+	// Registered handler called when each channel is unsubscribed
+	Action<string> OnUnSubscribe { get; set; }
+
+	// Subscribe to channels by name
+	void SubscribeToChannels(params string[] channels);
+
+	// Subscribe to channels matching the supplied patterns
+	void SubscribeToChannelsMatching(params string[] patterns);
+
+	void UnSubscribeFromAllChannels();
+	void UnSubscribeFromChannels(params string[] channels);
+	void UnSubscribeFromChannelsMatching(params string[] patterns);
+}
+
+}}}
 
 == Find out more ==
 
