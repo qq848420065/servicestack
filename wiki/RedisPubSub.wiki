@@ -4,13 +4,13 @@
 = Publish/Subscribe messaging pattern in Redis =
 Redis is largely recognized as the most efficient NoSQL solution to manage rich data structures, providing the data source to power stateless back-end app servers. What a lot of people don't know is that it also has a number of characteristics that also make it a prime candidate to develop high-performance networking solutions with. Probably its most noteworthy feature in this area to date, is its built-in Publishing / Subscribe / Messaging support which enables a new range of elegant comet-based and high performance networking solutions to be developed.
 
-Under the covers this is achieved with the [http://code.google.com/p/redis/wiki/PublishSubscribe PUBLISH/SUBSCRIBE server operations]. Essentially these operations allows any number of clients to be able to *Listen* on any arbitrary named channel. As soon as an external client *Publishes* a message to that channel, each client is notified.
+Under the covers this is achieved with the [http://code.google.com/p/redis/wiki/PublishSubscribe PUBLISH/SUBSCRIBE redis server operations]. Essentially these operations allows any number of clients to be able to *Listen* on any arbitrary named channel. As soon as an external client *Publishes* a message to that channel, each *listening* client is notified. The clients will continue to receive messages as long as they maintain at least one *active subscription*.
 
-Service Stack's C# Client exposes this functionality in a similar way as [http://github.com/ezmobius/redis-rb/blob/master/examples/pubsub.rb redis-rb Ruby client]. Essentially you just create a *Subscription*, register on each of the events you're interested in, then when all your handlers are configured, subscribe to the channels you want.
+Service Stack's C# Client exposes this functionality in a similar way as the [http://github.com/ezmobius/redis-rb/blob/master/examples/pubsub.rb redis-rb Ruby client]. Essentially you create a *Subscription*, Then *Register* your handlers on each of the events you're interested in, then it's just a matter of *Subscribing* to the channels you want. When you want your consumers to stop receiving messages you need to *unsubscribe* from all channels. 
 
 = Pub/Sub Examples =
 
-Below are some examples showing how to use the API to accomplish some basic tasks. The full source code for these examples are [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/SimplePubSub.cs available here].
+Below are some examples showing how to use the API to accomplish some basic tasks. At the end of each example is the Console output showing the sequence of the code. The full runnable source code for these examples are [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/SimplePubSub.cs available here].
 
 == Example 1 - Publish and receive 5 messages ==
 {{{
@@ -179,4 +179,3 @@ Client #2 EOF
 == Find out more ==
 
 For more information on the capabilities of the Publish/Subscribe API check out the [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/RedisPubSubTests.cs PubSub unit tests].
-
