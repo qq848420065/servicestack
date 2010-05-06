@@ -39,14 +39,13 @@ It provides good examples illustrating how to make effective use of the advanced
 
 It follows in tandem with Oren Eini's (from the popular .NET blog [http://ayende.com/Blog/ ayende.com/Blog/]) series of blog posts illustrating his approach to designing a NoSQL database with a RavenDB back end. 
 
-= Examples =
+= Specific Examples =
+  * [RedisTransactions Using Transactions in Redis (i.e. MULTI/EXEC/DISCARD)]
+  * [RedisPubSub Using Redis's built-in Publsih/Subscribe pattern for high performance network notifications]
 
-For examples on using Transactions in Redis (i.e. MULTI/EXEC/DISCARD) [RedisTransactions view the Redis Transactions examples page].
+= Simple example using Redis Lists  =
 
-The full source code for the client and the examples is available to [http://code.google.com/p/servicestack/source/browse/#svn/trunk/Common/ServiceStack.Redis view online]
-
-Below is a simple example to give you a flavour of how easy it is to store rich data in Redis:
-
+Below is a simple example to give you a flavour of how easy it is to use some of Redis's advanced data structures - in this case Redis Lists:
 _Full source code of this example is [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/ShippersExample.cs viewable online]_
 
 {{{
