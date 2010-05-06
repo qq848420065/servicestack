@@ -11,7 +11,7 @@ Other noteworthy mentions:
   * Issues identified in some hash commands resulted in more tests and fixes. -- thanks for reporting 
 
 New or changed API methods:
-  * *Publish/Subscribe/PSubscribe/UnSubscribe/PUnSubscribe* added to support Redis Pub/Sub
+  * *[RedisPubSub Publish/Subscribe/PSubscribe/UnSubscribe/PUnSubscribe]* added to support Redis Pub/Sub
   * *Append* / *Substring* string operations requiring v1.3.10 redis-server
   * *SetString* with TimeOut now uses the more efficient *SetEx* operation
   * *GetAllWithScoresFromSortedSet* 
