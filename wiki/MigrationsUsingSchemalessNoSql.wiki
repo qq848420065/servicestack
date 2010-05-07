@@ -55,6 +55,7 @@ public class BlogPostComment
 The 'new version' contains most changes you are likely to encounter in normal app development:
   * Added, removed and renamed fields
   * Non-destructive change of `int` into `long` and `double` fields
+  * Changed Tag collection type from a List to a HashSet
   * Changed a strongly-typed `BlogPostComment` type into a loosely-typed string Dictionary
   * Introduced a new enum type
   * Added a nullable calculated field
