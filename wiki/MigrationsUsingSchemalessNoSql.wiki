@@ -64,7 +64,7 @@ public class BlogPost
 	public BlogPost()
 	{
 		this.Labels = new List<string>();
-		this.Tags = new List<string>();
+		this.Tags = new HashSet<string>();
 		this.Comments = new List<Dictionary<string, string>>();
 	}
 
@@ -81,12 +81,13 @@ public class BlogPost
 	//Renamed from 'Categories' to 'Labels'
 	public List<string> Labels { get; set; }
 
-	public List<string> Tags { get; set; }
+	//Changed from List to a HashSet
+	public HashSet<string> Tags { get; set; }
 
 	//Changed from List of strongly-typed 'BlogPostComment' to loosely-typed string map
 	public List<Dictionary<string, string>> Comments { get; set; }
 
-        //Added pointless calculated field
+	//Added pointless calculated field
 	public int? NoOfComments { get; set; }
 }
 
