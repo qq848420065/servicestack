@@ -1,5 +1,16 @@
-#labels Phase-QA
+#labels Phase-QA,Redis,ReleaseNotes
 Latest release notes for the latest version of the c# [ServiceStackRedis ServiceStack.Redis client].
+
+= Redis Client v1.20 Release Notes =
+This version adds support for *all operations* available in Redis v1.3.11 (and the upcoming v2.0 RC) apart from the special debug commands: MONITOR / CONFIG / DEBUG which are commonly accessed via redis-cli/telnet for diagnosing a live-running Redis instance.
+
+= Download =
+The latest version of the open source c# redis client is available:
+  * As a stand-alone dll - http://servicestack.googlecode.com/files/ServiceStack.Redis.dll
+  * Or bundled inside the core Service Stack binaries - http://servicestack.googlecode.com/files/ServiceStack.zip
+
+Download the stable and development release of the Redis Server Windows builds here:
+http://code.google.com/p/servicestack/wiki/RedisWindowsDownload (currently v1.3.10)
 
 = Redis Client v1.19 Release Notes =
 The biggest feature of this release is support for Redis Publish/Subscribe operations.
@@ -16,14 +27,6 @@ New or changed API methods:
   * *SetString* with TimeOut now uses the more efficient *SetEx* operation
   * *GetAllWithScoresFromSortedSet* 
   * *Sort* has been overhauled to allow for simpler opt-in usage.
-
-= Download =
-The latest version of the open source c# redis client is available:
-  * As a stand-alone dll - http://servicestack.googlecode.com/files/ServiceStack.Redis.dll
-  * Or bundled inside the core Service Stack binaries - http://servicestack.googlecode.com/files/ServiceStack.zip
-
-Download the stable and development release of the Redis Server Windows builds here:
-http://code.google.com/p/servicestack/wiki/RedisWindowsDownload (currently v1.3.10)
 
 = Redis Client v1.14 Release Notes =
 This release brings the client up to date with v1.3.9 of the redis-server with the following new operations included:
