@@ -42,6 +42,7 @@ It follows in tandem with Oren Eini's (from the popular .NET blog [http://ayende
 = Specific Examples =
   * [RedisTransactions Using Transactions in Redis (i.e. MULTI/EXEC/DISCARD)]
   * [RedisPubSub Using Redis's built-in Publsih/Subscribe pattern for high performance network notifications]
+  * [RedisLocks Using Redis atomic operations to create high performance *distributed locks* spannable across multiple app servers]
 
 = Simple example using Redis Lists  =
 
