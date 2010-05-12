@@ -20,7 +20,7 @@ public interface IRedisClient
 }
 }}}
 
-Below are a couple examples showing how to use the API in some typical usage scenarios. The full runnable source code of the following examples are [ available here].
+Below are a couple examples showing how to use the API in some typical usage scenarios. The full runnable source code of the following examples are [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/SimpleLocks.cs available here].
 
 == Example: Multiple clients acquiring the same lock ==
 
