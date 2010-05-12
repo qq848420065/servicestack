@@ -114,4 +114,8 @@ catch (TimeoutException tex)
 	var counter = redisClient.Get<int>("atomic-counter");
 	Console.WriteLine("atomic-counter remains at '{0}'", counter);
 }
+/*Output:
+After '00:00:02.3321334', Received TimeoutException: 'Exceeded timeout of 00:00:02'
+atomic-counter remains at '1'
+*/
 }}}
