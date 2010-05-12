@@ -20,7 +20,7 @@ public interface IRedisClient
 }
 }}}
 
-Below are a couple examples showing how to use the API in some typical usage scenarios.
+Below are a couple examples showing how to use the API in some typical usage scenarios. The full runnable source code of the following examples are [ available here].
 
 == Example: Multiple clients acquiring the same lock ==
 
@@ -79,4 +79,39 @@ atomic-counter after 1sec: 5
 */
 }}}
 
-The above
+When you acquire a lock without specifying a Time-out as seen in the above example, each waiting client goes into an indefinite loop attempting to retry acquiring the lock until its successful. If by some chance you had some rogue code not following convention and implementing it's logic within a disposable scope or worse short circuiting execution using Thread.Abort, etc. You could potentially run into a deadlock situation. This is why it is generally a good idea to specify a TimeOut whenever you make a blocking call. So like all good blocking API's the client lets you specify an optional TimeOut parameter when attempting to acquire the lock as seen in this example:
+
+== Example: Acquiring a lock with Time Out ==
+{{{
+var redisClient = new RedisClient(TestConfig.SingleHost);
+
+//Initialize and set counter to '1'
+redisClient.Increment("atomic-counter"); 
+
+//Acquire lock and never release it
+redisClient.AcquireLock("testlock");
+
+var waitFor = TimeSpan.FromSeconds(2);
+var now = DateTime.Now;
+
+try
+{
+	using (var newClient = new RedisClient(TestConfig.SingleHost))
+	{
+		//Attempt to acquire a lock with a 2 second timeout
+		using (newClient.AcquireLock("testlock", waitFor))
+		{
+			//If lock was acquired this would be incremented to '2'
+			redisClient.Increment("atomic-counter"); 
+		}
+	}
+}
+catch (TimeoutException tex)
+{
+	var timeTaken = DateTime.Now - now;
+	Console.WriteLine("After '{0}', Received TimeoutException: '{1}'", timeTaken, tex.Message);
+
+	var counter = redisClient.Get<int>("atomic-counter");
+	Console.WriteLine("atomic-counter remains at '{0}'", counter);
+}
+}}}
