@@ -20,6 +20,8 @@ public interface IRedisClient
 }
 }}}
 
+_NOTE: The above implementation does not include the ability to auto-recover from a crashed client, power or network failure, so under rare conditions it is possible for all clients to be deadlocked indefinitely waiting on a lock that is never released. In these cases it's wise to supply a `TimeOut` or manually recover zombie locks by clearing all locks on server restarts, etc._
+
 Below are a couple examples showing how to use the API in some typical usage scenarios. The full runnable source code of the following examples are [http://code.google.com/p/servicestack/source/browse/trunk/Common/ServiceStack.Redis/ServiceStack.Redis.Tests/Examples/SimpleLocks.cs available here].
 
 == Example: Multiple clients acquiring the same lock ==
