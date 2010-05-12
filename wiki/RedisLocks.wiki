@@ -10,7 +10,7 @@ With Redis you get simplified access to intelligent atomic server operations tha
 [ServiceStackRedis Service Stack's C# Redis client] takes advantage of the convenience and safety offered by .NET's IDisposable interface and Redis's [http://code.google.com/p/redis/wiki/SetnxCommand SetNX operation] to provide a convenient API to implement your own *custom distributed locks*, ensuring at all times that only 1 client at a time can execute the protected logic. In the meantime when one of the Redis clients obtains the lock, the other clients enter into an 'exponential retry back-off multiplier state' continually retrying to obtain the lock at random intervals until they are finally successful.
 
 == Simple API Usage ==
-The locking functionality is available on the IRedisClient and IRedisTypedClient interfaces, the relevant portion of which is displayed below.
+The locking functionality is available on the [IRedisClient] and [IRedisTypedClient] interfaces, the relevant portion of which is displayed below.
 {{{
 public interface IRedisClient
 {
