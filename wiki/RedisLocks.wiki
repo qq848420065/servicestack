@@ -1,7 +1,7 @@
 #labels Redis,Distributed,Concurrent,HighPerformance,Lock
 This page shows how to use the [C# Redis Client] to take advantage of Redis's fast atomic server operations to enable high-performance *distributed locks* that can span across multiple app servers.
 
-= Creating High Performance, Distributed Locking using Redis =
+= Achieving High Performance, Distributed Locking with Redis =
 
 When you have a high-performance, scalable network data structure server like Redis accessible to your back end systems, a whole range of technical possibilities open up that we're previously difficult to achieve. Something as trivial as multi-server wide application-level locks was previously only achievable using dedicated, centralized server infrastructure and the crafting of some carefully custom concurrent programming logic. 
 
