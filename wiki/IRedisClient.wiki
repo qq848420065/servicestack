@@ -75,6 +75,14 @@ public interface IRedisClient
 	IDisposable AcquireLock(string key);
 	IDisposable AcquireLock(string key, TimeSpan timeOut);
 
+	#region Redis pubsub
+
+	IRedisSubscription CreateSubscription();
+	void PublishMessage(string toChannel, string message);
+
+	#endregion
+
+
 	#region Set operations
 
 	HashSet<string> GetAllItemsFromSet(string setId);
@@ -187,15 +195,6 @@ public interface IRedisClient
 	Dictionary<string, string> GetAllEntriesFromHash(string hashId);
 
 	#endregion
-
-
-	#region Redis pubsub
-
-	IRedisSubscription CreateSubscription();
-	void PublishMessage(string toChannel, string message);
-
-	#endregion
-
 }
 
 }}}
