@@ -19,9 +19,14 @@ public interface IRedisNativeClient
 	void Save();
 	void BgSave();
 	void Shutdown();
+	void BgRewriteAof();
 	void Quit();
 	void FlushDb();
 	void FlushAll();
+	bool Ping();
+	string Echo(string text);
+	void SlaveOf(string hostname, int port);
+	void SlaveOfNoOne();
 
 	//Common key-value Redis operations
 	void Set(string key, byte[] value);
@@ -57,6 +62,8 @@ public interface IRedisNativeClient
 	void LSet(string listId, int listIndex, byte[] value);
 	byte[] LPop(string listId);
 	byte[] RPop(string listId);
+	byte[][] BLPop(string listId, int timeOutSecs);
+	byte[][] BRPop(string listId, int timeOutSecs);
 	byte[] RPopLPush(string fromListId, string toListId);
 
 
@@ -95,8 +102,8 @@ public interface IRedisNativeClient
 	int ZRemRangeByScore(string setId, double fromScore, double toScore);
 	int ZCard(string setId);
 	double ZScore(string setId, byte[] value);
-	int ZUnion(string intoSetId, params string[] setIds);
-	int ZInter(string intoSetId, params string[] setIds);
+	int ZUnionStore(string intoSetId, params string[] setIds);
+	int ZInterStore(string intoSetId, params string[] setIds);
 
 	//Redis Hash operations
 	int HSet(string hashId, byte[] key, byte[] value);
