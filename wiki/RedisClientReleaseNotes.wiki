@@ -10,7 +10,7 @@ Unfortunately during development of [http://www.servicestack.net/RedisWebService
 
 ===The new terminology used in the new API===
 The wording in the new [IRedisClient] and [http://www.servicestack.net/RedisWebServices.Host/Public/Metadata RedisWebService] API's:
-  * For write operations I specify to *what* I'm adding an as well as what I'm adding it to: 
+  * For write operations I specify to *what* I'm adding an as well as *where* I'm adding it to: 
      * e.g. `AddItemToList` as opposed to `AddToList`.
   * For read operations I specify *what* I'm getting and *where* I'm getting it from 
     * e.g. `GetAllItemsFromList` as opposed to `GetAllFromList`.
