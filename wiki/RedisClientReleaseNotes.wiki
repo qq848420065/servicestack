@@ -6,7 +6,7 @@ This version adds support for the recently released [http://code.google.com/p/re
 This release also fixes a major performance issue with the older clients so it is now a recommended upgrade for all older clients which ideally should coincide with an upgrade to  redis-server v2.0.
 
 ===Breaking API Changes===
-Unfortunately while starting to develop [http://www.servicestack.net/RedisWebServices.Host/Public/Metadata RedisWebServices] I noticed that the nomenclature of the descriptive API found in the [IRedisClient] and [IRedisTypedClient] were sometimes in-consistent. 
+Unfortunately during development of [http://www.servicestack.net/RedisWebServices.Host/Public/Metadata RedisWebServices] I became aware that the nomenclature of the descriptive API found in the [IRedisClient] and [IRedisTypedClient] were sometimes in-consistent. 
 
 Normally when making changes to published API's I would continue to deprecate and support the older API's unfortunately since there was _so many_ changes supporting both API's would've made it more confusing so I've taken the opportunity with the release of redis-server v2.0 to start with a clean slate, though I will continue to make available the older version (v1.20) of the client below.
 
