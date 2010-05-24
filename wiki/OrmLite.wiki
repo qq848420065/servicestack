@@ -24,7 +24,7 @@ For simplicity, and to be able to have the same POCO class persisted in db4o, me
 
 = Examples =
 
-In its simplest useage, OrmLite can persist a class without any attributes required:
+In its simplest useage, OrmLite can persist *any POCO type* without any attributes required:
 {{{
 public class SimpleExample
 {
