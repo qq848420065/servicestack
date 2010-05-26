@@ -24,7 +24,7 @@ For multi-threaded applications you can choose from our different client connect
 
 === Redis Client releases ===
   * The latest version of the Redis client is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip]
-  * Alternatively it is available as a separate standalone  [http://servicestack.googlecode.com/files/ServiceStack.Redis.dll ServiceStack.Redis.dll]
+  * Alternatively it is available as a separate standalone  [http://servicestack.googlecode.com/files/ServiceStack.Redis.zip ServiceStack.Redis.zip]
 
 [RedisClientReleaseNotes View the release notes].
 
