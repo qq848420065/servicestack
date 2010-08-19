@@ -22,8 +22,8 @@ For multi-threaded applications you can choose from our different client connect
 
 = Download =
 
-===Breaking Change===
-There is a breaking the latest version of Redis (v1.45) where complex types used to be [TypeSerializer Jsv Encoded] but are now JSON encoded. Apologies for the change but was required for interoperability between different Redis clients.
+===BREAKING CHANGE===
+There is a breaking the latest version of C# Redis Client (v1.45) where complex types used to be [TypeSerializer Jsv Encoded] but are now JSON encoded. Apologies for the change but was required for interoperability between different Redis clients.
 
 === Redis Client releases ===
   * The latest version of the Redis client is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip]
