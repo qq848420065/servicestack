@@ -34,3 +34,5 @@ Due to the popularity and simplicity of the Redis protocol there is a plethora o
 For .NET applications you can download and get started with [ServiceStackRedis ServiceStack's open source c# Redis client library] - which can also be used on Linux platforms using [http://www.mono-project.com/Main_Page Mono].
 
 For Java applications the most active library at the moment is [http://code.google.com/p/jredis/ JRedis]. For all other language bindings visit the [http://code.google.com/p/redis/wiki/SupportedLanguages redis supported languages page].
+
+For those interested in having a GUI admin tool to visualize your Redis data should check out the [http://www.servicestack.net/mythz_blog/?p=381 Redis Admin UI]
