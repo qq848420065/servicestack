@@ -28,6 +28,7 @@ There is a breaking the latest version of C# Redis Client (v1.45) where complex 
 === Redis Client releases ===
   * The latest version of the Redis client is included as part of [http://servicestack.googlecode.com/files/ServiceStack.zip ServiceStack.zip]
   * Alternatively it is available as a separate standalone  [http://servicestack.googlecode.com/files/ServiceStack.Redis.zip ServiceStack.Redis.zip]
+  * For those interested in having a GUI admin tool to visualize your Redis data should check out the [http://www.servicestack.net/mythz_blog/?p=381 Redis Admin UI]
 
 [RedisClientReleaseNotes View the release notes].
 
