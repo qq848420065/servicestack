@@ -38,4 +38,5 @@ For .NET applications you can download and get started with [ServiceStackRedis S
 
 For Java applications the most active library at the moment is [http://code.google.com/p/jredis/ JRedis]. For all other language bindings visit the [http://code.google.com/p/redis/wiki/SupportedLanguages redis supported languages page].
 
+=== Redis Admin GUI ===
 For those interested in having a GUI admin tool to visualize your Redis data should check out the [http://www.servicestack.net/mythz_blog/?p=381 Redis Admin UI]
