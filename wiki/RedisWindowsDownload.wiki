@@ -14,9 +14,8 @@ Having the latest version of Redis running on windows is important for the devel
 
 = Download for Windows =
 
-Download latest development release of Redis 2.0.0 Stable (includes Cygwin):
-  * [http://servicestack.googlecode.com/files/redis-2.0.0.zip redis-2.0.0.zip (32 bit)]
-  * [http://servicestack.googlecode.com/files/redis-2.0.0-x64.zip redis-2.0.0-x64.zip (64 bit)]
+Download latest development release of Redis 2.0.2 Stable (includes Cygwin):
+  * [http://servicestack.googlecode.com/files/redis-2.0.2.zip redis-2.0.2.zip (32 bit)]
 
 Download latest stable release of Redis 2.0.0 Stable (includes Cygwin):
   * [http://servicestack.googlecode.com/files/redis-2.0.0.zip redis-2.0.0.zip (32 bit)]
