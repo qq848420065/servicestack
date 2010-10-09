@@ -28,17 +28,18 @@ Event-based, async-io architectures are faster and more memory efficient then tr
 
 Powered by Google's V8 JavaScript engine, it marks a fresh start in web server development where for the first time developers are able to build highly-efficient end-to-end software completely in JavaScript.
 
+= Windows Download =
+
+Download latest release of Node v0.2.3 Stable (includes Cygwin):
+  * [http://servicestack.googlecode.com/files/node-v0.2.3.zip node-v0.2.3.zip (32 bit)]
+
+=== More Info ===
+
 For more information about this exciting technology check out:
   * [http://s3.amazonaws.com/four.livejournal/20091117/jsconf.pdf slides] from JSConf 2009
   * [http://nodejs.org/jsconf2010.pdf slides] from JSConf 2010
   * [http://www.yuiblog.com/blog/2010/05/20/video-dahl/ video] from a talk at Yahoo in May 2010
   * [http://developer.yahoo.com/yui/theater/video.php?v=crockford-loopage video] on Event Loops from JavaScript Guru Douglas Crockford
-
-
-== Windows Download ==
-
-Download latest release of Node v0.2.3 Stable (includes Cygwin):
-  * [http://servicestack.googlecode.com/files/node-v0.2.3.zip node-v0.2.3.zip (32 bit)]
 
 === Useful Libraries ===
 
