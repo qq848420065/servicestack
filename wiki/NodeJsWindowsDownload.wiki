@@ -48,3 +48,7 @@ A good tutorial to help you get started with Redis is:
   * [http://howtonode.org/node-redis-fun]
 
 Like node.js, Redis was built for unix operating systems but thanks to Cygwin it is also available to [http://code.google.com/p/servicestack/wiki/RedisWindowsDownload Download on Windows].
+
+=== Useful links ===
+
+  * [http://codebetter.com/blogs/matthew.podwysocki/archive/2010/09/07/getting-started-with-node-js-on-windows.aspx Getting started with nodejs on Windows] - for building node yourself.
