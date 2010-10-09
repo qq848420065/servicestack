@@ -1,5 +1,5 @@
 #labels Nodejs,Windows
-= Node.js download for Windows =
+= Download Node.js for Windows =
 
 Taken from the [http://nodejs.org nodejs.org] website:
 
