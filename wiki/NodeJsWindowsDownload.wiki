@@ -1,6 +1,4 @@
 #labels Nodejs,Windows
-#This is the download page for node.js for Windows (using Cygwin)
-
 = Node.js download for Windows =
 
 Taken from the [http://nodejs.org nodejs.org] website:
