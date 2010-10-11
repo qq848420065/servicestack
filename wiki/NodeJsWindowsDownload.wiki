@@ -55,3 +55,4 @@ Like node.js, Redis was built for unix operating systems but thanks to Cygwin it
 === Useful links ===
 
   * [http://codebetter.com/blogs/matthew.podwysocki/archive/2010/09/07/getting-started-with-node-js-on-windows.aspx Getting started with nodejs on Windows] - for building node yourself.
+  * [http://github.com/ry/node/wiki/Building-node.js-on-Cygwin-(Windows)/22a5f48ac53c8234038bbb20ac8e2aba93fe8aa7 Building-node.js-on-Cygwin-(Windows)] - like the above although has solutions for common pitfalls. 
