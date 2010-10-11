@@ -33,6 +33,9 @@ Powered by Google's V8 JavaScript engine, it marks a fresh start in web server d
 Download latest release of Node v0.2.3 Stable (includes Cygwin):
   * [http://servicestack.googlecode.com/files/node-v0.2.3.zip node-v0.2.3.zip (32 bit)]
 
+Download ultimate windows-dev pack: Redis v2.0.2, Node v0.2.3 and Expressjs v1.0.0rc3 (includes Cygwin):
+  * [http://servicestack.googlecode.com/files/nodejs-v0.2.3_redis-v.2.0.2.zip nodejs-v0.2.3_redis-v.2.0.2.zip (32 bit)]
+
 === More Info ===
 
 For more information about this exciting technology check out:
