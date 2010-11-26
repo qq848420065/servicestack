@@ -1,4 +1,9 @@
 #labels Redis,Windows,Server,Download
+== NOTE: This project has not moved to [https://github.com/mythz/ServiceStack.Redis]. Please update your links. ==
+
+<hr/>
+<br/>
+
 Download the latest version of the Redis Server for Windows.
 
 = Introduction =
