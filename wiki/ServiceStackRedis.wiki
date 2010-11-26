@@ -1,5 +1,5 @@
 #labels Featured,Redis,OpenSource
-== NOTE: This project has not moved to [https://github.com/mythz/ServiceStack.Redis]. Please update your links. ==
+== NOTE: This project has moved to [https://github.com/mythz/ServiceStack.Redis]. Please update your links. ==
 
 <hr/>
 <br/>
