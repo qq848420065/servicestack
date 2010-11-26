@@ -1,4 +1,7 @@
 #labels CSharp,Redis,API
+This page has now moved to [https://github.com/mythz/ServiceStack/wiki/IRedisClient IRedisClient on GitHub]. Please update your links.
+
+
 Details of the IRedisClient API implemented by the [ServiceStackRedis ServiceStack.Redis client]
 
 = Introduction =
