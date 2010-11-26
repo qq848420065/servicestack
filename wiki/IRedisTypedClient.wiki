@@ -1,6 +1,5 @@
 #labels CSharp,Redis,TypeSerializer,POCO
-== NOTE: This page has now moved to [https://github.com/mythz/ServiceStack/wiki/IRedisTypedClient IRedisTypedClient on GitHub]. 
-Please update your links. ==
+== NOTE: This page has now moved to [https://github.com/mythz/ServiceStack/wiki/IRedisTypedClient IRedisTypedClient on GitHub]. Please update your links. ==
 
 <hr/>
 <br/>
