@@ -1,3 +1,9 @@
+== NOTE: This page has moved to [https://github.com/mythz/ServiceStack.Redis/wiki/RedisTransactions RedisTransactions on GitHub]. Please update your links. ==
+
+<hr/>
+<br/>
+
+
 This page provides examples on how to create atomic Redis transactions with [ServiceStackRedis Service Stack's C# Redis Client]
 
 = How to create custom atomic operations in Redis =
