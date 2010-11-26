@@ -1,4 +1,9 @@
 #labels Cache,Performance,Scalability,CSharp
+== NOTE: This page has now moved to [https://github.com/mythz/ServiceStack/wiki/Caching Caching on GitHub]. Please update your links. ==
+
+<hr/>
+<br/>
+
 A myriad of different, pluggable options are included in Service Stack for the most popular cache providers.
 
 = Introduction =
