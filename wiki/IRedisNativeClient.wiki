@@ -1,4 +1,9 @@
 #labels Redis,API
+== NOTE: This page has moved to [https://github.com/mythz/ServiceStack.Redis/wiki/IRedisNativeClient IRedisNativeClient on GitHub]. Please update your links. ==
+
+<hr/>
+<br/>
+
 A C# client that provides a low-level raw bytes API access to Redis
 
 = Introduction =
