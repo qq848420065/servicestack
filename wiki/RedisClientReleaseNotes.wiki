@@ -1,5 +1,5 @@
 #labels Phase-QA,Redis,ReleaseNotes
-== NOTE: This page has moved to [RedisClientReleaseNotes on GitHub](https://github.com/mythz/ServiceStack.Redis/wiki/RedisClientReleaseNotes). Please update your links. ==
+== NOTE: This page has moved to [https://github.com/mythz/ServiceStack.Redis/wiki/RedisClientReleaseNotes RedisClientReleaseNotes on GitHub]. Please update your links. ==
 
 <hr/>
 <br/>
