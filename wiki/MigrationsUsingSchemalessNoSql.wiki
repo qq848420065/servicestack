@@ -1,4 +1,10 @@
 #labels Redis,Schemaless,NoSql,DataMigration
+== NOTE: This page has moved to [https://github.com/mythz/ServiceStack.Redis/wiki/MigrationsUsingSchemalessNoSql MigrationsUsingSchemalessNoSql on GitHub]. Please update your links. ==
+
+<hr/>
+<br/>
+
+
 This page runs through a typical example to show how painless typical data migrations can be when using Redis and other NoSQL schema-less data stores.
 
 ==== All Redis Blog application pages ====
