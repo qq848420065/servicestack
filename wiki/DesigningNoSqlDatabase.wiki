@@ -1,4 +1,9 @@
 #labels Redis,NoSql
+== NOTE: This page has moved to [https://github.com/mythz/ServiceStack.Redis/wiki/DesigningNoSqlDatabase DesigningNoSqlDatabase on GitHub]. Please update your links. ==
+
+<hr/>
+<br/>
+
 This page illustrates a good solution on how to design a simple Blog application with [http://code.google.com/p/redis/ Redis] using advanced features of [ServiceStackRedis ServiceStack's C# Redis Client] to provide fast, simple and elegant solutions to real world scenarios.
 
 ==== All Redis Blog application pages ====
