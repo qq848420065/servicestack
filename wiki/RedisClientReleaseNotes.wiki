@@ -1,4 +1,9 @@
 #labels Phase-QA,Redis,ReleaseNotes
+== NOTE: This page has moved to [RedisClientReleaseNotes on GitHub](https://github.com/mythz/ServiceStack.Redis/wiki/RedisClientReleaseNotes). Please update your links. ==
+
+<hr/>
+<br/>
+
 Latest release notes for the latest version of the c# [ServiceStackRedis ServiceStack.Redis client].
 
 = Redis Client v1.30 Release Notes =
