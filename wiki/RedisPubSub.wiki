@@ -1,4 +1,9 @@
 #labels Redis,NoSQL,PubSub,Publish,Subscribe,Messaging
+== NOTE: This page has moved to [https://github.com/mythz/ServiceStack.Redis/wiki/RedisPubSub RedisPubSub on GitHub]. Please update your links. ==
+
+<hr/>
+<br/>
+
 This page shows how to use [ServiceStackRedis Service Stack's C# Redis Client] to take advantage of the Publish/Subscribe messaging paradigm built into [http://code.google.com/p/redis/ Redis] to be able to develop high-performance network notification servers.
 
 = Publish/Subscribe messaging pattern in Redis =
