@@ -1,5 +1,5 @@
 #labels Featured,OpenSource,Mono,Lightweight,Fast,ORM
-Note: This project has moved to [https://github.com/mythz/ServiceStack.OrmLite ServiceStack.OrmLite on GitHub]. Please update your links.
+=== Note: This project has moved to [https://github.com/mythz/ServiceStack.OrmLite ServiceStack.OrmLite on GitHub]. Please update your links.===
 
 <hr/>
 <br/>
