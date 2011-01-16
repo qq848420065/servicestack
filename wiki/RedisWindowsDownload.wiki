@@ -27,7 +27,7 @@ Download latest stable release of Redis 2.0.0 Stable (includes Cygwin):
   * [http://servicestack.googlecode.com/files/redis-2.0.0-x64.zip redis-2.0.0-x64.zip (32 bit)]
 
 = Alternate Redis Windows downloads and links =
-  * [http://github.com/dmajkic/redis/downloads Download 32bit and 64bit MinGw builds for windows]
+  * [http://github.com/dmajkic/redis/downloads Download 32bit and 64bit MinGw builds of redis-server for windows]
   * [https://github.com/rgl/redis Project that lets you run Redis as a Windows Service]
 
 === Older Releases ===
