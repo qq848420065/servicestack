@@ -17,14 +17,18 @@ Like most open-source technology Redis was born and is primarily developed on `*
 
 Having the latest version of Redis running on windows is important for the development of [ServiceStackRedis ServiceStack's open source C# Redis client] to keep up-to-date with the latest Redis features. As there has historically have been no reliable source for the latest builds for Windows, Service Stack will now be hosting current and future builds of the Redis server for Windows on this page.
 
-= Download for Windows =
+= Download 32bit Cygwin builds for Windows =
 
 Download latest development release of Redis 2.0.2 Stable (includes Cygwin):
   * [http://servicestack.googlecode.com/files/redis-2.0.2.zip redis-2.0.2.zip (32 bit)]
 
 Download latest stable release of Redis 2.0.0 Stable (includes Cygwin):
   * [http://servicestack.googlecode.com/files/redis-2.0.0.zip redis-2.0.0.zip (32 bit)]
-  * [http://servicestack.googlecode.com/files/redis-2.0.0-x64.zip redis-2.0.0-x64.zip (64 bit)]
+  * [http://servicestack.googlecode.com/files/redis-2.0.0-x64.zip redis-2.0.0-x64.zip (32 bit)]
+
+= Alternate Redis Windows downloads and links =
+  * [http://github.com/dmajkic/redis/downloads Download 32bit and 64bit MinGw builds for windows]
+  * [https://github.com/rgl/redis Project that lets you run Redis as a Windows Service]
 
 === Older Releases ===
   * [http://servicestack.googlecode.com/files/redis-2.0.0-rc4.zip redis-2.0.0-rc4.zip]
