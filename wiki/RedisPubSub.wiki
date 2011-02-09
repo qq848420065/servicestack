@@ -1,5 +1,5 @@
 #labels Redis,NoSQL,PubSub,Publish,Subscribe,Messaging
-== NOTE: This page has moved to [https://github.com/mythz/ServiceStack.Redis/wiki/RedisPubSub RedisPubSub on GitHub]. Please update your links. ==
+== NOTE: This page has moved to [https://github.com/ServiceStack/ServiceStack.Redis/wiki/RedisPubSub RedisPubSub on GitHub]. Please update your links. ==
 
 <hr/>
 <br/>
