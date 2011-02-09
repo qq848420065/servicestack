@@ -1,5 +1,5 @@
 #labels Cache,Performance,Scalability,CSharp
-== NOTE: This page has now moved to [https://github.com/mythz/ServiceStack/wiki/Caching Caching on GitHub]. Please update your links. ==
+== NOTE: This page has now moved to [https://github.com/ServiceStack/ServiceStack/wiki/Caching Caching on GitHub]. Please update your links. ==
 
 <hr/>
 <br/>
