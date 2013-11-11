@@ -6,7 +6,7 @@
 
 Downloads and instructions for installing the latest version of the Redis Server on Windows is available at:
 
-= [https://github.com/mythz/redis-windows https://github.com/mythz/redis-windows]
+[https://github.com/mythz/redis-windows https://github.com/mythz/redis-windows]
 
 = Getting Started =
 
